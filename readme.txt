@@ -61,8 +61,8 @@ En Français
 C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses utilisateurs partagent les photos chez lui plutôt que sur Twitter. Instagram a supprimé ses Twitter Cards.
 
 = Le plugin marche mais je n'obtiens pas de Twitter Cards dans mes tweets =
-1. Assurez-vous bien d'avoir rempli correctement les champs dans la page d'options suivant [la documentation de Twitter](https://dev.twitter.com/docs/cards “Twitter cards documentation”) 
-2. Assurez-vous bien d'avoir [soumis votre site à Twitter](https://dev.twitter.com/docs/cards “Twitter cards documentation”)
+1. Assurez-vous bien d'avoir rempli correctement les champs dans la page d'options suivant [la documentation de Twitter] (https://dev.twitter.com/docs/cards "Twitter cards documentation") 
+2. Assurez-vous bien d'avoir [soumis votre site à Twitter] (https://dev.twitter.com/docs/cards "Twitter cards documentation")
 3. Attendez la réponse de Twitter (un mail qui vous indique que votre site a été approuvé)
 4. Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin
 
