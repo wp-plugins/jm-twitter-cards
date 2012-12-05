@@ -48,8 +48,8 @@ This is due to Instagram disabling its Twitter cards integration, and as a resul
 So, when users click on Tweets with an Instagram link, photos appear cropped.*
 
 = Plugin is fine but Twitter cards doesn't appear in my tweets =
-1. Make sure you correctly fulfilled fields in option page according to [Twitter documentation] (https://dev.twitter.com/docs/cards "Twitter cards documentation") 
-2. Make sure you have correctly [submitted your website to Twitter] (https://dev.twitter.com/docs/cards "Twitter cards documentation")
+1. Make sure you correctly fulfilled fields in option page according to <a href="https://dev.twitter.com/docs/cards" title="Twitter cards documentation">Twitter documentation</a>
+2. Make sure you have correctly <a href="https://dev.twitter.com/node/7940" title="Twitter cards submit">submitted your website to Twitter</a>
 3. Wait for Twitter's answer (a mail that tells you your site has been approved)
 4. If it still doesn't work please open a thread on support
 
@@ -61,8 +61,8 @@ En Français
 C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses utilisateurs partagent les photos chez lui plutôt que sur Twitter. Instagram a supprimé ses Twitter Cards.
 
 = Le plugin marche mais je n'obtiens pas de Twitter Cards dans mes tweets =
-1. Assurez-vous bien d'avoir rempli correctement les champs dans la page d'options suivant [la documentation de Twitter] (https://dev.twitter.com/docs/cards "Twitter cards documentation") 
-2. Assurez-vous bien d'avoir [soumis votre site à Twitter] (https://dev.twitter.com/docs/cards "Twitter cards documentation")
+1. Assurez-vous bien d'avoir rempli correctement les champs dans la page d'options suivant <a href="https://dev.twitter.com/docs/cards" title="Twitter cards documentation">la documentation Twitter</a>
+2. Assurez-vous bien d'avoir <a href="https://dev.twitter.com/node/7940" title="Twitter cards formulaire de validation">soumis votre site à Twitter</a>
 3. Attendez la réponse de Twitter (un mail qui vous indique que votre site a été approuvé)
 4. Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin
 
