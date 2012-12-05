@@ -48,8 +48,8 @@ This is due to Instagram disabling its Twitter cards integration, and as a resul
 So, when users click on Tweets with an Instagram link, photos appear cropped.*
 
 = Plugin is fine but Twitter cards doesn't appear in my tweets =
-1. Make sure you correctly fulfilled fields in option page according to [Twitter documentation](https://dev.twitter.com/docs/cards “Twitter cards documentation”) 
-2. Make sure you have correctly [submitted your website to Twitter](https://dev.twitter.com/docs/cards “Twitter cards documentation”)
+1. Make sure you correctly fulfilled fields in option page according to [Twitter documentation](https://dev.twitter.com/docs/cards "Twitter cards documentation") 
+2. Make sure you have correctly [submitted your website to Twitter](https://dev.twitter.com/docs/cards "Twitter cards documentation")
 3. Wait for Twitter's answer (a mail that tells you your site has been approved)
 4. If it still doesn't work please open a thread on support
 
