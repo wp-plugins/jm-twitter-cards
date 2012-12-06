@@ -1,6 +1,7 @@
 <?php
 /*
 Plugin Name: JM Twitter Cards
+Plugin URI: http://jmperso.eu/
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://www.jmperso.eu
