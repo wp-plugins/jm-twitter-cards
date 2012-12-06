@@ -54,7 +54,7 @@ License: GPL2++
 	                                        endif;
 	                                        return esc_attr($the_excerpt);// to prevent meta from being broken by ""
 	                                   }
-	                           }
+	                         
 
 	          			function add_twitter_card_info() {
                                     global $post;
