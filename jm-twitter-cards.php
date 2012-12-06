@@ -35,6 +35,27 @@ License: GPL2++
           
           //functions to add our card
 
+	                                   //adjust excerpt length
+	                                   function get_excerpt_by_id(){
+	                                        $the_post = get_post($post_id); //Gets post ID
+	                                        $the_excerpt = $the_post->post_content; //Gets post_content to be used as a basis for the excerpt
+	                                        
+	                                        //SET LENGTH
+	                                         $excerpt_length = jm_tc_get_options();
+	                                         $excerpt_length = $excerpt_length['twitterExcerptLength'];
+	               
+	                                       
+	                                        $the_excerpt = strip_tags(strip_shortcodes($the_excerpt)); //Strips tags and images
+	                                        $words = explode(' ', $the_excerpt, $excerpt_length + 1);
+	                                        if(count($words) > $excerpt_length) :
+	                                        array_pop($words);
+	                                        array_push($words, '…');
+	                                        $the_excerpt = implode(' ', $words);
+	                                        endif;
+	                                        return esc_attr($the_excerpt);// to prevent meta from being broken by ""
+	                                   }
+	                           }
+
 	          			function add_twitter_card_info() {
                                     global $post;
                                     if ( !is_single())
@@ -62,27 +83,7 @@ License: GPL2++
                                    
                                    }
                                    add_action( 'wp_head', 'add_twitter_card_info');
-                                   
-                                   //adjust excerpt length
-                                   function get_excerpt_by_id(){
-                                        $the_post = get_post($post_id); //Gets post ID
-                                        $the_excerpt = $the_post->post_content; //Gets post_content to be used as a basis for the excerpt
-                                        
-                                        //SET LENGTH
-                                         $excerpt_length = jm_tc_get_options();
-                                         $excerpt_length = $excerpt_length['twitterExcerptLength'];
-               
-                                       
-                                        $the_excerpt = strip_tags(strip_shortcodes($the_excerpt)); //Strips tags and images
-                                        $words = explode(' ', $the_excerpt, $excerpt_length + 1);
-                                        if(count($words) > $excerpt_length) :
-                                        array_pop($words);
-                                        array_push($words, '…');
-                                        $the_excerpt = implode(' ', $words);
-                                        endif;
-                                        return esc_attr($the_excerpt);// to prevent meta from being broken by ""
-                                   }
-
+							
   
 
            // Language support

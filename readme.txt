@@ -13,7 +13,7 @@ A plugin meant to simplify Twitter cards integration on WordPress for those who 
 
 Once activated the plugin adds Twitter cards on your posts according to your settings. Enjoy !
 I created this plugin to provide the same Twitter card feature as SEO by Yoast plugin does but for those who do not use it.
-But my plugin goes further...
+But my plugin goes further... you can choose what type of Twitter card you cant to add.
 
 
 ––––
@@ -22,7 +22,7 @@ En Français
 
 Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts selon vos réglages. Profitez-en bien !
 J'ai créé ce plugin pour tous les non utilisateurs de Seo by Yoast qui souhaitent avoir la possibilité d'insérer les Twitter Cards sans avoir à coder.
-Mais le plugin va encore plus loin...
+Mais le plugin va encore plus loin... vous pouvez choisir le type de Twitter card à ajouter.
 
 == Installation ==
 
