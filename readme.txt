@@ -2,7 +2,7 @@
 Contributors: jmlapam
 Tags: twitter, cards, markup
 Requires at least: 
-Tested up to: 3.4.2
+Tested up to: 3.5
 License: GPLv2 or later
 Stable tag: trunk
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
