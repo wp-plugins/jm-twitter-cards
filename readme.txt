@@ -52,6 +52,7 @@ So, when users click on Tweets with an Instagram link, photos appear cropped.*
 2. Make sure you have correctly <a href="https://dev.twitter.com/node/7940" title="Twitter cards submit">submitted your website to Twitter</a>
 3. Wait for Twitter's answer (a mail that tells you your site has been approved)
 4. If it still doesn't work please open a thread on support
+5. (update : 16 dec 2012) There is another thing that can cause conflicts : if you're using some third-part application to tweet (e.g IFTTT) or if you do something with your URL (e.g tinyurl), Twitter won't let you benefit from your card. URL has to contain the approved domain name.
 
 ––––
 En Français 
@@ -65,6 +66,7 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 2. Assurez-vous bien d'avoir <a href="https://dev.twitter.com/node/7940" title="Twitter cards formulaire de validation">soumis votre site à Twitter</a>
 3. Attendez la réponse de Twitter (un mail qui vous indique que votre site a été approuvé)
 4. Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin
+5. (Mise à jour : 16 dec 2012) Il y a un cas de figure qui peut causer des conflits : si vous utilisez une application tiers pour tweeter (ex: IFTTT) ou si vous manipulez vos URL avant de tweeter(e.g bitly,tinyurl), Twitter n'acceptera pas vos cards. Il faut que le nom de domaine approuvé par Twitter soit présent dans votre URL.
 
 == Screenshots ==
 
