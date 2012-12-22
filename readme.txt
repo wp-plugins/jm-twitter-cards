@@ -71,7 +71,8 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 4. Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin
 
 == Screenshots ==
-None
+1. admin
+2. confirmation mail
 
 == Changelog ==
 
