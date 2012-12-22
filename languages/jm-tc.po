@@ -1,0 +1,139 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Text in echo
+#: jm-twitter-cards.php:173
+msgid " To define a photo card experience, set your card type to \"photo\" and provide a twitter:image. Twitter will resize images, maintaining original aspect ratio to fit the following sizes:"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:201
+msgid "About the plugin"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:142
+msgid "Choose what type of card you want to use"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:195
+msgid "Do not forget to valid your website on dev.twitter :"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:153
+msgid "Enter Twitter account for your Website"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:161
+msgid "Enter URL for fallback image (image by default)"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:149
+msgid "Enter your Personal Twitter account"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:140
+msgid "General"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:188
+msgid "Image height"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:184
+msgid "Image width"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:132
+msgid "JM Twitter Cards Options"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:208
+msgid "Make a donation"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:176
+msgid "Mobile (non-retina displays): maximum height of 375px, maximum width of 280px"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:177
+msgid "Mobile (retina displays): maximum height of 750px, maximum with of 560px"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:168
+msgid "Options for photo cards"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:197
+msgid "Preview tool"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:205
+msgid "REST API version 1.1 (last version)"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:206
+msgid "Rate the plugin on WordPress.org"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:157
+msgid "Set description according to excerpt length (words count)"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:134
+msgid "This plugin allows you to get Twitter photo and summary cards for your blogs if you do not use SEO by Yoast."
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:207
+msgid "Tweet it"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:178
+msgid "Twitter will not create a photo card unless the twitter:image is of a minimum size of 280px wide by 150px tall. Images will not be cropped unless they have an exceptional aspect ratio"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:194
+msgid "Validation"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:198
+msgid "Validation form"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:175
+msgid "Web: maximum height of 375px, maximum width of 435px"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:145
+msgid "photo"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:144
+msgid "summary"
+msgstr ""
