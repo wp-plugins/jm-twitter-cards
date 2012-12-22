@@ -15,7 +15,7 @@ Once activated the plugin adds Twitter cards on your posts according to your set
 I created this plugin to provide the same Twitter card feature as SEO by Yoast plugin does but for those who do not use it.
 But my plugin goes further...
 
-Last update (1.1.2) includes styles for admin settings to make it cleaner, some links and a blank .po file you might want to use.
+Last update (1.1.2) includes styles for admin settings to make it cleaner, some links and a blank .po file you might want to use. Next updates will include more options.
 
 
 ––––
@@ -26,7 +26,7 @@ Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts sel
 J'ai créé ce plugin pour tous les non utilisateurs de Seo by Yoast qui souhaitent avoir la possibilité d'insérer les Twitter Cards sans avoir à coder.
 Mais le plugin va encore plus loin...
 
-La dernière mise à jour (1.1.2) inclue des styles pour la partie réglages ainsi que des liens et un fichier .po vierge dont vous pourriez avoir besoin.
+La dernière mise à jour (1.1.2) inclue des styles pour la partie réglages ainsi que des liens et un fichier .po vierge dont vous pourriez avoir besoin. Les prochaines mises à jour inclueront plus d'options.
 
 == Installation ==
 
