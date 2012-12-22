@@ -137,7 +137,7 @@ License: GPL2++
 
 			          <?php settings_fields('jm-tc'); ?>
 			          <fieldset>  
-			               <legend><?php _e('General:', 'jm-tc'); ?></legend>
+			               <legend><?php _e('General', 'jm-tc'); ?></legend>
 			                 <p>
 			                   <label for="twitterCardType"><?php _e('Choose what type of card you want to use', 'jm-tc'); ?> :</label>
 				          	 <select id="twitterCardType" name="jm_tc[twitterCardType]">
@@ -165,7 +165,7 @@ License: GPL2++
 			          </fieldset>
 			      
 			          <fieldset>
-			               <legend><?php _e('Options for photo cards:', 'jm-tc'); ?></legend>
+			               <legend><?php _e('Options for photo cards', 'jm-tc'); ?></legend>
 			              
 			              <p>
 			                    
