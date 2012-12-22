@@ -4,7 +4,7 @@ Plugin Name: JM Twitter Cards
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://wp.jmperso.eu
-Version: 1.1.1
+Version: 1.1.2
 License: GPL2++
 */
 
@@ -63,8 +63,8 @@ License: GPL2++
 				if( !function_exists( 'add_twitter_card_info' )  ) {
 	          			function add_twitter_card_info() {
                                     global $post;
-                                   // if ( !is_single())
-                                   // return;
+                                    if ( !is_single())
+                                    return;
                                      
                                         $opts = jm_tc_get_options();
                                         echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n";
