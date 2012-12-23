@@ -80,8 +80,8 @@ License: GPL2++
                                                 $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
                                                 echo '<meta name="twitter:image" content="' . $thumb[0] . '"/>'."\n";
                                         }
-                                         
-                                        if(isset($cardType) && ($cardType == 'photo' )) {
+                                        
+                                        if( $opts['twitterCardType'] == 'photo') {
                                                 echo '<meta name="twitter:image:width" content="'.$opts['twitterImageWidth'].'">'."\n";
                                                 echo '<meta name="twitter:image:height" content="'.$opts['twitterImageHeight'].'">'."\n";
                                         }

@@ -15,7 +15,7 @@ Once activated the plugin adds Twitter cards on your posts according to your set
 I created this plugin to provide the same Twitter card feature as SEO by Yoast plugin does but for those who do not use it.
 But my plugin goes further...
 
-Last update (1.1.2) includes styles for admin settings to make it cleaner, some links and a blank .po file you might want to use. Next updates will include more options.
+Last update (1.1.3) includes styles for admin settings to make it cleaner, some links and a blank .po file you might want to use. Next updates will include more options.
 
 
 ––––
@@ -26,7 +26,7 @@ Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts sel
 J'ai créé ce plugin pour tous les non utilisateurs de Seo by Yoast qui souhaitent avoir la possibilité d'insérer les Twitter Cards sans avoir à coder.
 Mais le plugin va encore plus loin...
 
-La dernière mise à jour (1.1.2) inclue des styles pour la partie réglages ainsi que des liens et un fichier .po vierge dont vous pourriez avoir besoin. Les prochaines mises à jour inclueront plus d'options.
+La dernière mise à jour (1.1.3) inclue des styles pour la partie réglages ainsi que des liens et un fichier .po vierge dont vous pourriez avoir besoin. Les prochaines mises à jour inclueront plus d'options.
 
 == Installation ==
 
@@ -75,6 +75,11 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 2. confirmation mail
 
 == Changelog ==
+
+= 1.1.3 =
+* 23 dec 2012
+* fix little bug on photo cards regarding width and height options
+
 
 = 1.1.2 =
 * 22 dec 2012
