@@ -4,87 +4,87 @@
  Author URI: http://wp.jmperso.eu
  */
 
-
-
 /* content */
 #jm-tc {
-	padding:1.2em;
+	padding: 1.2em;
 	max-width: 800px;/* handier*/
 }
 
-#jm-tc a:before{content:"[";}
-#jm-tc a:after{content:"]";}
+#jm-tc a:before {
+	content: "[";
+}
+#jm-tc a:after {
+	content: "]";
+}
 
-
-#jm-tc h2,
-#jm-tc h3,legend {
+#jm-tc h2, #jm-tc h3, legend {
 	font-size: 2em;
-	margin-bottom:1em;
+	margin-bottom: 1em;
 	color: #444;
 	font-weight: normal;
 }
 #jm-tc h2 {
 	font-size: 2.5em;
-}	
+}
 
 /* quotes */
-.desc,.jm-doc {
-font-size:1.1em;
-margin:0.5em 10px 0.5em 0;
-padding:1.5em 10px;
-quotes:"\201C""\201D";
+.desc, .jm-doc {
+	font-size: 1.1em;
+	margin: 0.5em 10px 0.5em 0;
+	padding: 1.5em 10px;
+	quotes: "\201C" "\201D";
 }
 .jm-doc {
-background-color:#fefefe;
-font-style:italic;
-
-
--webkit-border-radius:.5em;
--moz-border-radius:.5em;
--o-border-radius:.5em;
--khtml-border-radius:.5em;
-border-radius:.5em;
-
--webkit-box-shadow: 0 0 3px #929292;
--moz-box-shadow: 0 0 3px #929292;
-box-shadow: 0 0 3px #929292;
-
+	background-color: #fefefe;
+	font-style: italic;
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	-o-border-radius: .5em;
+	-khtml-border-radius: .5em;
+	border-radius: .5em;
+	border:1px solid #ddd;
 }
-.desc:before,.jm-doc:before {
-content:open-quote;
-font-size:6em;
-line-height:.1em;
-margin-right:.25em;
-vertical-align:-.4em
+.desc:before, .jm-doc:before {
+	content: open-quote;
+	font-size: 6em;
+	line-height: .1em;
+	margin-right: .25em;
+	vertical-align: -.4em
 }
 
 /* listes */
 #jm-tc ul {
-	padding-left:1em;
+	padding-left: 1em;
 }
 #jm-tc li {
-	padding-left:.5em;
-	list-style:circle;
+	padding-left: .5em;
+	list-style: circle;
 }
 
 /* form */
 
 fieldset {
-	border:1px solid #bbb;
-	padding:2em;
+	border: 1px solid #ddd;
+	padding: 2em;
+	/* bg */
+ background-color: Mintcream;
 }
-fieldset+fieldset { margin-top:3em ;}
+fieldset+ fieldset {
+	margin-top: 2em;
+}
 
-#jm-tc-form label,#jm-tc-form input { 
-	display:inline;zoom:1;/* IE7*/
-	display:inline-block;/* really better ! */
+#jm-tc-form label, #jm-tc-form input, .inbl {
+	display: inline;
+	zoom: 1;/* IE7*/
+	display: inline-block;/* really better ! */
 	vertical-align: middle;
 }
+
 #jm-tc-form {
 	line-height: 1.6;
 }
-#JM_submit {
-	float:right; 
-}
 
+#JM_submit {
+	float: right;
+}
 

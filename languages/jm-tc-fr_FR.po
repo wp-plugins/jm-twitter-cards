@@ -8,163 +8,196 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 1.5.4\n"
 
 #. Text in echo
-#: jm-twitter-cards.php:173
-msgid ""
-" To define a photo card experience, set your card type to \"photo\" and "
-"provide a twitter:image. Twitter will resize images, maintaining original "
-"aspect ratio to fit the following sizes:"
-msgstr ""
-"Pour débuter l'expérience des card de type photo, choisissez \"photo\" et "
-"fournissez une twitter:image. Twitter va redimensionner vos images en "
-"maintenant le ratio original pour s'accorder avec les tailles suivantes :"
+#: jm-twitter-cards.php:256
+msgid " To define a photo card experience, set your card type to \"photo\" and provide a twitter:image. Twitter will resize images, maintaining original aspect ratio to fit the following sizes:"
+msgstr "Pour débuter l'expérience des card de type photo, choisissez \"photo\" et fournissez une twitter:image. Twitter va redimensionner vos images en maintenant le ratio original pour s'accorder avec les tailles suivantes :"
 
 #. Text in echo
-#: jm-twitter-cards.php:201
+#: jm-twitter-cards.php:259
+msgid "<strong>Mobile (non-retina displays)</strong>: maximum height of 375px, maximum width of 280px"
+msgstr "<strong>Mobiles (affichages non-retina )</strong>:  hauteur maximum de 375px, largeur maximum  de 280px"
+
+#. Text in echo
+#: jm-twitter-cards.php:260
+msgid "<strong>Mobile (retina displays)</strong>: maximum height of 750px, maximum with of 560px"
+msgstr "<strong>Mobiles (affichages retina)</strong>: hauteur maximum de 750px, largeur maximum de 560px"
+
+#. Text in echo
+#: jm-twitter-cards.php:258
+msgid "<strong>Web</strong>: maximum height of 375px, maximum width of 435px"
+msgstr "<strong>Web</strong>: hauteur maximum de 375px, largeur maximum de 435px"
+
+#. Text in echo
+#: jm-twitter-cards.php:305
 msgid "About the plugin"
-msgstr "&Agrave; propos du plugin"
+msgstr "À propos du plugin"
+
+#. Text in function
+#: jm-twitter-cards.php:1
+msgid "Card Type"
+msgstr "Type de card"
 
 #. Text in echo
-#: jm-twitter-cards.php:142
+#: jm-twitter-cards.php:226
 msgid "Choose what type of card you want to use"
-msgstr "Choisissez le type de card que vous voulez intégrer à vos posts"
+msgstr "Choisissez le type de card que vous voulez utiliser"
+
+#. Text in function
+#: jm-twitter-cards.php:1
+msgid "Choose what type of card you want to use for this post type"
+msgstr "Choisissez le type de card que vous voulez intégrer à ce post"
+
+#. Text in function
+#: jm-twitter-cards.php:1
+msgid "Creator (optional)"
+msgstr "Creator (facultatif)"
 
 #. Text in echo
-#: jm-twitter-cards.php:195
+#: jm-twitter-cards.php:278
+msgid "Custom Twitter Cards"
+msgstr "Twitter Cards Personnalisées"
+
+#. Text in echo
+#: jm-twitter-cards.php:299
 msgid "Do not forget to valid your website on dev.twitter :"
 msgstr "Surtout n'oubliez pas de valider votre site web auprès de dev.twitter"
 
 #. Text in echo
-#: jm-twitter-cards.php:153
+#: jm-twitter-cards.php:237
 msgid "Enter Twitter account for your Website"
 msgstr "Entrez le compte Twitter du site"
 
 #. Text in echo
-#: jm-twitter-cards.php:161
+#: jm-twitter-cards.php:245
 msgid "Enter URL for fallback image (image by default)"
-msgstr "Entrez l'URL pour l'image par défaut"
+msgstr "Entrez l'URL fallback de l'image (image par défaut)"
+
+#. Text in function
+#: jm-twitter-cards.php:1
+msgid "Enter author Twitter account (without @)"
+msgstr "Entrez le compte Twitter de l'auteur (sans le @)"
 
 #. Text in echo
-#: jm-twitter-cards.php:149
+#: jm-twitter-cards.php:233
 msgid "Enter your Personal Twitter account"
-msgstr "Entrez votre compte Twitter perso"
+msgstr "Entrez votre compte Twitter personnel"
 
 #. Text in echo
-#: jm-twitter-cards.php:140
+#: jm-twitter-cards.php:224
 msgid "General"
-msgstr "Options générales"
+msgstr "Réglages généraux"
 
 #. Text in echo
-#: jm-twitter-cards.php:188
+#: jm-twitter-cards.php:286
+msgid "Get a <strong>custom metabox</strong> on each post type admin"
+msgstr "Obtenez une <strong>metabox dédiée</strong> sur chaque édit"
+
+#. Text in echo
+#: jm-twitter-cards.php:292
+msgid "If enabled, a custom metabox will appear (admin panel) in your edit"
+msgstr "Si activé, une métabox dédiée apparaîtra sur vos édit (partie admin des posts)"
+
+#. Text in echo
+#: jm-twitter-cards.php:271
 msgid "Image height"
 msgstr "Hauteur de l'image"
 
 #. Text in echo
-#: jm-twitter-cards.php:184
+#: jm-twitter-cards.php:267
 msgid "Image width"
 msgstr "Largeur de l'image"
 
 #. Text in echo
-#: jm-twitter-cards.php:132
+#: jm-twitter-cards.php:214
 msgid "JM Twitter Cards Options"
 msgstr "Options de JM Twitter Cards"
 
 #. Text in echo
-#: jm-twitter-cards.php:208
+#: jm-twitter-cards.php:310
 msgid "Make a donation"
-msgstr "Faire un don"
+msgstr "Me payer un milkshake"
 
 #. Text in echo
-#: jm-twitter-cards.php:176
-msgid ""
-"Mobile (non-retina displays): maximum height of 375px, maximum width of 280px"
-msgstr ""
-"Mobiles (affichages non-retina ): hauteur maximum de 375px, largeur maximum  "
-"de 280px"
-
-#. Text in echo
-#: jm-twitter-cards.php:177
-msgid ""
-"Mobile (retina displays): maximum height of 750px, maximum with of 560px"
-msgstr ""
-"Mobiles (affichages retina): hauteur maximum de 750px, largeur maximum de "
-"560px"
-
-#. Text in echo
-#: jm-twitter-cards.php:168
+#: jm-twitter-cards.php:252
 msgid "Options for photo cards"
-msgstr "Options des cards photo"
+msgstr "Options réservées aux cards de type photo"
 
 #. Text in echo
-#: jm-twitter-cards.php:197
+#: jm-twitter-cards.php:301
 msgid "Preview tool"
 msgstr "Outil de prévisualisation"
 
 #. Text in echo
-#: jm-twitter-cards.php:205
+#: jm-twitter-cards.php:311
 msgid "REST API version 1.1 (last version)"
 msgstr "REST API version 1.1 (dernière version)"
 
 #. Text in echo
-#: jm-twitter-cards.php:206
+#: jm-twitter-cards.php:308
 msgid "Rate the plugin on WordPress.org"
-msgstr "Noter le plugin sur WordPress.org"
+msgstr "Noter ce plugin sur WordPress.org"
 
 #. Text in echo
-#: jm-twitter-cards.php:157
+#: jm-twitter-cards.php:241
 msgid "Set description according to excerpt length (words count)"
-msgstr ""
-"Régler la description en fonction de la longueur de l'extrait (nombre total "
-"de mot)"
+msgstr "Régler la description en fonction de la longueur de l'extrait (nombre total de mot)"
 
 #. Text in echo
-#: jm-twitter-cards.php:134
-msgid ""
-"This plugin allows you to get Twitter photo and summary cards for your blogs "
-"if you do not use SEO by Yoast."
-msgstr ""
-"Ce plugin vous permet d'obtenir et de gérer des Twitter cards de type "
-"\"résumé\" et  \"photo\" si vous n'utilisez pas le plugin SEO by Yoast."
+#: jm-twitter-cards.php:281
+msgid "If you activate this option, you can custom every single post (page or post or even attachment). You are able to choose creator and card type for each post."
+msgstr "Si vous activez cette option, vous pourrez personnaliser vos cards sur chaque post (page, article ou même média). Vous pourrez choisir le type de card ainsi que le pseudo Twitter du Creator."
 
 #. Text in echo
-#: jm-twitter-cards.php:207
+#: jm-twitter-cards.php:216
+msgid "This plugin allows you to get Twitter photo and summary cards for your blogs if you do not use SEO by Yoast. But now you can go further in your Twitter Cards experience, see last section."
+msgstr "Ce plugin vous permet d'obtenir des cards Twitter  de type photo et résumé sur vos blogs si vous n'utilisez pas SEO by Yoast. Mais vous irez plus loin dans votre expérience des cards Twitter, voir la dernière section."
+
+#. Text in echo
+#: jm-twitter-cards.php:309
 msgid "Tweet it"
-msgstr "Tweeter ce plugin"
+msgstr "Tweeter"
 
 #. Text in echo
-#: jm-twitter-cards.php:178
-msgid ""
-"Twitter will not create a photo card unless the twitter:image is of a "
-"minimum size of 280px wide by 150px tall. Images will not be cropped unless "
-"they have an exceptional aspect ratio"
-msgstr ""
-"Twitter n'affichera pas de card photo à moins que la twitter:image ait une "
-"largeur minimum de 280px et une hauteur minimum de 150px. Les images ne "
-"seront pas rognées à moins qu'elles aient un ratio particulièrement élevé"
+#: jm-twitter-cards.php:261
+msgid "Twitter will not create a photo card unless the twitter:image is of a minimum size of 280px wide by 150px tall. Images will not be cropped unless they have an exceptional aspect ratio"
+msgstr "Twitter n'affichera pas de card photo à moins que la twitter:image ait une largeur minimum de 280px et une hauteur minimum de 150px. Les images ne seront pas rognées à moins qu'elles aient un ratio particulièrement élevé"
 
 #. Text in echo
-#: jm-twitter-cards.php:194
+#: jm-twitter-cards.php:298
 msgid "Validation"
 msgstr "Validation"
 
 #. Text in echo
-#: jm-twitter-cards.php:198
+#: jm-twitter-cards.php:302
 msgid "Validation form"
 msgstr "Formulaire de validation"
 
 #. Text in echo
-#: jm-twitter-cards.php:175
-msgid "Web: maximum height of 375px, maximum width of 435px"
-msgstr "Web: hauteur maximum de 375px, largeur maximum de 435px"
+#: jm-twitter-cards.php:309
+msgid "https://twitter.com/intent/tweet?source=webclient&amp;hastags=WordPress,Plugin&amp;text=JM%20Twitter%20Cards%20%20is%20a%20great%20WordPress%20plugin%20to%20get%20Twitter%20Cards%20Try%20it!&amp;url=http://wordpress.org/extend/plugins/jm-twitter-cards/&amp;related=jmlapam&amp;via=jmlapam"
+msgstr "https://twitter.com/intent/tweet?source=webclient&amp;hastags=WordPress,Plugin&amp;text=JM%20Twitter%20Cards%20%20est%20un%20excellent%20plugin%20WordPress%20pour%20obtenirù20des%20Twitter%20Cards%20Essayez-le!&amp;url=http://wordpress.org/extend/plugins/jm-twitter-cards/&amp;related=jmlapam&amp;via=jmlapam"
 
 #. Text in echo
-#: jm-twitter-cards.php:145
+#: jm-twitter-cards.php:289
+msgid "no"
+msgstr "non"
+
+#. Text in function
+#: jm-twitter-cards.php:1
+#: jm-twitter-cards.php:229
 msgid "photo"
 msgstr "photo"
 
-#. Text in echo
-#: jm-twitter-cards.php:144
+#. Text in function
+#: jm-twitter-cards.php:1
+#: jm-twitter-cards.php:228
 msgid "summary"
 msgstr "résumé"
+
+#. Text in echo
+#: jm-twitter-cards.php:288
+msgid "yes"
+msgstr "oui"
+
