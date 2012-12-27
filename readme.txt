@@ -17,6 +17,7 @@ But my plugin goes further...
 
 Last update (1.1.5) includes multiple options. You can have different card on your website according to your settings. This is done with a simple metabox on posts, pages and attachments (edit post).
 
+<a href="http://twitter.com/jmlapam">follow me on Twitter</a>
 
 ––––
 En Français 
@@ -27,6 +28,8 @@ J'ai créé ce plugin pour tous les non utilisateurs de Seo by Yoast qui souhait
 Mais le plugin va encore plus loin...
 
 La dernière mise à jour (1.1.5) inclue de multiples options : vous pouvez avoir différentes type de card sur votre site, à paramétrer via une métabox qui s'ajoute dans l'administration sur les articles, les pages et les médias.
+
+<a href="http://twitter.com/jmlapam">Me suivre sur Twitter</a>
 
 == Installation ==
 
@@ -75,8 +78,13 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 == Screenshots ==
 1. admin
 2. confirmation mail
+3. metabox
 
 == Changelog ==
+
+= 1.1.5 =
+* 27 dec 2012
+* add warnings for WP SEO by Yoast users
 
 = 1.1.4 =
 * 25 dec 2012
