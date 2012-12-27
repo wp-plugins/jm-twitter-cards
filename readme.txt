@@ -7,7 +7,7 @@ License: GPLv2 or later
 Stable tag: trunk
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A plugin meant to simplify Twitter cards integration on WordPress for those who do not use SEO by Yoast plugin. But this is more than just adding markup. You can customize your Twitter card experience.
+A plugin meant to simplify Twitter cards integration on WordPress for those who do not use SEO by Yoast plugin. But this is more than just adding markup. You can customize your Twitter card experience :
 
 == Description ==
 
@@ -15,7 +15,7 @@ Once activated the plugin adds Twitter cards on your posts according to your set
 I created this plugin to provide the same Twitter card feature as SEO by Yoast plugin does but for those who do not use it.
 But my plugin goes further...
 
-Last update (1.1.4) includes multiple options. You can have different card on your website according to your settings. This is done with a simple metabox on posts, pages and attachments (edit post).
+Last update (1.1.5) includes multiple options. You can have different card on your website according to your settings. This is done with a simple metabox on posts, pages and attachments (edit post).
 
 
 ––––
@@ -26,7 +26,7 @@ Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts sel
 J'ai créé ce plugin pour tous les non utilisateurs de Seo by Yoast qui souhaitent avoir la possibilité d'insérer les Twitter Cards sans avoir à coder.
 Mais le plugin va encore plus loin...
 
-La dernière mise à jour (1.1.4) inclue de multiples options : vous pouvez avoir différentes type de card sur votre site, à paramétrer via une métabox qui s'ajoute dans l'administration sur les articles, les pages et les médias.
+La dernière mise à jour (1.1.5) inclue de multiples options : vous pouvez avoir différentes type de card sur votre site, à paramétrer via une métabox qui s'ajoute dans l'administration sur les articles, les pages et les médias.
 
 == Installation ==
 
@@ -75,13 +75,12 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 == Screenshots ==
 1. admin
 2. confirmation mail
-3. metabox
 
 == Changelog ==
 
 = 1.1.4 =
 * 25 dec 2012
-* major update : add features and extra options
+* add features and extra options
 
 = 1.1.3 =
 * 22 dec 2012

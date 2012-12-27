@@ -4,7 +4,7 @@ Plugin Name: JM Twitter Cards
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://wp.jmperso.eu
-Version: 1.1.4
+Version: 1.1.5
 License: GPL2++
 */
 
@@ -135,7 +135,7 @@ License: GPL2++
 												    $cardType = get_post_meta( $post->ID, 'twitterCardType', true );	
 											     $creator = get_post_meta( $post->ID, 'twitterCreator', true );	
 											     
-											   if(($opts['twitterCardCustom'] == 'yes') && !empty($cardType) && isset($cardType)) {
+											   if(($opts['twitterCardCustom'] == 'yes') && isset($cardType)) {
 													
 												  echo '<meta name="twitter:card" content="'. $cardType .'"/>'."\n";
 												 } else {
@@ -202,6 +202,11 @@ License: GPL2++
 				function jm_tc_admin_css() {  
 				 wp_enqueue_style( 'jm-style-tc', plugins_url('admin/jm-tc-admin-style.css', __FILE__)); 
 				} 
+				
+		// Check if a plugin is active (> SEO by Yoast)
+				function jm_tc_is_plugin_active( $plugin ) {
+    				return in_array( $plugin, (array) get_option( 'active_plugins', array() ) ) || is_plugin_active_for_network( $plugin );	
+				}		
 
 					  
 
@@ -215,6 +220,12 @@ License: GPL2++
 		          
 		          <blockquote class="desc"><?php _e('This plugin allows you to get Twitter photo and summary cards for your blogs if you do not use SEO by Yoast. But now you can go further in your Twitter Cards experience, see last section.', 'jm-tc'); ?></blockquote>
 
+		          <?php	 // Check if SEO by Yoast is activated
+						 if ( jm_tc_is_plugin_active('wordpress-seo/wp-seo.php') ) {
+						 	echo _e('<div id="message" class="error"><p>WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice</p></div>','jm-tc');
+						 } 		     				  
+
+					?>				        
 		          <form id="jm-tc-form" method="post" action="options.php">
 
 			          <?php settings_fields('jm-tc'); ?>
@@ -354,9 +365,9 @@ License: GPL2++
 			function jm_tc_get_default_options() {
 			return array(
 			'twitterCardType'           => 'summary',
-			'twitterCreator'		   						 => 'jmlapam',
+			'twitterCreator'		    => 'jmlapam',
 			'twitterSite'               => 'jmlapam',
-			'twitterExcerptLength'	     => 35,
+			'twitterExcerptLength'	    => 35,
 			'twitterImage'              => 'http://www.gravatar.com/avatar/avatar.jpg',
 			'twitterImageWidth'         => '280',
 			'twitterImageHeight'        => '150',
