@@ -201,11 +201,5 @@ msgstr ""
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid ""
-"<div id=\"message\" class=\"error\"><p>WordPress SEO by Yoast is activated, "
-"please uncheck Twitter Card option in this plugin if it\\'s enabled to avoid "
-"adding markup twice</p></div>"
+msgid "<div id=\"message\" class=\"error\"><p>WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice</p></div>"
 msgstr ""
-"<div id=\"message\" class=\"error\"><p>WordPress SEO by Yoast est activé, "
-"SVP décocher l'option Twitter Card option si vous l\\'avez activée pour "
-"éviter un double ajout de markup</p></div>"
