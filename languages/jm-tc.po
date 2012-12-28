@@ -201,5 +201,5 @@ msgstr ""
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "<div id=\"message\" class=\"error\"><p>WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice</p></div>"
+msgid "WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice"
 msgstr ""

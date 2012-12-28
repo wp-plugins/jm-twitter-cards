@@ -4,7 +4,7 @@ Plugin Name: JM Twitter Cards
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://wp.jmperso.eu
-Version: 1.1.5
+Version: 1.1.6
 License: GPL2++
 */
 
@@ -97,8 +97,8 @@ License: GPL2++
 	                  //grab excerpt
 	                 	if(!function_exists( 'get_excerpt_by_id' )) {
 	                 	  
-	                                        function get_excerpt_by_id(){
-	                                                  $the_post = get_post(); 
+	                                        function get_excerpt_by_id($post_id){
+	                                                  $the_post = get_post($post_id); 
 	                                                  $the_excerpt = $the_post->post_content; //Gets post_content to be used as a basis for the excerpt
 	                                                  
 	                                                  //SET LENGTH
@@ -129,7 +129,9 @@ License: GPL2++
 				                    			return;
 				                    			
 				          /* get */          		
-               $opts = jm_tc_get_options(); 	                   					
+               $opts = jm_tc_get_options(); 
+               
+             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 1.1.6) -->'."\n";  	                   					
 												
 												/* retrieve datas from our metabox */	
 												    $cardType = get_post_meta( $post->ID, 'twitterCardType', true );	
@@ -163,7 +165,10 @@ License: GPL2++
                                                   if($opts['twitterCardType'] == 'photo') {
                                                           echo '<meta name="twitter:image:width" content="'.$opts['twitterImageWidth'].'">'."\n";
                                                           echo '<meta name="twitter:image:height" content="'.$opts['twitterImageHeight'].'">'."\n";
+             
                                                   }
+                                                                                               
+                                                          echo '<!-- /JM Twitter Cards -->'."\n\n"; 
                                              
                                }
           		add_action( 'wp_head', 'add_twitter_card_info');
@@ -220,12 +225,10 @@ License: GPL2++
 		          
 		          <blockquote class="desc"><?php _e('This plugin allows you to get Twitter photo and summary cards for your blogs if you do not use SEO by Yoast. But now you can go further in your Twitter Cards experience, see last section.', 'jm-tc'); ?></blockquote>
 
-		          <?php	 // Check if SEO by Yoast is activated
-						 if ( jm_tc_is_plugin_active('wordpress-seo/wp-seo.php') ) {
-						 	echo _e('<div id="message" class="error"><p>WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice</p></div>','jm-tc');
-						 } 		     				  
-
-					?>				        
+        <?php	 // Check if SEO by Yoast is activated
+						 if ( jm_tc_is_plugin_active('wordpress-seo/wp-seo.php') ) { ?>
+						 	<div id="message" class="error"><p> <?php _e('WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice','jm-tc') ;?> </p></div><?php } ?>
+						 				        
 		          <form id="jm-tc-form" method="post" action="options.php">
 
 			          <?php settings_fields('jm-tc'); ?>
@@ -345,9 +348,9 @@ License: GPL2++
 			if ( isset($options['twitterCardType']) )
 			$new['twitterCardType']       = $options['twitterCardType'];
 			if ( isset($options['twitterCreator']) )
-			$new['twitterCreator']		  = esc_html(strip_tags( $options['twitterCreator'] ));
+			$new['twitterCreator']		  = esc_attr(strip_tags( $options['twitterCreator'] ));
 			if ( isset($options['twitterSite']) )
-			$new['twitterSite']			  = esc_html(strip_tags($options['twitterSite']));
+			$new['twitterSite']           = esc_attr(strip_tags($options['twitterSite']));
 			if ( isset($options['twitterExcerptLength']) )
 			$new['twitterExcerptLength']  = (int) $options['twitterExcerptLength'];
 			if ( isset($options['twitterImage']) )
