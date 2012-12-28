@@ -1,6 +1,6 @@
 === JM Twitter Cards ===
 Contributors: jmlapam
-Tags: twitter, cards, markup, metabox
+Tags: twitter, cards, semantic markup, metabox
 Requires at least: 
 Tested up to: 3.5
 License: GPLv2 or later
