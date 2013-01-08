@@ -224,7 +224,7 @@ License: GPL2++
 		          <?php screen_icon('options-general'); ?>
 		          <h2><?php _e('JM Twitter Cards Options', 'jm-tc'); ?></h2>
 		          
-		          <blockquote class="desc"><?php _e('This plugin allows you to get Twitter photo and summary cards for your blogs if you do not use SEO by Yoast. But now you can go further in your Twitter Cards experience, see last section.', 'jm-tc'); ?></blockquote>
+		          <blockquote class="desc"><p><?php _e('This plugin allows you to get Twitter photo and summary cards for your blogs if you do not use SEO by Yoast. But now you can go further in your Twitter Cards experience, see last section.', 'jm-tc'); ?></p></blockquote>
 
         <?php	 // Check if SEO by Yoast is activated
 						 if ( jm_tc_is_plugin_active('wordpress-seo/wp-seo.php') ) { ?>
