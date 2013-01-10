@@ -177,8 +177,8 @@ msgstr "Formulaire de validation"
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "https://twitter.com/intent/tweet?source=webclient&amp;hastags=WordPress,Plugin&amp;text=JM%20Twitter%20Cards%20%20is%20a%20great%20WordPress%20plugin%20to%20get%20Twitter%20Cards%20Try%20it!&amp;url=http://wordpress.org/extend/plugins/jm-twitter-cards/&amp;related=jmlapam&amp;via=jmlapam"
-msgstr "https://twitter.com/intent/tweet?source=webclient&amp;hastags=WordPress,Plugin&amp;text=JM%20Twitter%20Cards%20%20est%20un%20excellent%20plugin%20WordPress%20pour%20obtenirù20des%20Twitter%20Cards%20Essayez-le!&amp;url=http://wordpress.org/extend/plugins/jm-twitter-cards/&amp;related=jmlapam&amp;via=jmlapam"
+msgid "https://twitter.com/intent/tweet?source=webclient&amp;hastags=WordPress,Plugin&amp;text=JM%20Twitter%20Cards%20%20is%20a%20great%20WordPress%20plugin%20to%20get%20Twitter%20Cards%20Try%20it!&amp;url=http://wordpress.org/extend/plugins/jm-twitter-cards/&amp;related=TweetPressFr&amp;via=TweetPressFr"
+msgstr "https://twitter.com/intent/tweet?source=webclient&amp;hastags=WordPress,Plugin&amp;text=JM%20Twitter%20Cards%20%20est%20un%20excellent%20plugin%20WordPress%20pour%20obtenir%20des%20Twitter%20Cards%20Essayez-le!&amp;url=http://wordpress.org/extend/plugins/jm-twitter-cards/&amp;related=TweetPressFr&amp;via=TweetPressFr"
 
 #. Text in echo
 #: jm-twitter-cards.php
