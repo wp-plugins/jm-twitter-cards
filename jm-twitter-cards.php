@@ -144,7 +144,7 @@ License: GPL2++
 												 } else {
               echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
              }
-             if( isset($creator) && !empty($creator)) { // this part has to optional, this is more for guest blogging but it's no reason to bother everybody.
+             if(!empty($creator)) { // this part has to optional, this is more for guest blogging but it's no reason to bother everybody.
 												  echo '<meta name="twitter:creator" content="@'. $creator .'"/>'."\n";												
 												} else {
 												  echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
