@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: JM Twitter Cards
-Plugin URI: http://wp.jmperso.eu
+Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
-Author URI: http://wp.jmperso.eu
+Author URI: http://tweetpress.fr
 Version: 1.1.6
 License: GPL2++
 */
@@ -369,7 +369,7 @@ License: GPL2++
 			function jm_tc_get_default_options() {
 			return array(
 			'twitterCardType'           => 'summary',
-			'twitterCreator'		    => 'TweetPressFr',
+			'twitterCreator'		          => 'TweetPressFr',
 			'twitterSite'               => 'TweetPressFr',
 			'twitterExcerptLength'	    => 35,
 			'twitterImage'              => 'http://www.gravatar.com/avatar/avatar.jpg',
