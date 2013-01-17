@@ -17,6 +17,8 @@ But my plugin goes further...
 
 Last update (1.1.7) includes multiple options. You can have different card on your website according to your settings. This is done with a simple metabox on posts, pages and attachments (edit post).
 
+1.1.7 need PHP 5.3++ to works
+
 <a href="http://twitter.com/tweetpressfr">Follow me on Twitter</a>
 
 ––––
@@ -28,6 +30,8 @@ J'ai créé ce plugin pour tous les non utilisateurs de Seo by Yoast qui souhait
 Mais le plugin va encore plus loin...
 
 La dernière mise à jour (1.1.7) inclue de multiples options : vous pouvez avoir différentes type de card sur votre site, à paramétrer via une métabox qui s'ajoute dans l'administration sur les articles, les pages et les médias.
+
+1.1.7 nécessite PHP 5.3 au minimum pour fonctionner
 
 <a href="http://twitter.com/tweetpressfr">Me suivre sur Twitter</a>
 
