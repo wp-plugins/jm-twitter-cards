@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 1.1.6
+Version: 1.1.7
 License: GPL2++
 */
 
@@ -13,8 +13,8 @@ License: GPL2++
 *    Sources: - https://dev.twitter.com/docs/cards
 * 			  - http://codex.wordpress.org/Function_Reference/wp_enqueue_style
 *             - I decided to remove former sources because I've been enhanced them by far and above all these sources are wrong : get_the_excerpt() outside the loop or undefined var !)
-*             - https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress
-*												 - https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress/issues/220
+*             - https://github.com/GeekPress/WP-Custom-Fields
+*												 
 */
 
 
@@ -28,71 +28,54 @@ License: GPL2++
           }
 
 
-          // Plugin uninstall: delete option
+         // Plugin uninstall: delete option
           register_uninstall_hook( __FILE__, 'jm_tc_uninstall' );
           function jm_tc_uninstall() {
 	          delete_option( 'jm_tc' );
           }
-          
-         // grab our datas
-         $opts = jm_tc_get_options(); 
+
+
+        // grab our datas
+        $opts = jm_tc_get_options(); 
           
 
-         if($opts['twitterCardCustom'] == 'yes') {	
-				
-				          //Initialize the metabox class
-				
-				          function jm_tc_initialize_cmb_meta_boxes() {
-					          if ( ! class_exists( 'cmb_Meta_Box' ) ) // really important to check that because it's a library so it could be already used in your theme.
-						          require_once(plugin_dir_path( __FILE__ ) . 'admin/init.php');
-						          
-				          }
-				
-				          add_action( 'init', 'jm_tc_initialize_cmb_meta_boxes', 9999 );
-				
-				          //Add Meta Boxes		
+        if($opts['twitterCardCustom'] == 'yes') {	
 
-				          function jm_tc_metaboxes( $meta_boxes ) {
-				          
-				          $prefix = "@";//users won't have to enter @ before their Twitter Account
-				          
-					          $meta_boxes[] = array(
-						          'id'		 	=> 'jm_tc_metabox',
-						          'title' 	 	=> 'JM Twitter Cards',
-						          'pages' 	 	=> array('post','page','attachment',), // post type
-						          'context'  	=> 'normal',
-						          'priority' 	=> 'high',
-						          'show_names' 	=> true, // Show field names on the left
-						          'fields' 		=> array(
-						            //card type
-										          array(
-													          'name'    => __('Card Type','jm-tc'),
-													          'desc'    => __('Choose what type of card you want to use for this post type','jm-tc'),
-													          'id'      => 'twitterCardType',
-													          'type'    => 'select',
-													          'options' => array(
-														          array( 'name' => __('summary', 'jm-tc'), 'value' => 'summary', ),
-														          array( 'name' => __('photo', 'jm-tc'), 'value' => 'photo', ),
-													          ),
-												          ),
-												            
-									 //twitter:creator
-												  array(
-									                        'name' => __('Creator (optional)', 'jm-tc'),
-									                        'desc' => __('Enter author Twitter account (without @)', 'jm-tc'),
-									                        'type' => 'text',
-									                        'id'   => 'twitterCreator'
-								                        ),   				
-														
-                                           									          
-								),
-					          );
-				
-					          return $meta_boxes;
-				          }
-				          add_filter( 'cmb_meta_boxes', 'jm_tc_metaboxes' );				   
-				
-          }
+        //included class made by GeekPress
+        require_once(plugin_dir_path( __FILE__ ) . 'admin/meta-box.class.php' );     
+        
+        //adding fields
+        $conf = array(
+	                       'id'        => 'jm_tc_metabox',
+	                       'title'     => 'JM Twitter Cards',
+	                       'context'   => 'advanced',
+	                       'priority'  => 'high',
+	                       'post_type' => array( 'post', 'page', 'attachment' )
+       );
+
+       $fields[] = array(
+                        'name'  => 'twitterCardType',
+                        'label' => __('Card Type','jm-tc'),
+                        'description' => __('Choose what type of card you want to use for this post type','jm-tc'),
+                        'type'  => 'select',
+													           'options'   => array(
+                                  'summary' => __('summary', 'jm-tc'),
+                                  'photo' => __('photo', 'jm-tc'),
+                               ), // Liste des options
+												
+                 );
+                 
+       $fields[] = array(
+                        'name' => 'twitterCreator',
+                        'label' => __('Creator (optional)', 'jm-tc'),
+									               'description' => __('Enter author Twitter account (without @)', 'jm-tc'),          
+                        'type'  => 'text',
+                );
+        
+        //instanciate class
+        $exMetaBox = new Metabox( $conf, $fields ); 
+        
+       } 
                     
   
 	                  //grab excerpt
@@ -132,7 +115,7 @@ License: GPL2++
 				          /* get */          		
                $opts = jm_tc_get_options(); 
                
-             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 1.1.6) -->'."\n";  	                   					
+             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 1.1.7) -->'."\n";  	                   					
 												
 												/* retrieve datas from our metabox */	
 												    $cardType = get_post_meta( $post->ID, 'twitterCardType', true );	
