@@ -40,7 +40,6 @@ License: GPL2++
           
 
         if($opts['twitterCardCustom'] == 'yes') {	
-        if ( ! class_exists( 'meta-box' ) ) // really important to check that because it's a library so it could be already used in your theme.
         //included class made by GeekPress
         require_once(plugin_dir_path( __FILE__ ) . 'admin/meta-box.class.php' );     
         
