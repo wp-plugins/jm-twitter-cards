@@ -64,7 +64,7 @@ So, when users click on Tweets with an Instagram link, photos appear cropped.*
 1. Make sure you correctly fulfilled fields in option page according to <a href="https://dev.twitter.com/docs/cards" title="Twitter cards documentation">Twitter documentation</a>
 2. Make sure you have correctly <a href="https://dev.twitter.com/node/7940" title="Twitter cards submit">submitted your website to Twitter</a>
 3. Wait for Twitter's answer (a mail that tells you your site has been approved)
-4. If it still doesn't work please open a thread on support or at this URL: <a href="http://tweetpress.fr/en/plugin/jm-twitter-cards">TweetPress, JM Twitter Cards</a>
+4. If it still doesn't work please open a thread on support or at this URL: <a href="http://tweetpress.fr/en/plugin/new-plugin-jm-twitter-cards/">TweetPress, JM Twitter Cards</a>
 
 ––––
 En Français 
