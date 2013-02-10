@@ -28,13 +28,10 @@
 }
 
 /* quotes */
-.desc, .jm-doc {
-	font-size: 1.1em;
+.jm-doc {
 	margin: 0.5em 10px 0.5em 0;
 	padding: 1.5em 10px;
 	quotes: "\201C" "\201D";
-}
-.jm-doc {
 	background-color: #fefefe;
 	font-style: italic;
 	-webkit-border-radius: .5em;

@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 1.1.7
+Version: 1.1.8
 License: GPL2++
 */
 
@@ -13,8 +13,7 @@ License: GPL2++
 *    Sources: - https://dev.twitter.com/docs/cards
 * 			  - http://codex.wordpress.org/Function_Reference/wp_enqueue_style
 *             - I decided to remove former sources because I've been enhanced them by far and above all these sources are wrong : get_the_excerpt() outside the loop or undefined var !)
-*             - https://github.com/GeekPress/WP-Custom-Fields
-*												 
+*												 - http://wptheming.com/2011/08/admin-notices-in-wordpress/
 */
 
 
@@ -39,41 +38,117 @@ License: GPL2++
         $opts = jm_tc_get_options(); 
           
 
-        if($opts['twitterCardCustom'] == 'yes') {	
-        //included class made by GeekPress
-        require_once(plugin_dir_path( __FILE__ ) . 'admin/meta-box.class.php' );     
+        if($opts['twitterCardCustom'] == 'yes') {	 
+       
+       
+       // Add the Meta Box
+        function jm_tc_add_jm_tc_meta_boxes() {
+            add_meta_box(
+		             'jm_tc_meta_box', // $id
+		             'JM Twitter Cards', // $title 
+		             'jm_tc_show_meta_box', // $callback
+		             'post', // $page
+		             'side', // $context
+		             'high'); // $priority
+		             
+		             add_meta_box(
+		             'jm_tc_meta_box', // $id
+		             'JM Twitter Cards', // $title 
+		             'jm_tc_show_meta_box', // $callback
+		             'page', // $page
+		             'side', // $context
+		             'high'); // $priority
+		             
+		             add_meta_box(
+		             'jm_tc_meta_box', // $id
+		             'JM Twitter Cards', // $title 
+		             'jm_tc_show_meta_box', // $callback
+		             'attachment', // $page
+		             'side', // $context
+		             'high'); // $priority
+        }
+        add_action('add_meta_boxes', 'jm_tc_add_jm_tc_meta_boxes');
         
-        //adding fields
-        $conf = array(
-	                       'id'        => 'jm_tc_metabox',
-	                       'title'     => 'JM Twitter Cards',
-	                       'context'   => 'advanced',
-	                       'priority'  => 'high',
-	                       'post_type' => array( 'post', 'page', 'attachment' )
-       );
-
-       $fields[] = array(
-                        'name'  => 'twitterCardType',
-                        'label' => __('Card Type','jm-tc'),
-                        'description' => __('Choose what type of card you want to use for this post type','jm-tc'),
-                        'type'  => 'select',
-													           'options'   => array(
-                                  'summary' => __('summary', 'jm-tc'),
-                                  'photo' => __('photo', 'jm-tc'),
-                               ), // Liste des options
-												
-                 );
-                 
-       $fields[] = array(
-                        'name' => 'twitterCreator',
-                        'label' => __('Creator (optional)', 'jm-tc'),
-									               'description' => __('Enter author Twitter account (without @)', 'jm-tc'),          
-                        'type'  => 'text',
-                );
         
-        //instanciate class
-        $exMetaBox = new Metabox( $conf, $fields ); 
+       $custom_meta_fields = array(      
+                array(  
+               'label' => __('Card type', 'jm-tc'),  
+               'desc'  => __('Choose what type of card you want to use', 'jm-tc'),  
+               'id'    =>'twitterCardType',  
+               'type'  => 'select',  
+               'options' => array (    
+                   'summary' => array (  
+                       'label' => __('Summary','jm-tc'),  
+                       'value' => 'summary'  
+                   ),  
+                   'photo' => array (  
+                       'label' => __('Photo','jm-tc'),  
+                       'value' => 'photo'  
+                   )  
+               )  
+           )  
+           
+        );
         
+        
+        
+        // The Callback
+        function jm_tc_show_meta_box() {
+        global $custom_meta_fields, $post;
+        // Use nonce for verification
+        echo '<input type="hidden" name="jm_tc_meta_box_nonce" value="'.wp_create_nonce(basename(__FILE__)).'" />';
+	
+	        // Begin the field table and loop
+	        echo '<table class="form-table">';
+	        foreach ($custom_meta_fields as $field) {
+		        // get value of this field if it exists for this post
+		        $meta = get_post_meta($post->ID, $field['id'], true);
+		        // begin a table row with
+		        echo '<tr>
+				        <th><label for="'.$field['id'].'">'.$field['label'].'</label></th>
+				        <td>';           
+                echo '<select name="'.$field['id'].'" id="'.$field['id'].'">';  
+            foreach ($field['options'] as $option) {  
+                echo '<option', $meta == $option['value'] ? ' selected="selected"' : '', ' value="'.$option['value'].'">'.$option['label'].'</option>';  
+            }  
+            echo '</select>';
+		        echo '</td></tr>';
+	        } // end foreach
+	        echo '</table><br /><span class="description">'.$field['desc'].'</span>'; // end table
+        }
+        
+        // Save the Data
+        function jm_tc_save_custom_meta($post_id) {
+            global $custom_meta_fields;
+	
+	        // verify nonce
+	        if (!wp_verify_nonce($_POST['jm_tc_meta_box_nonce'], basename(__FILE__))) 
+		        return $post_id;
+	        // check autosave
+	        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+		        return $post_id;
+	        // check permissions
+	        if ('page' == $_POST['post_type']) {
+		        if (!current_user_can('edit_page', $post_id))
+			        return $post_id;
+		        } elseif (!current_user_can('edit_post', $post_id)) {
+			        return $post_id;
+	        }
+	
+	        // loop through fields and save the data
+	        foreach ($custom_meta_fields as $field) {
+		        $old = get_post_meta($post_id, $field['id'], true);
+		        $new = $_POST[$field['id']];
+		        if ($new && $new != $old) {
+			        update_post_meta($post_id, $field['id'], $new);
+		        } elseif ('' == $new && $old) {
+			        delete_post_meta($post_id, $field['id'], $old);
+		        }
+	        } // end foreach
+        }
+        add_action('save_post', 'jm_tc_save_custom_meta');  
+       
+       
        } 
                     
   
@@ -113,20 +188,22 @@ License: GPL2++
 				                    			
 				          /* get */          		
                $opts = jm_tc_get_options(); 
-               
+             // get current post meta data
+               $cardType = get_post_meta($post->ID, 'twitterCardType', true);
+               $creator  = get_the_author_meta('twitter');
+              
              echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 1.1.7) -->'."\n";  	                   					
 												
 												/* retrieve datas from our metabox */	
-												    $cardType = get_post_meta( $post->ID, 'twitterCardType', true );	
-											     $creator = get_post_meta( $post->ID, 'twitterCreator', true );	
+
 											     
-											   if(($opts['twitterCardCustom'] == 'yes') && isset($cardType)) {
+											   if(($opts['twitterCardCustom'] == 'yes') && !empty($cardType)) {
 													
 												  echo '<meta name="twitter:card" content="'. $cardType .'"/>'."\n";
 												 } else {
               echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
              }
-             if(!empty($creator)) { // this part has to optional, this is more for guest blogging but it's no reason to bother everybody.
+             if(!empty($creator)) { // this part has to be optional, this is more for guest blogging but it's no reason to bother everybody.
 												  echo '<meta name="twitter:creator" content="@'. $creator .'"/>'."\n";												
 												} else {
 												  echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
@@ -170,7 +247,7 @@ License: GPL2++
           // Add a "Settings" link in the plugins list
           add_filter( 'plugin_action_links_'.plugin_basename(__FILE__), 'jm_tc_settings_action_links', 10, 2 );
           function jm_tc_settings_action_links( $links, $file ) {
-	          $settings_link = '<a href="' . admin_url( 'options-general.php?page=jmoptions' ) . '">' . __("Settings") . '</a>';
+	          $settings_link = '<a href="' . admin_url( 'options-general.php?page=jm_tc_options' ) . '">' . __("Settings") . '</a>';
 	          array_unshift( $links, $settings_link );
 
 	          return $links;
@@ -180,7 +257,7 @@ License: GPL2++
           //The add_action to add onto the WordPress menu.
           add_action('admin_menu', 'jm_tc_add_options');
           function jm_tc_add_options() {
-	          $page = add_submenu_page( 'options-general.php', 'JM Twitter Cards Options', 'JM Twitter Cards', 'manage_options', 'jmoptions', 'jm_tc_options_page' );
+	          $page = add_submenu_page( 'options-general.php', 'JM Twitter Cards Options', 'JM Twitter Cards', 'manage_options', 'jm_tc_options', 'jm_tc_options_page' );
 	          register_setting( 'jm-tc', 'jm_tc', 'jm_tc_sanitize' );
 			  add_action( 'admin_print_styles-' . $page, 'jm_tc_admin_css' );//add styles for our options page the WordPress way
           }
@@ -194,8 +271,27 @@ License: GPL2++
 		// Check if a plugin is active (> SEO by Yoast)
 				function jm_tc_is_plugin_active( $plugin ) {
     				return in_array( $plugin, (array) get_option( 'active_plugins', array() ) ) || is_plugin_active_for_network( $plugin );	
-				}		
-
+				}	
+	// Add dismissible notice	
+add_action('admin_notices', 'example_admin_notice');
+function example_admin_notice() {
+	global $current_user ;
+        $user_id = $current_user->ID;
+	if ( ! get_user_meta($user_id, 'example_ignore_notice') && current_user_can( 'install_plugins' ) && jm_tc_is_plugin_active('wordpress-seo/wp-seo.php') ) {
+        echo '<div class="updated"><p>';
+        printf(__('WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice | <a href="%1$s">Hide Notice</a>'), '?example_nag_ignore=0','jm-tc');
+        echo "</p></div>";
+	}
+}
+add_action('admin_init', 'example_nag_ignore');
+function example_nag_ignore() {
+	global $current_user;
+        $user_id = $current_user->ID;
+        /* If user clicks to ignore the notice, add that to their user meta */
+        if ( isset($_GET['example_nag_ignore']) && '0' == $_GET['example_nag_ignore'] ) {
+             add_user_meta($user_id, 'example_ignore_notice', 'true', true);
+	}
+}
 					  
 
           // Settings page
@@ -206,11 +302,7 @@ License: GPL2++
 		          <?php screen_icon('options-general'); ?>
 		          <h2><?php _e('JM Twitter Cards Options', 'jm-tc'); ?></h2>
 		          
-		          <blockquote class="desc"><p><?php _e('This plugin allows you to get Twitter photo and summary cards for your blogs if you do not use SEO by Yoast. But now you can go further in your Twitter Cards experience, see last section.', 'jm-tc'); ?></p></blockquote>
-
-        <?php	 // Check if SEO by Yoast is activated
-						 if ( jm_tc_is_plugin_active('wordpress-seo/wp-seo.php') ) { ?>
-						 	<div id="message" class="error"><p> <?php _e('WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice','jm-tc') ;?> </p></div><?php } ?>
+		          <p><?php _e('This plugin allows you to get Twitter photo and summary cards for your blogs if you do not use SEO by Yoast. But now you can go further in your Twitter Cards experience, see last section.', 'jm-tc'); ?></p>
 						 				        
 		          <form id="jm-tc-form" method="post" action="options.php">
 
@@ -288,6 +380,9 @@ License: GPL2++
 			             <br />
 			             (<em><?php _e('If enabled, a custom metabox will appear (admin panel) in your edit', 'jm-tc'); ?></em>)
 			             </p>
+			             <p>
+			             <?php _e('In 1.1.8 creator has been removed from metabox. Now it will grab this directly from profiles. This should be more comfortable for guest blogging.','jm-tc'); ?>
+			             </p>
 		          
 			             <?php submit_button(null, 'primary', 'JM_submit'); ?>	
 			             </fieldset>   			    		       
@@ -331,7 +426,7 @@ License: GPL2++
 			if ( isset($options['twitterCardType']) )
 			$new['twitterCardType']       = $options['twitterCardType'];
 			if ( isset($options['twitterCreator']) )
-			$new['twitterCreator']		  = esc_attr(strip_tags( $options['twitterCreator'] ));
+			$new['twitterCreator']		      = esc_attr(strip_tags( $options['twitterCreator'] ));
 			if ( isset($options['twitterSite']) )
 			$new['twitterSite']           = esc_attr(strip_tags($options['twitterSite']));
 			if ( isset($options['twitterExcerptLength']) )
