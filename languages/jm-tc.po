@@ -203,3 +203,8 @@ msgstr ""
 #: jm-twitter-cards.php
 msgid "WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice | <a href=\"%1$s\">Hide Notice</a>"
 msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "In 1.1.8 creator has been removed from metabox. Now it will grab this directly from profiles. This should be more comfortable for guest blogging."
+msgstr ""
