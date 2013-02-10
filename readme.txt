@@ -82,6 +82,10 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+= 2.0 =
+* 10 fev 2013
+* fix wrong function with get_the_author_meta !
+
 = 1.1.9 =
 * 10 fev 2013
 * add Twitter field in user profile in case it's not there !

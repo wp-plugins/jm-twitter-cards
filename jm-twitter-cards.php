@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 1.1.9
+Version: 2.0
 License: GPL2++
 */
 
@@ -201,9 +201,9 @@ License: GPL2++
                $opts = jm_tc_get_options(); 
              // get current post meta data
                $cardType = get_post_meta($post->ID, 'twitterCardType', true);
-               $creator  = get_user_meta(1, 'twitter', true);
+               $creator  = get_the_author_meta('twitter', $post->post_author);
               
-             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 1.1.9) -->'."\n";  	                   					
+             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 2.0) -->'."\n";  	                   					
 												
 												/* retrieve datas from our metabox */	
 
