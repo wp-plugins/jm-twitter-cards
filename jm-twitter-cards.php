@@ -192,7 +192,7 @@ License: GPL2++
                $cardType = get_post_meta($post->ID, 'twitterCardType', true);
                $creator  = get_the_author_meta('twitter');
               
-             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 1.1.7) -->'."\n";  	                   					
+             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 1.1.8) -->'."\n";  	                   					
 												
 												/* retrieve datas from our metabox */	
 
