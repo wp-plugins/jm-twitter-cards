@@ -206,5 +206,10 @@ msgstr ""
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "In 1.1.8 creator has been removed from metabox. Now it will grab this directly from profiles. This should be more comfortable for guest blogging."
+msgid "In 1.1.8 creator has been removed from metabox. Now it will grab this directly from profiles. This should be more comfortable for guest blogging. If you do not have any option like that on profiles, just activate it here :"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Add a field Twitter to profiles"
 msgstr ""

@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 1.1.8
+Version: 1.1.9
 License: GPL2++
 */
 
@@ -35,8 +35,7 @@ License: GPL2++
 
 
         // grab our datas
-        $opts = jm_tc_get_options(); 
-          
+        $opts = jm_tc_get_options();          
 
         if($opts['twitterCardCustom'] == 'yes') {	 
        
@@ -151,6 +150,18 @@ License: GPL2++
        
        } 
                     
+                    //add twitter infos
+                    $opts = jm_tc_get_options(); 
+        
+                   	if(!function_exists( 'jm_tc_contactmethods' ) && $opts['twitterProfile'] == 'yes') {
+                    function jm_tc_contactmethods( $contactmethods ) {
+                    // Add Twitter
+                    $contactmethods['twitter'] = 'Twitter Cards Creator @';                     
+                    return $contactmethods;
+                    }
+                    add_filter('user_contactmethods','jm_tc_contactmethods',10,1);
+       }
+                                     
   
 	                  //grab excerpt
 	                 	if(!function_exists( 'get_excerpt_by_id' )) {
@@ -190,9 +201,9 @@ License: GPL2++
                $opts = jm_tc_get_options(); 
              // get current post meta data
                $cardType = get_post_meta($post->ID, 'twitterCardType', true);
-               $creator  = get_the_author_meta('twitter');
+               $creator  = get_user_meta(1, 'twitter', true);
               
-             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 1.1.8) -->'."\n";  	                   					
+             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 1.1.9) -->'."\n";  	                   					
 												
 												/* retrieve datas from our metabox */	
 
@@ -381,9 +392,15 @@ function example_nag_ignore() {
 			             (<em><?php _e('If enabled, a custom metabox will appear (admin panel) in your edit', 'jm-tc'); ?></em>)
 			             </p>
 			             <p>
-			             <?php _e('In 1.1.8 creator has been removed from metabox. Now it will grab this directly from profiles. This should be more comfortable for guest blogging.','jm-tc'); ?>
+			             <?php _e('In 1.1.8 creator has been removed from metabox. Now it will grab this directly from profiles. This should be more comfortable for guest blogging. If you do not have any Twitter option like that on profiles, just activate it here :','jm-tc'); ?>
 			             </p>
-		          
+			             <p>
+			             	<label for="twitterProfile"><?php _e('Add a field Twitter to profiles', 'jm-tc'); ?> :</label>
+				                <select id="twitterProfile" name="jm_tc[twitterProfile]">
+                                   <option value="yes" <?php echo $opts['twitterProfile'] == 'yes' ? 'selected="selected"' : ''; ?> ><?php _e('yes', 'jm-tc'); ?></option>
+					               <option value="no" <?php echo $opts['twitterProfile'] == 'no' ? 'selected="selected"' : ''; ?> ><?php _e('no', 'jm-tc'); ?></option>
+			             		</select>
+		          </p>
 			             <?php submit_button(null, 'primary', 'JM_submit'); ?>	
 			             </fieldset>   			    		       
 		          </form>
@@ -439,6 +456,8 @@ function example_nag_ignore() {
 			$new['twitterImageHeight']    = (int) $options['twitterImageHeight'];
 			if ( isset($options['twitterCardCustom']) )
 			$new['twitterCardCustom']     = $options['twitterCardCustom'];
+			if ( isset($options['twitterProfile']) )
+			$new['twitterProfile']       = $options['twitterProfile'];
 			return $new;
 			}
 
@@ -448,11 +467,12 @@ function example_nag_ignore() {
 			'twitterCardType'           => 'summary',
 			'twitterCreator'		          => 'TweetPressFr',
 			'twitterSite'               => 'TweetPressFr',
-			'twitterExcerptLength'	    => 35,
+			'twitterExcerptLength'	     => 35,
 			'twitterImage'              => 'http://www.gravatar.com/avatar/avatar.jpg',
 			'twitterImageWidth'         => '280',
 			'twitterImageHeight'        => '150',
-			'twitterCardCustom'         => 'no'
+			'twitterCardCustom'         => 'no',
+			'twitterProfile'            => 'no'
 			);
 			}
 

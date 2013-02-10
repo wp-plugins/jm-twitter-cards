@@ -82,6 +82,10 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+= 1.1.9 =
+* 10 fev 2013
+* add Twitter field in user profile in case it's not there !
+
 = 1.1.8 =
 * 10 fev 2013
 * find a goodway to make code lighter, pretty lighter !

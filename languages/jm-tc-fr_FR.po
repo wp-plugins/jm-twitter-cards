@@ -207,6 +207,11 @@ msgstr "WordPress SEO by Yoast est activé, SVP décocher l'option Twitter Card 
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "In 1.1.8 creator has been removed from metabox. Now it will grab this directly from profiles. This should be more comfortable for guest blogging."
-msgstr "Dans la version 1.1.8 le champ creator a été retiré de la métabox. Maintenant ce sera directement repris depuis les profils. Ce devrait être plus confortable pour le guest blogging."
+msgid "In 1.1.8 creator has been removed from metabox. Now it will grab this directly from profiles. This should be more comfortable for guest blogging. If you do not have any Twitter option like that on profiles, just activate it here :"
+msgstr "Dans la version 1.1.8 le champ creator a été retiré de la métabox. Maintenant ce sera directement repris depuis les profils. Ce devrait être plus confortable pour le guest blogging. Si Twitter est absent de vos page de profil, activez cette option ici :"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Add a field Twitter to profiles"
+msgstr "Ajouter un champ Twitter aux profils"
 
