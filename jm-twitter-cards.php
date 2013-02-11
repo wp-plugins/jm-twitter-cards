@@ -195,18 +195,23 @@ License: GPL2++
 				                    			global $post;	
 				                    		 /* get options */          		
                            $opts = jm_tc_get_options(); 	
-                           $posts_page_id = get_option( 'page_for_posts');
-                           $posts_page = get_page( $posts_page_id);
-                           $posts_page_title = $posts_page->post_title;
-                           $posts_page_url = get_page_link($posts_page_id  );
 				                                			
 				                    			if (is_home() || is_front_page()) {
+				                    			
 				                    			
 				                    			  echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 2.1) -->'."\n";  	                   					
           
                              echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
 											                  echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
-												                 echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
+												                 echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";			
+												               
+												               //post page var
+												               $posts_page_id = get_option( 'page_for_posts');
+                           $posts_page = get_page( $posts_page_id);
+                           $posts_page_title = $posts_page->post_title;
+                           $posts_page_url = get_page_link($posts_page_id  );									
+                           
+                             
                                                   echo '<meta name="twitter:url" content="' . $posts_page_url . '"/>'."\n";
                                                   echo '<meta name="twitter:title" content="' . $posts_page_title . '"/>'."\n";     
                                                   echo '<meta name="twitter:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
