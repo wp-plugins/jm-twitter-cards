@@ -213,3 +213,28 @@ msgstr ""
 #: jm-twitter-cards.php
 msgid "Add a field Twitter to profiles"
 msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Posts page"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "In case you use home page or any other page as post page, this part will allow you to specify some parameter. Otherwise it would not work for this specific page"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter description for Posts Page (max: 70 words)"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Welcome to"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "see blog posts"
+msgstr ""

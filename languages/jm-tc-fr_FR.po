@@ -215,3 +215,28 @@ msgstr "Dans la version 1.1.8 le champ creator a été retiré de la métabox. M
 msgid "Add a field Twitter to profiles"
 msgstr "Ajouter un champ Twitter aux profils"
 
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Posts page"
+msgstr "Page des articles"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "In case you use home page or any other page as post page, this part will allow you to specify some parameter. Otherwise it would not work for this specific page"
+msgstr "Au cas où vous utilisez la page d'accueil de votre site ou toute autre page en tant que page des articles, cette section vous permet de spécifier certains paramètres. Autrement il ne fonctionneraient pas ou mal sur cette page spécifique"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter description for Posts Page (max: 70 words)"
+msgstr "Entrez une description pour la page des articles (max : 70 mots)"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Welcome to"
+msgstr "Bienvenue sur"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "see blog posts"
+msgstr "Parcourrez les articles"
+

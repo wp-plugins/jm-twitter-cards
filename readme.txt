@@ -82,6 +82,10 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+= 2.1 =
+* 11 fev 2013
+* Fix bug for posts page
+
 = 2.0 =
 * 10 fev 2013
 * fix wrong function with get_the_author_meta !
