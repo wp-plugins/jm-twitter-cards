@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 2.1
+Version: 2.2
 License: GPL2++
 */
 
@@ -55,14 +55,6 @@ License: GPL2++
 		             'JM Twitter Cards', // $title 
 		             'jm_tc_show_meta_box', // $callback
 		             'page', // $page
-		             'side', // $context
-		             'high'); // $priority
-		             
-		             add_meta_box(
-		             'jm_tc_meta_box', // $id
-		             'JM Twitter Cards', // $title 
-		             'jm_tc_show_meta_box', // $callback
-		             'attachment', // $page
 		             'side', // $context
 		             'high'); // $priority
         }
@@ -194,51 +186,34 @@ License: GPL2++
 				                    		function add_twitter_card_info() {
 				                    			global $post;	
 				                    		 /* get options */          		
-                           $opts = jm_tc_get_options(); 	
-				                                			
-				                    			if (is_home() || is_front_page()) {
-				                    			
-				                    			
+                          	$opts = jm_tc_get_options(); 			                    			
+				                    			if ( is_front_page()||is_home()) {
 				                    			  echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 2.1) -->'."\n";  	                   					
-          
-                             echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
-											                  echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
-												                 echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";			
-												               
-												               //post page var
-												               $posts_page_id = get_option( 'page_for_posts');
-                           $posts_page = get_page( $posts_page_id);
-                           $posts_page_title = $posts_page->post_title;
-                           $posts_page_url = get_page_link($posts_page_id  );									
-                           
-                             
-                                                  echo '<meta name="twitter:url" content="' . $posts_page_url . '"/>'."\n";
-                                                  echo '<meta name="twitter:title" content="' . $posts_page_title . '"/>'."\n";     
+                             					  echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
+											      echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
+												  echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";								
+                                                  echo '<meta name="twitter:url" content="' . home_url() . '"/>'."\n";
+                                                  echo '<meta name="twitter:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
                                                   echo '<meta name="twitter:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
-
-                                                  echo '<meta name="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";
-                                                                    
-                                                echo '<!-- /JM Twitter Cards -->'."\n\n"; 
+                                                  echo '<meta name="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";                   
+                                               	  echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 				                    			
-				                    			} elseif ((!is_singular() && !is_single()) || is_category() || is_archive() || is_tag())// with those conditional tags we can test if it's a page, a post or an attachment
-				                    			return;
-				                    			
-				                    			else {
+				                    			} else {
               
-             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 2.1) -->'."\n";  
-             
-			                    							                    			
-            // get current post meta data
-            $creator  = get_the_author_meta('twitter', $post->post_author);		
-            $cardType = get_post_meta($post->ID, 'twitterCardType', true);
-											     
+									             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 2.1) -->'."\n";  
+									             
+												                    							                    			
+									            // get current post meta data
+									            $creator  = get_the_author_meta('twitter', $post->post_author);		
+									            $cardType = get_post_meta($post->ID, 'twitterCardType', true);
+																				     
 											   if(($opts['twitterCardCustom'] == 'yes') && !empty($cardType)) {
 													
 												  echo '<meta name="twitter:card" content="'. $cardType .'"/>'."\n";
 												 } else {
-              echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
-             }
-             if(!empty($creator)) { // this part has to be optional, this is more for guest blogging but it's no reason to bother everybody.
+									              echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
+									             }
+									             if(!empty($creator)) { // this part has to be optional, this is more for guest blogging but it's no reason to bother everybody.
 												  echo '<meta name="twitter:creator" content="@'. $creator .'"/>'."\n";												
 												} else {
 												  echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
@@ -431,10 +406,15 @@ function example_nag_ignore() {
 			             </fieldset>   	
 
 			             <fieldset>   
-			             			 <legend><?php _e('Posts page', 'jm-tc'); ?></legend>  
+			             			 <legend>Home - <?php _e('Posts page', 'jm-tc'); ?></legend>  
 			             			 			             <p>
-			             <?php _e('In case you use home page or any other page as post page, this part will allow you to specify some parameter. Otherwise it would not work for this specific page','jm-tc'); ?>
+			             <?php _e('In case you use home page as post page, this part will allow you to specify some parameters. Otherwise it would not work for this specific page. I know this is not ideal but until I find a better solution it fixes bug!','jm-tc'); ?>
 			             </p> 
+			               
+			                <p>
+				               <label for="twitterPostPageTitle"><strong><?php _e('Enter title for Posts Page :', 'jm-tc'); ?> </strong>:</label><br />
+				               <input id="twitterPostPageTitle" type="text" name="jm_tc[twitterPostPageTitle]" class="regular-text" value="<?php echo $opts['twitterPostPageTitle']; ?>" />
+			               </p>
 			                      <p>
 				               <label for="twitterPostPageDesc"><strong><?php _e('Enter description for Posts Page (max: 70 words)', 'jm-tc'); ?> </strong>:</label><br />
 				               <textarea id="twitterPostPageDesc" rows="4" cols="100" name="jm_tc[twitterPostPageDesc]" class="regular-text"><?php echo $opts['twitterPostPageDesc']; ?></textarea>
@@ -484,7 +464,7 @@ function example_nag_ignore() {
 			if ( isset($options['twitterCardType']) )
 			$new['twitterCardType']       = $options['twitterCardType'];
 			if ( isset($options['twitterCreator']) )
-			$new['twitterCreator']		      = esc_attr(strip_tags( $options['twitterCreator'] ));
+			$new['twitterCreator']		  = esc_attr(strip_tags( $options['twitterCreator'] ));
 			if ( isset($options['twitterSite']) )
 			$new['twitterSite']           = esc_attr(strip_tags($options['twitterSite']));
 			if ( isset($options['twitterExcerptLength']) )
@@ -498,24 +478,28 @@ function example_nag_ignore() {
 			if ( isset($options['twitterCardCustom']) )
 			$new['twitterCardCustom']     = $options['twitterCardCustom'];
 			if ( isset($options['twitterProfile']) )
-			$new['twitterProfile']       = $options['twitterProfile'];
+			$new['twitterProfile']        = $options['twitterProfile'];
+			if ( isset($options['twitterPostPageTitle']) )
+			$new['twitterPostPageTitle']  = esc_attr(strip_tags($options['twitterPostPageTitle']));
 			if ( isset($options['twitterPostPageDesc']) )
-			$new['twitterPostPageDesc']           = esc_attr(strip_tags($options['twitterPostPageDesc']));
+			$new['twitterPostPageDesc']   = esc_attr(strip_tags($options['twitterPostPageDesc']));
 			return $new;
 			}
 
 			// Return default options
-			function jm_tc_get_default_options() {
+			function jm_tc_get_default_options() {	
+				                    			
 			return array(
 			'twitterCardType'           => 'summary',
-			'twitterCreator'		          => 'TweetPressFr',
+			'twitterCreator'		    => 'TweetPressFr',
 			'twitterSite'               => 'TweetPressFr',
-			'twitterExcerptLength'	     => 35,
+			'twitterExcerptLength'	    => 35,
 			'twitterImage'              => 'http://www.gravatar.com/avatar/avatar.jpg',
 			'twitterImageWidth'         => '280',
 			'twitterImageHeight'        => '150',
 			'twitterCardCustom'         => 'no',
 			'twitterProfile'            => 'no',
+			'twitterPostPageTitle' 		=> get_bloginfo ( 'name' ),
 			'twitterPostPageDesc'       => __('Welcome to','jm-tc').' '.get_bloginfo ( 'name' ).' - '. __('see blog posts','jm-tc')
 			);
 			}

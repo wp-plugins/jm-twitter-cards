@@ -19,6 +19,9 @@ If you choose full customization metabox is now on the right side. It's shorter 
 
 <a href="http://twitter.com/tweetpressfr">Follow me on Twitter</a>
 
+2.2 fixes bug for page post if it is home page. Also a good way to avoid bad conflict with plugin Simpy exclude. Still have to find another way especially for those who do not use home page as posts page. I found another bug regarding attachment in full custom mode, the card type is not save. It will be fixed in the next update.
+
+
 ––––
 En Français 
 –––––––––––––––––––––––––––––––––––
@@ -30,6 +33,8 @@ Mais le plugin va encore plus loin...
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
 
 <a href="http://twitter.com/tweetpressfr">Me suivre sur Twitter</a>
+
+2.2 corrige le bug de la page des articles si celle-ci est la page d'accueil. C'est aussi une solution pour éviter les conflits avec le plugin Simpy exclude. Reste à trouver une meilleure solution pour ceux qui n'utilisent pas la page d'accueil de leurs sites comme page des articles. J'ai trouvé un autre bug concernant les médias attachés attachés. Le type de card n'est pas sauvegardé si on le modifie en mode full custom. Ce sera corrigé dans la prochaine mise à jour.
 
 == Installation ==
 
@@ -81,6 +86,10 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 3. metabox
 
 == Changelog ==
+
+= 2.2 =
+* 12 fev 2013
+* Fix bug with posts page if homepage
 
 = 2.1 =
 * 11 fev 2013
