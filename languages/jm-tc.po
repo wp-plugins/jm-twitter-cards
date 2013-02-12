@@ -221,7 +221,7 @@ msgstr ""
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "In case you use home page or any other page as post page, this part will allow you to specify some parameter. Otherwise it would not work for this specific page"
+msgid "In case you use home page as post page, this part will allow you to specify some parameters. Otherwise it would not work for this specific page. I know this is not ideal but until I find a better solution it fixes bug!"
 msgstr ""
 
 #. Text in echo
@@ -237,4 +237,19 @@ msgstr ""
 #. Text in echo
 #: jm-twitter-cards.php
 msgid "see blog posts"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter description for Posts Page (max: 70 words)"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter title for Posts Page :"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter full URL for Posts Page :"
 msgstr ""

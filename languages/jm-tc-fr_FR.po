@@ -222,8 +222,8 @@ msgstr "Page des articles"
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "In case you use home page or any other page as post page, this part will allow you to specify some parameter. Otherwise it would not work for this specific page"
-msgstr "Au cas où vous utilisez la page d'accueil de votre site ou toute autre page en tant que page des articles, cette section vous permet de spécifier certains paramètres. Autrement il ne fonctionneraient pas ou mal sur cette page spécifique"
+msgid "In case you use home page as post page, this part will allow you to specify some parameters. Otherwise it would not work for this specific page. I know this is not ideal but until I find a better solution it fixes bug!"
+msgstr "Au cas où vous utilisez la page d'accueil de votre site ou toute autre page en tant que page des articles, cette section vous permet de spécifier certains paramètres. Autrement il ne fonctionneraient pas ou mal sur cette page spécifique. Cette solution n'est pas parfaite mais en attendant de trouver mieux cela corrige le bug !"
 
 #. Text in echo
 #: jm-twitter-cards.php
@@ -239,4 +239,14 @@ msgstr "Bienvenue sur"
 #: jm-twitter-cards.php
 msgid "see blog posts"
 msgstr "Parcourrez les articles"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter title for Posts Page :"
+msgstr "Entrez le titre pour la page des articles :"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter full URL for Posts Page :"
+msgstr "Entrez l'URL complète de la page des articles"
 
