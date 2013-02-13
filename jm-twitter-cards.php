@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 2.2
+Version: 2.2.1
 License: GPL2++
 */
 
@@ -40,23 +40,21 @@ License: GPL2++
         if($opts['twitterCardCustom'] == 'yes') {	 
        
        
-       // Add the Meta Box
+       /*
+       * Add the Meta Box to posts and pages
+       */ 
+        
         function jm_tc_add_jm_tc_meta_boxes() {
+        $screens = array( 'post', 'page', 'attachment' );
+        foreach ($screens as $screen) {
             add_meta_box(
 		             'jm_tc_meta_box', // $id
 		             'JM Twitter Cards', // $title 
 		             'jm_tc_show_meta_box', // $callback
-		             'post', // $page
+		              $screen, // $page
 		             'side', // $context
 		             'high'); // $priority
-		             
-		             add_meta_box(
-		             'jm_tc_meta_box', // $id
-		             'JM Twitter Cards', // $title 
-		             'jm_tc_show_meta_box', // $callback
-		             'page', // $page
-		             'side', // $context
-		             'high'); // $priority
+          }
         }
         add_action('add_meta_boxes', 'jm_tc_add_jm_tc_meta_boxes');
         
@@ -86,8 +84,8 @@ License: GPL2++
         // The Callback
         function jm_tc_show_meta_box() {
         global $custom_meta_fields, $post;
-        // Use nonce for verification
-        echo '<input type="hidden" name="jm_tc_meta_box_nonce" value="'.wp_create_nonce(basename(__FILE__)).'" />';
+        wp_nonce_field( plugin_basename( __FILE__ ), 'jm_tc_meta_box_noncename' );
+
 	
 	        // Begin the field table and loop
 	        echo '<table class="form-table">';
@@ -113,7 +111,8 @@ License: GPL2++
             global $custom_meta_fields;
 	
 	        // verify nonce
-	        if (!wp_verify_nonce($_POST['jm_tc_meta_box_nonce'], basename(__FILE__))) 
+	     
+  if ( !isset( $_POST['jm_tc_noncename'] ) || !wp_verify_nonce( $_POST['jm_tc_noncename'], plugin_basename( __FILE__ ) ) )
 		        return $post_id;
 	        // check autosave
 	        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
@@ -138,21 +137,20 @@ License: GPL2++
 	        } // end foreach
         }
         add_action('save_post', 'jm_tc_save_custom_meta');  
-       
-       
+                   
        } 
                     
                     //add twitter infos
                     $opts = jm_tc_get_options(); 
-        
                    	if(!function_exists( 'jm_tc_contactmethods' ) && $opts['twitterProfile'] == 'yes') {
                     function jm_tc_contactmethods( $contactmethods ) {
+                    if ( current_user_can( 'publish_posts') ) 
                     // Add Twitter
                     $contactmethods['twitter'] = 'Twitter Cards Creator @';                     
                     return $contactmethods;
                     }
                     add_filter('user_contactmethods','jm_tc_contactmethods',10,1);
-       }
+          }
                                      
   
 	                  //grab excerpt
@@ -186,9 +184,11 @@ License: GPL2++
 				                    		function add_twitter_card_info() {
 				                    			global $post;	
 				                    		 /* get options */          		
-                          	$opts = jm_tc_get_options(); 			                    			
+                          					 $opts = jm_tc_get_options(); 	
+				                             $is_page_posts = get_option('page_for_posts');			
+				                    			
 				                    			if ( is_front_page()||is_home()) {
-				                    			  echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 2.1) -->'."\n";  	                   					
+				                    			  echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 2.2.1) -->'."\n";  	                   					
                              					  echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
 											      echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
 												  echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";								
@@ -200,7 +200,7 @@ License: GPL2++
 				                    			
 				                    			} else {
               
-									             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 2.1) -->'."\n";  
+									             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 2.2.1) -->'."\n";  
 									             
 												                    							                    			
 									            // get current post meta data
@@ -285,6 +285,7 @@ License: GPL2++
 				}	
 	// Add dismissible notice	
 add_action('admin_notices', 'example_admin_notice');
+if(!function_exists( 'example_admin_notice' )) {
 function example_admin_notice() {
 	global $current_user ;
         $user_id = $current_user->ID;
@@ -292,15 +293,18 @@ function example_admin_notice() {
         echo '<div class="updated"><p>';
         printf(__('WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice | <a href="%1$s">Hide Notice</a>'), '?example_nag_ignore=0','jm-tc');
         echo "</p></div>";
-	}
+	 }
+ }
 }
 add_action('admin_init', 'example_nag_ignore');
+if(!function_exists( 'example_nag_ignore' )) {
 function example_nag_ignore() {
 	global $current_user;
         $user_id = $current_user->ID;
         /* If user clicks to ignore the notice, add that to their user meta */
         if ( isset($_GET['example_nag_ignore']) && '0' == $_GET['example_nag_ignore'] ) {
              add_user_meta($user_id, 'example_ignore_notice', 'true', true);
+	 }
 	}
 }
 					  

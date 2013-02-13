@@ -1,7 +1,7 @@
 === JM Twitter Cards ===
 Contributors: jmlapam
 Tags: twitter, cards, semantic markup, metabox
-Requires at least: 
+Requires at least: 3.0
 Tested up to: 3.5
 License: GPLv2 or later
 Stable tag: trunk
@@ -19,8 +19,6 @@ If you choose full customization metabox is now on the right side. It's shorter 
 
 <a href="http://twitter.com/tweetpressfr">Follow me on Twitter</a>
 
-2.2 fixes bug for page post if it is home page. Also a good way to avoid bad conflict with plugin Simpy exclude. Still have to find another way especially for those who do not use home page as posts page. I found another bug regarding attachment in full custom mode, the card type is not save. It will be fixed in the next update.
-
 
 ––––
 En Français 
@@ -34,7 +32,6 @@ En mode full custom la metabox est maintenant située sur le côté tout en haut
 
 <a href="http://twitter.com/tweetpressfr">Me suivre sur Twitter</a>
 
-2.2 corrige le bug de la page des articles si celle-ci est la page d'accueil. C'est aussi une solution pour éviter les conflits avec le plugin Simpy exclude. Reste à trouver une meilleure solution pour ceux qui n'utilisent pas la page d'accueil de leurs sites comme page des articles. J'ai trouvé un autre bug concernant les médias attachés attachés. Le type de card n'est pas sauvegardé si on le modifie en mode full custom. Ce sera corrigé dans la prochaine mise à jour.
 
 == Installation ==
 
@@ -86,6 +83,12 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 3. metabox
 
 == Changelog ==
+
+= 2.2.1 =
+* 13 fev 2013
+* Add some user role verification for Twitter option in author's profile. Only author and admin should see the field for Twitter Cards in their profile. 
+* Fix issue with attachment
+* Fix notice with nonce
 
 = 2.2 =
 * 12 fev 2013
