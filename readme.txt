@@ -7,7 +7,7 @@ License: GPLv2 or later
 Stable tag: trunk
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A plugin meant to simplify Twitter cards integration on WordPress. But this is more than just adding markup. You can customize your Twitter card experience :
+A plugin meant to simplify Twitter cards integration on WordPress. But this is more than just adding markup. You can customize your Twitter card
 
 == Description ==
 
