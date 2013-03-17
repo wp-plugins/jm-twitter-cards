@@ -84,6 +84,11 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+= 2.2.2 =
+* 17 mar 2013
+* Add support for open graph
+* Replace meta attr name with property which is mroe compliant with W3C 
+
 = 2.2.1 =
 * 13 fev 2013
 * Add some user role verification for Twitter option in author's profile. Only author and admin should see the field for Twitter Cards in their profile. 

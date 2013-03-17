@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 2.2.1
+Version: 2.2.2
 License: GPL2++
 */
 
@@ -13,8 +13,14 @@ License: GPL2++
 *    Sources: - https://dev.twitter.com/docs/cards
 * 			  - http://codex.wordpress.org/Function_Reference/wp_enqueue_style
 *             - I decided to remove former sources because I've been enhanced them by far and above all these sources are wrong : get_the_excerpt() outside the loop or undefined var !)
-*												 - http://wptheming.com/2011/08/admin-notices-in-wordpress/
+*			  - http://wptheming.com/2011/08/admin-notices-in-wordpress/
+* 			  - https://plus.google.com/u/0/110977198681221304891/posts/axa3UaVF8x2
 */
+
+
+		// Some constants
+		define ('JM_TC_VERSION','2.2.2');
+
 
 
 
@@ -188,19 +194,21 @@ License: GPL2++
 				                             $is_page_posts = get_option('page_for_posts');			
 				                    			
 				                    			if ( is_front_page()||is_home()) {
-				                    			  echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 2.2.1) -->'."\n";  	                   					
-                             					  echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
-											      echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
-												  echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";								
-                                                  echo '<meta name="twitter:url" content="' . home_url() . '"/>'."\n";
-                                                  echo '<meta name="twitter:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
-                                                  echo '<meta name="twitter:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
-                                                  echo '<meta name="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";                   
+				                    			  echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";  	                   					
+                             					  echo '<meta property="og:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
+											      echo '<meta property="og:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
+												  echo '<meta property="og:site" content="@'. $opts['twitterSite'] .'"/>'."\n";								
+                                                  echo '<meta property="og:url" content="' . home_url() . '"/>'."\n";
+                                                  echo '<meta property="og:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
+                                                  echo '<meta property="og:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
+                                                  echo '<meta property="og:image" content="' . $opts['twitterImage'] . '"/>'."\n";                   
                                                	  echo '<!-- /JM Twitter Cards -->'."\n\n"; 
+				                    			
+				                    			
 				                    			
 				                    			} else {
               
-									             echo "\n".'<!-- JM Twitter Cards by Julien Maury (version 2.2.1) -->'."\n";  
+									             echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";  
 									             
 												                    							                    			
 									            // get current post meta data
@@ -209,32 +217,32 @@ License: GPL2++
 																				     
 											   if(($opts['twitterCardCustom'] == 'yes') && !empty($cardType)) {
 													
-												  echo '<meta name="twitter:card" content="'. $cardType .'"/>'."\n";
+												  echo '<meta property="og:card" content="'. $cardType .'"/>'."\n";
 												 } else {
-									              echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
+									              echo '<meta property="og:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
 									             }
 									             if(!empty($creator)) { // this part has to be optional, this is more for guest blogging but it's no reason to bother everybody.
-												  echo '<meta name="twitter:creator" content="@'. $creator .'"/>'."\n";												
+												  echo '<meta property="og:creator" content="@'. $creator .'"/>'."\n";												
 												} else {
-												  echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
+												  echo '<meta property="og:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
 												  
 												}
 												  // these next 4 parameters should not be editable in post admin 
-												  echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
-                                                  echo '<meta name="twitter:url" content="' . get_permalink() . '"/>'."\n";
-                                                  echo '<meta name="twitter:title" content="' . the_title_attribute( array('echo' => false) ) . '"/>'."\n";     
-                                                  echo '<meta name="twitter:description" content="' . get_excerpt_by_id($post->ID) . '"/>'."\n"; 
+												  echo '<meta property="og:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
+                                                  echo '<meta property="og:url" content="' . get_permalink() . '"/>'."\n";
+                                                  echo '<meta property="og:title" content="' . the_title_attribute( array('echo' => false) ) . '"/>'."\n";     
+                                                  echo '<meta property="og:description" content="' . get_excerpt_by_id($post->ID) . '"/>'."\n"; 
      
                                                   if(!has_post_thumbnail( $post->ID )) {
-                                                          echo '<meta name="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";
+                                                          echo '<meta property="og:image" content="' . $opts['twitterImage'] . '"/>'."\n";
                                                   } else {
                                                           $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
-                                                          echo '<meta name="twitter:image" content="' . $thumb[0] . '"/>'."\n";
+                                                          echo '<meta property="og:image" content="' . $thumb[0] . '"/>'."\n";
                                                   }
                                                    
                                                   if($opts['twitterCardType'] == 'photo') {
-                                                          echo '<meta name="twitter:image:width" content="'.$opts['twitterImageWidth'].'">'."\n";
-                                                          echo '<meta name="twitter:image:height" content="'.$opts['twitterImageHeight'].'">'."\n";
+                                                          echo '<meta property="og:image:width" content="'.$opts['twitterImageWidth'].'">'."\n";
+                                                          echo '<meta property="og:image:height" content="'.$opts['twitterImageHeight'].'">'."\n";
              
                                                   }
                                                                                                
