@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 2.2.2
+Version: 2.2.3
 License: GPL2++
 */
 
@@ -19,7 +19,7 @@ License: GPL2++
 
 
 		// Some constants
-		define ('JM_TC_VERSION','2.2.2');
+		define ('JM_TC_VERSION','2.2.3');
 
 
 
@@ -196,8 +196,8 @@ License: GPL2++
 				                    			if ( is_front_page()||is_home()) {
 				                    			  echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";  	                   					
                              					  echo '<meta property="og:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
-											      echo '<meta property="og:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
-												  echo '<meta property="og:site" content="@'. $opts['twitterSite'] .'"/>'."\n";								
+											      echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
+												  echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";								
                                                   echo '<meta property="og:url" content="' . home_url() . '"/>'."\n";
                                                   echo '<meta property="og:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
                                                   echo '<meta property="og:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
@@ -222,13 +222,13 @@ License: GPL2++
 									              echo '<meta property="og:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
 									             }
 									             if(!empty($creator)) { // this part has to be optional, this is more for guest blogging but it's no reason to bother everybody.
-												  echo '<meta property="og:creator" content="@'. $creator .'"/>'."\n";												
+												  echo '<meta property="twitter:creator" content="@'. $creator .'"/>'."\n";												
 												} else {
-												  echo '<meta property="og:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
+												  echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
 												  
 												}
 												  // these next 4 parameters should not be editable in post admin 
-												  echo '<meta property="og:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
+												  echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
                                                   echo '<meta property="og:url" content="' . get_permalink() . '"/>'."\n";
                                                   echo '<meta property="og:title" content="' . the_title_attribute( array('echo' => false) ) . '"/>'."\n";     
                                                   echo '<meta property="og:description" content="' . get_excerpt_by_id($post->ID) . '"/>'."\n"; 

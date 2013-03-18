@@ -84,6 +84,10 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+= 2.2.3 =
+* 18 mar 2013
+* Fix og meta (site and creator) ignored by Twitter thanks to report by Tyrannous
+
 = 2.2.2 =
 * 17 mar 2013
 * Add support for open graph
