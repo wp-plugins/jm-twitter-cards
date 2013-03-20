@@ -84,6 +84,10 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+= 2.2.4 =
+* 20 mar 2013
+* Fix metabox that JUST DID NOT WORK ! Add support for custom post types. Next update will regard meta description...
+
 = 2.2.3 =
 * 18 mar 2013
 * Fix og meta (site and creator) ignored by Twitter thanks to report by Tyrannous
