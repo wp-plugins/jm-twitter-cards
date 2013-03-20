@@ -84,6 +84,10 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+= 2.2.5 =
+* 20 mar 2013
+* fix problem with meta image
+
 = 2.2.4 =
 * 20 mar 2013
 * Fix metabox that JUST DID NOT WORK ! Add support for custom post types. Next update will regard meta description...

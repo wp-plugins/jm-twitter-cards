@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 2.2.4
+Version: 2.2.5
 License: GPL2++
 */
 
@@ -18,7 +18,7 @@ License: GPL2++
 
 
 // Some constants
-define ('JM_TC_VERSION','2.2.4');
+define ('JM_TC_VERSION','2.2.5');
 
 
 
@@ -152,7 +152,7 @@ echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n
 echo '<meta property="og:url" content="' . home_url() . '"/>'."\n";
 echo '<meta property="og:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
 echo '<meta property="og:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
-echo '<meta property="og:image" content="' . $opts['twitterImage'] . '"/>'."\n";                   
+echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";                   
 echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 
 
@@ -185,15 +185,15 @@ echo '<meta property="og:title" content="' . the_title_attribute( array('echo' =
 echo '<meta property="og:description" content="' . get_excerpt_by_id($post->ID) . '"/>'."\n"; 
 
 if(!has_post_thumbnail( $post->ID )) {
-echo '<meta property="og:image" content="' . $opts['twitterImage'] . '"/>'."\n";
+echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";
 } else {
 $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
-echo '<meta property="og:image" content="' . $thumb[0] . '"/>'."\n";
+echo '<meta property="twitter:image" content="' . $thumb[0] . '"/>'."\n";
 }
 
 if($opts['twitterCardType'] == 'photo') {
-echo '<meta property="og:image:width" content="'.$opts['twitterImageWidth'].'">'."\n";
-echo '<meta property="og:image:height" content="'.$opts['twitterImageHeight'].'">'."\n";
+echo '<meta property="twitter:image:width" content="'.$opts['twitterImageWidth'].'">'."\n";
+echo '<meta property="twitter:image:height" content="'.$opts['twitterImageHeight'].'">'."\n";
 
 }
 						   
