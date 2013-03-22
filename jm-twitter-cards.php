@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 2.2.5
+Version: 2.2.6
 License: GPL2++
 */
 
@@ -14,11 +14,12 @@ License: GPL2++
 * 			  - http://codex.wordpress.org/Function_Reference/wp_enqueue_style
 *             - I decided to remove former sources because I've been enhanced them by far and above all these sources are wrong : get_the_excerpt() outside the loop or undefined var !)
 *			  - http://wptheming.com/2011/08/admin-notices-in-wordpress/
+*		      - https://plus.gotwitterle.com/u/0/110977198681221304891/posts/axa3UaVF8x2
 */
 
 
 // Some constants
-define ('JM_TC_VERSION','2.2.5');
+define ('JM_TC_VERSION','2.2.6');
 
 
 
@@ -46,52 +47,52 @@ if($opts['twitterCardCustom'] == 'yes') {
 add_action( 'add_meta_boxes', 'jm_tc_meta_box_add' );
 function jm_tc_meta_box_add()
 {
-	$post_type = get_post_type();// add support for CPT
-	add_meta_box( 'jm_tc-meta-box-id', 'Twitter Cards', 'jm_tc_meta_box_cb', $post_type, 'side', 'high' );
+$post_type = get_post_type();// add support for CPT
+add_meta_box( 'jm_tc-meta-box-id', 'Twitter Cards', 'jm_tc_meta_box_cb', $post_type, 'side', 'high' );
 }
 
 function jm_tc_meta_box_cb( $post )
 {
-	$values = get_post_custom( $post->ID );
-	$selected = isset( $values['twitterCardType'] ) ? esc_attr( $values['twitterCardType'][0] ) : '';
-	wp_nonce_field( 'jm_tc_meta_box_nonce', 'meta_box_nonce' );
-	?>
-	
-	<p>
-		<label for="twitterCardType"><?php _e('Choose what type of card you want to use', 'jm-tc'); ?></label>
-		<select name="twitterCardType" id="twitterCardType">
-			<option value="summary" <?php selected( $selected, 'summary' ); ?>><?php _e('summary', 'jm-tc'); ?></option>
-			<option value="photo" <?php selected( $selected, 'photo' ); ?>><?php _e('photo', 'jm-tc'); ?></option>
-		</select>
-	</p>
+$values = get_post_custom( $post->ID );
+$selected = isset( $values['twitterCardType'] ) ? esc_attr( $values['twitterCardType'][0] ) : '';
+wp_nonce_field( 'jm_tc_meta_box_nonce', 'meta_box_nonce' );
+?>
 
-	<?php	
+<p>
+<label for="twitterCardType"><?php _e('Choose what type of card you want to use', 'jm-tc'); ?></label>
+<select name="twitterCardType" id="twitterCardType">
+<option value="summary" <?php selected( $selected, 'summary' ); ?>><?php _e('summary', 'jm-tc'); ?></option>
+<option value="photo" <?php selected( $selected, 'photo' ); ?>><?php _e('photo', 'jm-tc'); ?></option>
+</select>
+</p>
+
+<?php	
 }
 
 
 add_action( 'save_post', 'jm_tc_meta_box_save' );
 function jm_tc_meta_box_save( $post_id )
 {
-	// Bail if we're doing an auto save
-	if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
-	
-	// if our nonce isn't there, or we can't verify it, bail
-	if( !isset( $_POST['meta_box_nonce'] ) || !wp_verify_nonce( $_POST['meta_box_nonce'], 'jm_tc_meta_box_nonce' ) ) return;
-	
-	// if our current user can't edit this post, bail
-	if( !current_user_can( 'edit_post' ) ) return;
-	
-	// now we can actually save the data
-	$allowed = array( 
-		'a' => array( // on allow a tags
-			'href' => array() // and those anchords can only have href attribute
-		)
-	);
-	
-	// Probably a good idea to make sure your data is set		
-	if( isset( $_POST['twitterCardType'] ) )
-		update_post_meta( $post_id, 'twitterCardType', esc_attr( $_POST['twitterCardType'] ) );
-		
+// Bail if we're doing an auto save
+if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+
+// if our nonce isn't there, or we can't verify it, bail
+if( !isset( $_POST['meta_box_nonce'] ) || !wp_verify_nonce( $_POST['meta_box_nonce'], 'jm_tc_meta_box_nonce' ) ) return;
+
+// if our current user can't edit this post, bail
+if( !current_user_can( 'edit_post' ) ) return;
+
+// now we can actually save the data
+$allowed = array( 
+'a' => array( // on allow a tags
+'href' => array() // and those anchords can only have href attribute
+)
+);
+
+// Probably a good idea to make sure your data is set		
+if( isset( $_POST['twitterCardType'] ) )
+update_post_meta( $post_id, 'twitterCardType', esc_attr( $_POST['twitterCardType'] ) );
+
 }
 
 
@@ -146,12 +147,12 @@ $is_page_posts = get_option('page_for_posts');
 
 if ( is_front_page()||is_home()) {
 echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";  	                   					
-echo '<meta property="og:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
+echo '<meta property="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
 echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
 echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";								
-echo '<meta property="og:url" content="' . home_url() . '"/>'."\n";
-echo '<meta property="og:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
-echo '<meta property="og:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
+echo '<meta property="twitter:url" content="' . home_url() . '"/>'."\n";
+echo '<meta property="twitter:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
+echo '<meta property="twitter:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
 echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";                   
 echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 
@@ -161,18 +162,18 @@ echo '<!-- /JM Twitter Cards -->'."\n\n";
 
 echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";  
 
-															
+		
 // get current post meta data
 $creator  = get_the_author_meta('twitter', $post->post_author);		
 $cardType = get_post_meta($post->ID, 'twitterCardType', true);
-				 
+
 if(($opts['twitterCardCustom'] == 'yes') && !empty($cardType)) {
 
-echo '<meta property="og:card" content="'. $cardType .'"/>'."\n";
+echo '<meta property="twitter:card" content="'. $cardType .'"/>'."\n";
 } else {
-echo '<meta property="og:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
+echo '<meta property="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
 }
-if(!empty($creator)) { // this part has to be optional, this is more for guest blogging but it's no reason to bother everybody.
+if(!empty($creator)) { // this part has to be optional, this is more for guest bltwitterging but it's no reason to bother everybody.
 echo '<meta property="twitter:creator" content="@'. $creator .'"/>'."\n";												
 } else {
 echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
@@ -180,9 +181,9 @@ echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'"/
 }
 // these next 4 parameters should not be editable in post admin 
 echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
-echo '<meta property="og:url" content="' . get_permalink() . '"/>'."\n";
-echo '<meta property="og:title" content="' . the_title_attribute( array('echo' => false) ) . '"/>'."\n";     
-echo '<meta property="og:description" content="' . get_excerpt_by_id($post->ID) . '"/>'."\n"; 
+echo '<meta property="twitter:url" content="' . get_permalink() . '"/>'."\n";
+echo '<meta property="twitter:title" content="' . the_title_attribute( array('echo' => false) ) . '"/>'."\n";     
+echo '<meta property="twitter:description" content="' . get_excerpt_by_id($post->ID) . '"/>'."\n"; 
 
 if(!has_post_thumbnail( $post->ID )) {
 echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";
@@ -196,7 +197,7 @@ echo '<meta property="twitter:image:width" content="'.$opts['twitterImageWidth']
 echo '<meta property="twitter:image:height" content="'.$opts['twitterImageHeight'].'">'."\n";
 
 }
-						   
+
 echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 }      
 
@@ -276,7 +277,7 @@ $opts = jm_tc_get_options();
 <?php screen_icon('options-general'); ?>
 <h2><?php _e('JM Twitter Cards Options', 'jm-tc'); ?></h2>
 
-<p><?php _e('This plugin allows you to get Twitter photo and summary cards for your blogs if you do not use SEO by Yoast. But now you can go further in your Twitter Cards experience, see last section.', 'jm-tc'); ?></p>
+<p><?php _e('This plugin allows you to get Twitter photo and summary cards for your bltwitters if you do not use SEO by Yoast. But now you can go further in your Twitter Cards experience, see last section.', 'jm-tc'); ?></p>
 
 <form id="jm-tc-form" method="post" action="options.php">
 
@@ -355,7 +356,7 @@ $opts = jm_tc_get_options();
 (<em><?php _e('If enabled, a custom metabox will appear (admin panel) in your edit', 'jm-tc'); ?></em>)
 </p>
 <p>
-<?php _e('In 1.1.8 creator has been removed from metabox. Now it will grab this directly from profiles. This should be more comfortable for guest blogging. If you do not have any Twitter option like that on profiles, just activate it here :','jm-tc'); ?>
+<?php _e('In 1.1.8 creator has been removed from metabox. Now it will grab this directly from profiles. This should be more comfortable for guest bltwitterging. If you do not have any Twitter option like that on profiles, just activate it here :','jm-tc'); ?>
 </p>
 <p>
 <label for="twitterProfile"><?php _e('Add a field Twitter to profiles', 'jm-tc'); ?> :</label>
@@ -463,7 +464,7 @@ return array(
 'twitterCardCustom'         => 'no',
 'twitterProfile'            => 'no',
 'twitterPostPageTitle' 		=> get_bloginfo ( 'name' ),
-'twitterPostPageDesc'       => __('Welcome to','jm-tc').' '.get_bloginfo ( 'name' ).' - '. __('see blog posts','jm-tc')
+'twitterPostPageDesc'       => __('Welcome to','jm-tc').' '.get_bloginfo ( 'name' ).' - '. __('see bltwitter posts','jm-tc')
 );
 }
 

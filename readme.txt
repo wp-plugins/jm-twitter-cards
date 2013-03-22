@@ -84,6 +84,10 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+= 2.2.6 =
+* 22 mar 2013
+* just quit support for Open Graph because people use their own plugin for that so the markup is no longer added twice.
+
 = 2.2.5 =
 * 20 mar 2013
 * fix problem with meta image
