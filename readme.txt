@@ -84,9 +84,14 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+= 2.2.7 =
+* 22 mar 2013
+* Add support for SEO plugins. Title can be retrieved thanks to wp_title() and meta description is no longer set according to excerpt but from the custom meta in your edit if SEO by Yoast is active.
+* Enjoy
+
 = 2.2.6 =
 * 22 mar 2013
-* just quit support for Open Graph because people use their own plugins for that so the markup is no longer added twice.
+* just quit support for Open Graph because people use their own plugin for that so the markup is no longer added twice.
 
 = 2.2.5 =
 * 20 mar 2013

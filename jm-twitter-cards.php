@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 2.2.6
+Version: 2.2.7
 License: GPL2++
 */
 
@@ -19,7 +19,7 @@ License: GPL2++
 
 
 // Some constants
-define ('JM_TC_VERSION','2.2.6');
+define ('JM_TC_VERSION','2.2.7');
 
 
 
@@ -164,8 +164,15 @@ echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";
 
 		
 // get current post meta data
-$creator  = get_the_author_meta('twitter', $post->post_author);		
-$cardType = get_post_meta($post->ID, 'twitterCardType', true);
+$creator   = get_the_author_meta('twitter', $post->post_author);		
+$cardType  = get_post_meta($post->ID, 'twitterCardType', true);
+$cardTitle = wp_title('»', false);
+
+// support for custom meta description WordPress SEO by Yoast
+if (class_exists('WPSEO_Frontend')) { // little trick to check if plugin is here and active :)
+$cardDescription = WPSEO_Frontend::metadesc( false ); } else {
+$cardDescription = get_excerpt_by_id($post->ID);
+}
 
 if(($opts['twitterCardCustom'] == 'yes') && !empty($cardType)) {
 
@@ -182,8 +189,8 @@ echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'"/
 // these next 4 parameters should not be editable in post admin 
 echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
 echo '<meta property="twitter:url" content="' . get_permalink() . '"/>'."\n";
-echo '<meta property="twitter:title" content="' . the_title_attribute( array('echo' => false) ) . '"/>'."\n";     
-echo '<meta property="twitter:description" content="' . get_excerpt_by_id($post->ID) . '"/>'."\n"; 
+echo '<meta property="twitter:title" content="' . $cardTitle  . '"/>'."\n";  // filter used by plugin to customize title  
+echo '<meta property="twitter:description" content="' . $cardDescription . '"/>'."\n"; 
 
 if(!has_post_thumbnail( $post->ID )) {
 echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";
@@ -304,6 +311,7 @@ $opts = jm_tc_get_options();
 <p>
 <label for="twitterExcerptLength"><?php _e('Set description according to excerpt length (words count)', 'jm-tc'); ?> :</label>
 <input id="twitterExcerptLength" type="number" min="10" max="70" name="jm_tc[twitterExcerptLength]" class="small-number" value="<?php echo $opts['twitterExcerptLength']; ?>" />
+<small>Version <?php echo ?><?php _e('Set description according to excerpt length (words count)', 'jm-tc'); ?></small>
 </p>
 <p>
 <label for="twitterImage"><?php _e('Enter URL for fallback image (image by default)', 'jm-tc'); ?> :</label>
@@ -463,7 +471,7 @@ return array(
 'twitterImageHeight'        => '150',
 'twitterCardCustom'         => 'no',
 'twitterProfile'            => 'no',
-'twitterPostPageTitle' 		=> get_bloginfo ( 'name' ),
+'twitterPostPageTitle' 		=> get_bloginfo ( 'name' ),// filter used by plugin to customize title
 'twitterPostPageDesc'       => __('Welcome to','jm-tc').' '.get_bloginfo ( 'name' ).' - '. __('see bltwitter posts','jm-tc')
 );
 }
