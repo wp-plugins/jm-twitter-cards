@@ -19,7 +19,7 @@ License: GPL2++
 
 
 // Some constants
-define ('JM_TC_VERSION','2.2.7');
+define ('JM_TC_VERSION','2.2.8');
 
 
 // Plugin activation: create default values if they don't exist
