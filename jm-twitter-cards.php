@@ -164,7 +164,7 @@ echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";
 // get current post meta data
 $creator   = get_the_author_meta('twitter', $post->post_author);		
 $cardType  = get_post_meta($post->ID, 'twitterCardType', true);
-$cardTitle = wp_title('»', false);
+$cardTitle = wp_title('', false);
 
 // support for custom meta description WordPress SEO by Yoast
 if (class_exists('WPSEO_Frontend')) { // little trick to check if plugin is here and active :)
