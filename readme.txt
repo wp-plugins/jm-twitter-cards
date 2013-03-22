@@ -12,10 +12,12 @@ A plugin meant to simplify Twitter cards integration on WordPress. But this is m
 == Description ==
 
 Once activated the plugin adds Twitter cards on your posts according to your settings. Enjoy !
-I created this plugin to provide the same Twitter card feature as SEO by Yoast plugin does but for those who do not use it.
-But my plugin goes further...
+2.2.8 is quite compatible with SEO By Yoast and you won't have to fulfill multiple fields. The plugin grabs title and description generated with Yoast.
 
-If you choose full customization metabox is now on the right side. It's shorter simply because now twitter account is retrieved from author's profile.
+
+The plugn allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
+
+If you choose full customization metabox is now on the right side in your edit. It's shorter simply because now twitter account is retrieved from author's profile.
 
 <a href="http://twitter.com/tweetpressfr">Follow me on Twitter</a>
 
@@ -25,8 +27,9 @@ En Français
 –––––––––––––––––––––––––––––––––––
 
 Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts selon vos réglages. Profitez-en bien !
-J'ai créé ce plugin pour tous les non utilisateurs de Seo by Yoast qui souhaitent avoir la possibilité d'insérer les Twitter Cards sans avoir à coder.
-Mais le plugin va encore plus loin...
+2.2.8 est maintenant bien compatible avec SEO by Yoast et vous n'aurez pas à remplir 36 000 champs. Le plugin s'aligne sur vos title et description personnalisées avec Yoast.
+
+Le plugin vous permet de personnaliser les cards pour chaque post. Attention tout de même à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
 

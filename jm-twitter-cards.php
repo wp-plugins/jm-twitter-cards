@@ -182,7 +182,6 @@ if(!empty($creator)) { // this part has to be optional, this is more for guest b
 echo '<meta property="twitter:creator" content="@'. $creator .'"/>'."\n";												
 } else {
 echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
-
 }
 // these next 4 parameters should not be editable in post admin 
 echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
