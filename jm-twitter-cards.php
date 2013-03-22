@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users which do not use SEO  by Yoast to add Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 2.2.7
+Version: 2.2.8
 License: GPL2++
 */
 
@@ -20,8 +20,6 @@ License: GPL2++
 
 // Some constants
 define ('JM_TC_VERSION','2.2.7');
-
-
 
 
 // Plugin activation: create default values if they don't exist
@@ -311,7 +309,6 @@ $opts = jm_tc_get_options();
 <p>
 <label for="twitterExcerptLength"><?php _e('Set description according to excerpt length (words count)', 'jm-tc'); ?> :</label>
 <input id="twitterExcerptLength" type="number" min="10" max="70" name="jm_tc[twitterExcerptLength]" class="small-number" value="<?php echo $opts['twitterExcerptLength']; ?>" />
-<small>Version <?php echo ?><?php _e('Set description according to excerpt length (words count)', 'jm-tc'); ?></small>
 </p>
 <p>
 <label for="twitterImage"><?php _e('Enter URL for fallback image (image by default)', 'jm-tc'); ?> :</label>

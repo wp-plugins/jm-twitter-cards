@@ -84,6 +84,11 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+= 2.2.8 =
+* 22 mar 2013
+* Correct bug in options page
+* Sorry last change guys
+
 = 2.2.7 =
 * 22 mar 2013
 * Add support for SEO plugins. Title can be retrieved thanks to wp_title() and meta description is no longer set according to excerpt but from the custom meta in your edit if SEO by Yoast is active.
