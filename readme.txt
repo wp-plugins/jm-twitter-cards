@@ -15,7 +15,7 @@ Once activated the plugin adds Twitter cards on your posts according to your set
 2.2.8 is quite compatible with SEO By Yoast and you won't have to fulfill multiple fields. The plugin grabs title and description generated with Yoast.
 
 
-The plugn allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
+The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
 
 If you choose full customization metabox is now on the right side in your edit. It's shorter simply because now twitter account is retrieved from author's profile.
 
@@ -86,6 +86,11 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 3. metabox
 
 == Changelog ==
+
+= 2.2.9 =
+* 23 mar 2013
+* Correct bug with wrong call of class WPSEO_Frontend()
+* Sorry for multiple udpates and thanks to those who report bugs
 
 = 2.2.8 =
 * 22 mar 2013

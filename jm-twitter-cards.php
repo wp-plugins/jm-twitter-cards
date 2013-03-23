@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 2.2.8
+Version: 2.2.9
 License: GPL2++
 */
 
@@ -141,8 +141,6 @@ function add_twitter_card_info() {
 global $post;	
 /* get options */          		
 $opts = jm_tc_get_options(); 	
-$is_page_posts = get_option('page_for_posts');			
-
 if ( is_front_page()||is_home()) {
 echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";  	                   					
 echo '<meta property="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
@@ -153,9 +151,6 @@ echo '<meta property="twitter:title" content="' .$opts['twitterPostPageTitle'] .
 echo '<meta property="twitter:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
 echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";                   
 echo '<!-- /JM Twitter Cards -->'."\n\n"; 
-
-
-
 } else {
 
 echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";  
@@ -164,11 +159,13 @@ echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";
 // get current post meta data
 $creator   = get_the_author_meta('twitter', $post->post_author);		
 $cardType  = get_post_meta($post->ID, 'twitterCardType', true);
-$cardTitle = wp_title('', false);
+$cardTitle = the_title_attribute( array('echo' => false) );
 
 // support for custom meta description WordPress SEO by Yoast
 if (class_exists('WPSEO_Frontend')) { // little trick to check if plugin is here and active :)
-$cardDescription = WPSEO_Frontend::metadesc( false ); } else {
+$object = new WPSEO_Frontend();
+$cardTitle = $object->title( false );
+$cardDescription = $object->metadesc( false ); } else {
 $cardDescription = get_excerpt_by_id($post->ID);
 }
 
