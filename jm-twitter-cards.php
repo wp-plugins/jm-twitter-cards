@@ -19,7 +19,7 @@ License: GPL2++
 
 
 // Some constants
-define ('JM_TC_VERSION','2.2.8');
+define ('JM_TC_VERSION','2.2.9');
 
 
 // Plugin activation: create default values if they don't exist
@@ -159,13 +159,13 @@ echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";
 // get current post meta data
 $creator   = get_the_author_meta('twitter', $post->post_author);		
 $cardType  = get_post_meta($post->ID, 'twitterCardType', true);
-$cardTitle = the_title_attribute( array('echo' => false) );
 
 // support for custom meta description WordPress SEO by Yoast
 if (class_exists('WPSEO_Frontend')) { // little trick to check if plugin is here and active :)
 $object = new WPSEO_Frontend();
 $cardTitle = $object->title( false );
 $cardDescription = $object->metadesc( false ); } else {
+$cardTitle = the_title_attribute( array('echo' => false) );
 $cardDescription = get_excerpt_by_id($post->ID);
 }
 
