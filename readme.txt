@@ -12,7 +12,7 @@ A plugin meant to simplify Twitter cards integration on WordPress. But this is m
 == Description ==
 
 Once activated the plugin adds Twitter cards on your posts according to your settings. Enjoy !
-2.2.8 is quite compatible with SEO By Yoast and you won't have to fulfill multiple fields. The plugin grabs title and description generated with Yoast.
+2.2.9 is quite compatible with SEO By Yoast and you won't have to fulfill multiple fields. The plugin grabs title and description generated with Yoast.
 
 
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
@@ -27,7 +27,7 @@ En Français
 –––––––––––––––––––––––––––––––––––
 
 Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts selon vos réglages. Profitez-en bien !
-2.2.8 est maintenant bien compatible avec SEO by Yoast et vous n'aurez pas à remplir 36 000 champs. Le plugin s'aligne sur vos title et description personnalisées avec Yoast.
+2.2.9 est maintenant bien compatible avec SEO by Yoast et vous n'aurez pas à remplir 36 000 champs. Le plugin s'aligne sur vos title et description personnalisées avec Yoast.
 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention tout de même à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 
