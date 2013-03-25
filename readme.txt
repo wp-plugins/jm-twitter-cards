@@ -68,7 +68,6 @@ So, when users click on Tweets with an Instagram link, photos appear cropped.*
 4. Be careful with your robots.txt and put some rules to allow Twitter to fetch your website :
 `User-agent: Twitterbot
     Disallow:`
-<a href="https://dev.twitter.com/docs/cards#crawling">source</a>
 5. If it still doesn't work please open a thread on support or at this URL: <a href="http://tweetpress.fr/en/plugin/new-plugin-jm-twitter-cards/">TweetPress, JM Twitter Cards</a>
 
 ––––
@@ -85,7 +84,6 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 4. Attention avec le fichier robots.txt, vous devez autoriser le robot de Twitter à crawler votre site:
 `User-agent: Twitterbot
     Disallow:`
-<a href="https://dev.twitter.com/docs/cards#crawling">source</a>
 5. Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin ou à cette adresse : <a href="http://tweetpress.fr/plugin/jm-twitter-cards">TweetPress, JM Twitter Cards</a>
 
 == Screenshots ==
