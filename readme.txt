@@ -1,6 +1,7 @@
 === JM Twitter Cards ===
 Contributors: jmlapam
-Tags: twitter, cards, semantic markup, metabox
+Tags: twitter, cards, semantic markup, metabox, meta
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=jmlapam%40gmail%2ecom&item_name=JM%20Twitter%20Cards&no_shipping=0&no_note=1&tax=0&currency_code=EUR&bn=PP%2dDonationsBF&charset=UTF%2d8
 Requires at least: 3.0
 Tested up to: 3.5
 License: GPLv2 or later
@@ -12,7 +13,7 @@ A plugin meant to simplify Twitter cards integration on WordPress. But this is m
 == Description ==
 
 Once activated the plugin adds Twitter cards on your posts according to your settings. Enjoy !
-2.2.9 is quite compatible with SEO By Yoast and you won't have to fulfill multiple fields. The plugin grabs title and description generated with Yoast.
+3.0 is quite compatible with SEO By Yoast and All in ONe SEO. You won't have to fulfill the same fields again and again. The plugin grabs title and description generated with Yoast or All in one SEO.
 
 
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
@@ -92,6 +93,11 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 3. metabox
 
 == Changelog ==
+
+=  3.0 =
+* 29 mar 2013
+* Add support for All in One SEO
+* Double check : this time it won't break ! 
 
 = 2.2.9 =
 * 23 mar 2013
