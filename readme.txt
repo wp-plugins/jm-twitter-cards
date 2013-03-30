@@ -28,9 +28,9 @@ En Français
 –––––––––––––––––––––––––––––––––––
 
 Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts selon vos réglages. Profitez-en bien !
-2.2.9 est maintenant bien compatible avec SEO by Yoast et vous n'aurez pas à remplir 36 000 champs. Le plugin s'aligne sur vos title et description personnalisées avec Yoast.
+3.0 est bien compatible avec SEO by Yoast et All in One SEO et vous n'aurez donc pas à remplir 36 fois les mêmes champs. Le plugin s'aligne sur vos title et description personnalisées avec Yoast ou All in One SEO.
 
-Le plugin vous permet de personnaliser les cards pour chaque post. Attention tout de même à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
+Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
 
