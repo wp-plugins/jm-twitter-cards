@@ -13,7 +13,7 @@ A plugin meant to simplify Twitter cards integration on WordPress. But this is m
 == Description ==
 
 Once activated the plugin adds Twitter cards on your posts according to your settings. Enjoy !
-3.0 is quite compatible with SEO By Yoast and All in ONe SEO. You won't have to fulfill the same fields again and again. The plugin grabs title and description generated with Yoast or All in one SEO.
+3.0.5 is quite compatible with SEO By Yoast and All in ONe SEO. You won't have to fulfill the same fields again and again. The plugin grabs title and description generated with Yoast or All in one SEO.
 
 
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
@@ -28,7 +28,7 @@ En Français
 –––––––––––––––––––––––––––––––––––
 
 Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts selon vos réglages. Profitez-en bien !
-3.0 est bien compatible avec SEO by Yoast et All in One SEO et vous n'aurez donc pas à remplir 36 fois les mêmes champs. Le plugin s'aligne sur vos title et description personnalisées avec Yoast ou All in One SEO.
+3.0.5 est bien compatible avec SEO by Yoast et All in One SEO et vous n'aurez donc pas à remplir 36 fois les mêmes champs. Le plugin s'aligne sur vos title et description personnalisées avec Yoast ou All in One SEO.
 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 
@@ -94,7 +94,12 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
-=  3.0 =
+=  3.0.5 =
+* 02 Apr 2013
+* Add option in settings for those who use WP SEO or All in One SEO BUT do not want to use custom meta title and desc as twitter meta
+* Important ! default is yes so you have to deactivate it by selecting no on settings if you want to do this
+
+=  3.0.0 =
 * 29 mar 2013
 * Add support for All in One SEO
 * Double check : this time it won't break ! 

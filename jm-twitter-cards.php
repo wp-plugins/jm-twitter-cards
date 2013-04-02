@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.0.0
+Version: 3.0.5
 License: GPL2++
 */
 
@@ -161,18 +161,18 @@ $creator   = get_the_author_meta('twitter', $post->post_author);
 $cardType  = get_post_meta($post->ID, 'twitterCardType', true);
 
 // support for custom meta description WordPress SEO by Yoast or All in One SEO
-if (class_exists('WPSEO_Frontend')) { // little trick to check if plugin is here and active :)
+if (class_exists('WPSEO_Frontend') ) { // little trick to check if plugin is here and active :)
 $object = new WPSEO_Frontend();
-$cardTitle = $object->title( false );
-$cardDescription = $object->metadesc( false ); } 
-elseif (class_exists('All_in_One_SEO_Pack')) {
+if($opts['twitterCardSEOTitle'] == 'yes') { $cardTitle = $object->title( false );} else { $cardTitle = the_title_attribute( array('echo' => false) );}
+if($opts['twitterCardSEODesc'] == 'yes') { $cardDescription = $object->metadesc( false ); } else { $cardDescription = get_excerpt_by_id($post->ID);}
+} elseif (class_exists('All_in_One_SEO_Pack')) {
 global $post;
 $post_id = $post;
 if (is_object($post_id)) $post_id = $post_id->ID;
-$cardTitle  = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_title', true)));
-$cardDescription = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_description', true)));
+if($opts['twitterCardSEOTitle'] == 'yes') { $cardTitle  = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_title', true))); } else { $cardTitle = the_title_attribute( array('echo' => false) );}
+if($opts['twitterCardSEODesc'] == 'yes') { $cardDescription = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_description', true))); } else { $cardDescription = get_excerpt_by_id($post->ID); }
 }
-else {
+else { //default (I'll probaly make a switch next time)
 $cardTitle = the_title_attribute( array('echo' => false) );
 $cardDescription = get_excerpt_by_id($post->ID);
 }
@@ -259,7 +259,7 @@ function example_admin_notice() {
 global $current_user ;
 $user_id = $current_user->ID;
 if ( ! get_user_meta($user_id, 'example_ignore_notice') && current_user_can( 'install_plugins' ) && jm_tc_is_plugin_active('wordpress-seo/wp-seo.php') ) {
-echo '<div class="updated"><p>';
+echo '<div class="error"><p>';
 printf(__('WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice | <a href="%1$s">Hide Notice</a>'), '?example_nag_ignore=0','jm-tc');
 echo "</p></div>";
 }
@@ -320,7 +320,23 @@ $opts = jm_tc_get_options();
 </p>
 <?php submit_button(null, 'primary', 'JM_submit'); ?>
 </fieldset>
+<fieldset>   
+<legend><?php _e('SEO By Yoast or All in One SEO Users', 'jm-tc'); ?></legend>  
+<p>
+<label for="twitterCardSEOTitle"><?php _e('Use SEO by Yoast or All in ONE SEO meta title for your cards (<strong>default is yes</strong>)', 'jm-tc'); ?> :</label>
+<select id="twitterCardSEOTitle" name="jm_tc[twitterCardSEOTitle]">
+<option value="yes" <?php echo $opts['twitterCardSEOTitle'] == 'yes' ? 'selected="selected"' : ''; ?> ><?php _e('yes', 'jm-tc'); ?></option>
+<option value="no" <?php echo $opts['twitterCardSEOTitle'] == 'no' ? 'selected="selected"' : ''; ?> ><?php _e('no', 'jm-tc'); ?></option>
+</select></p> 
+<p>
+<label for="twitterCardSEODesc"><?php _e('Use SEO by Yoast or All in ONE SEO meta description for your cards (<strong>default is yes</strong>)', 'jm-tc'); ?> :</label>
+<select id="twitterCardSEODesc" name="jm_tc[twitterCardSEODesc]">
+<option value="yes" <?php echo $opts['twitterCardSEODesc'] == 'yes' ? 'selected="selected"' : ''; ?> ><?php _e('yes', 'jm-tc'); ?></option>
+<option value="no" <?php echo $opts['twitterCardSEODesc'] == 'no' ? 'selected="selected"' : ''; ?> ><?php _e('no', 'jm-tc'); ?></option>
+</select></p> 
 
+<?php submit_button(null, 'primary', 'JM_submit'); ?>	
+</fieldset>   	
 <fieldset>
 <legend><?php _e('Options for photo cards', 'jm-tc'); ?></legend>			              
 <p>
@@ -456,6 +472,10 @@ if ( isset($options['twitterPostPageTitle']) )
 $new['twitterPostPageTitle']  = esc_attr(strip_tags($options['twitterPostPageTitle']));
 if ( isset($options['twitterPostPageDesc']) )
 $new['twitterPostPageDesc']   = esc_attr(strip_tags($options['twitterPostPageDesc']));
+if ( isset($options['twitterCardSEOTitle']) )
+$new['twitterCardSEOTitle']   = $options['twitterCardSEOTitle'];
+if ( isset($options['twitterCardSEODesc']) )
+$new['twitterCardSEODesc']   = $options['twitterCardSEODesc'];
 return $new;
 }
 
@@ -473,7 +493,9 @@ return array(
 'twitterCardCustom'         => 'no',
 'twitterProfile'            => 'no',
 'twitterPostPageTitle' 		=> get_bloginfo ( 'name' ),// filter used by plugin to customize title
-'twitterPostPageDesc'       => __('Welcome to','jm-tc').' '.get_bloginfo ( 'name' ).' - '. __('see bltwitter posts','jm-tc')
+'twitterPostPageDesc'       => __('Welcome to','jm-tc').' '.get_bloginfo ( 'name' ).' - '. __('see bltwitter posts','jm-tc'),
+'twitterCardSEOTitle'       => 'yes',
+'twitterCardSEODesc'        => 'yes'
 );
 }
 
