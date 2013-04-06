@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.0.5
+Version: 3.1.0
 License: GPL2++
 */
 
@@ -15,11 +15,15 @@ License: GPL2++
 *             - I decided to remove former sources because I've been enhanced them by far and above all these sources are wrong : get_the_excerpt() outside the loop or undefined var !)
 *			  - http://wptheming.com/2011/08/admin-notices-in-wordpress/
 *		      - https://plus.gotwitterle.com/u/0/110977198681221304891/posts/axa3UaVF8x2
+*			  - http://stackoverflow.com/questions/13677265/wordpress-how-to-get-the-second-article-attached-images
+*			  - https://github.com/rilwis/meta-box
+*			  - http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src
+*			  - 
 */
 
 
 // Some constants
-define ('JM_TC_VERSION','3.0.0');
+define ('JM_TC_VERSION','3.1.0');
 
 
 // Plugin activation: create default values if they don't exist
@@ -61,6 +65,7 @@ wp_nonce_field( 'jm_tc_meta_box_nonce', 'meta_box_nonce' );
 <select name="twitterCardType" id="twitterCardType">
 <option value="summary" <?php selected( $selected, 'summary' ); ?>><?php _e('summary', 'jm-tc'); ?></option>
 <option value="photo" <?php selected( $selected, 'photo' ); ?>><?php _e('photo', 'jm-tc'); ?></option>
+<option value="gallery" <?php selected( $selected, 'gallery' ); ?>><?php _e('gallery', 'jm-tc'); ?></option>
 </select>
 </p>
 
@@ -90,9 +95,7 @@ $allowed = array(
 // Probably a good idea to make sure your data is set		
 if( isset( $_POST['twitterCardType'] ) )
 update_post_meta( $post_id, 'twitterCardType', esc_attr( $_POST['twitterCardType'] ) );
-
 }
-
 
 } 
 
@@ -133,7 +136,6 @@ return esc_attr($the_excerpt);// to prevent meta from being broken by ""
 }
 
 
-
 // function to add markup in head section of post types
 if(!function_exists( 'add_twitter_card_info' )) {
 
@@ -146,16 +148,16 @@ echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";
 echo '<meta property="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
 echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
 echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";								
-echo '<meta property="twitter:url" content="' . home_url() . '"/>'."\n";
+echo '<meta property="twitter:domain" content="' . get_bloginfo('wpurl') . '"/>'."\n";//URL is no longer necessary and it's quite logical because if domain is approuved all URL are approuved
 echo '<meta property="twitter:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
 echo '<meta property="twitter:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
 echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";                   
 echo '<!-- /JM Twitter Cards -->'."\n\n"; 
-} else {
+} 
 
+	else {
 echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";  
-
-		
+	
 // get current post meta data
 $creator   = get_the_author_meta('twitter', $post->post_author);		
 $cardType  = get_post_meta($post->ID, 'twitterCardType', true);
@@ -190,23 +192,41 @@ echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'"/
 }
 // these next 4 parameters should not be editable in post admin 
 echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
-echo '<meta property="twitter:url" content="' . get_permalink() . '"/>'."\n";
+echo '<meta property="twitter:domain" content="' . get_bloginfo('wpurl') . '"/>'."\n";
 echo '<meta property="twitter:title" content="' . $cardTitle  . '"/>'."\n";  // filter used by plugin to customize title  
 echo '<meta property="twitter:description" content="' . $cardDescription . '"/>'."\n"; 
 
-if(!has_post_thumbnail( $post->ID )) {
+if(!has_post_thumbnail( $post->ID ) && $cardType !== 'gallery') {
 echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";
-} else {
+} elseif( $cardType  == 'gallery') {
+//get attachment for gallery cards
+$args = array( 
+'post_type' => 'attachment', 
+'numberposts' => -1, 
+'exclude'=> get_post_thumbnail_id(), 
+'post_mime_type' => 'image', 
+'post_status' => null, 
+'post_parent' => $post->ID 
+); 
+ $attachments = get_posts($args);
+if ($attachments &&  count( $attachments ) > 3 ) {
+	$i = 0; 
+	  foreach ( $attachments as $attachment ) {
+	  // get attachment array with the ID from the returned posts 
+	  $pic = wp_get_attachment_url( $attachment->ID);
+	  echo '<meta property="twitter:image'.$i.'" content="' . $pic . '"/>'."\n";
+	  $i++;
+	  if ($i > 3) break; //in case there are more than 4 images in post
+	  }
+	 }	
+ } else {
 $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
 echo '<meta property="twitter:image" content="' . $thumb[0] . '"/>'."\n";
 }
-
-if($opts['twitterCardType'] == 'photo') {
+if($cardType  == 'photo') {
 echo '<meta property="twitter:image:width" content="'.$opts['twitterImageWidth'].'">'."\n";
 echo '<meta property="twitter:image:height" content="'.$opts['twitterImageHeight'].'">'."\n";
-
-}
-
+} 
 echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 }      
 
@@ -286,7 +306,7 @@ $opts = jm_tc_get_options();
 <?php screen_icon('options-general'); ?>
 <h2><?php _e('JM Twitter Cards Options', 'jm-tc'); ?></h2>
 
-<p><?php _e('This plugin allows you to get Twitter photo and summary cards for your bltwitters if you do not use SEO by Yoast. But now you can go further in your Twitter Cards experience, see last section.', 'jm-tc'); ?></p>
+<p><?php _e('This plugin allows you to get Twitter photo, summary <strong>and gallery</strong> cards for your blog. You can even go further in your Twitter Cards experience, see last section.', 'jm-tc'); ?></p>
 
 <form id="jm-tc-form" method="post" action="options.php">
 
@@ -362,7 +382,6 @@ $opts = jm_tc_get_options();
 </p>
 <?php submit_button(null, 'primary', 'JM_submit'); ?>	
 </fieldset>		
-
 <fieldset>  
 <legend><?php _e('Custom Twitter Cards', 'jm-tc'); ?></legend>
 
@@ -393,7 +412,12 @@ $opts = jm_tc_get_options();
 
 <?php submit_button(null, 'primary', 'JM_submit'); ?>	
 </fieldset>   	
-
+<fieldset>
+<legend><?php _e('New feature : Gallery Cards', 'jm-tc'); ?></legend>
+<p><?php _e('Gallery cards is a brand new feature that enhance Twitter Card Experience. This is quite experimental so be careful with it. Nevertheless this is a cool way to integrate multiple images in your tweets (4 images). See the screenshot in plugin folder :', 'jm-tc'); ?></p>
+<p><img src="<?php echo plugins_url('screenshot-4.png',__FILE__);?>" /></p>
+<p><?php _e('This option is available <strong>only in full custom mode</strong>. You must insert at least 4 images in a post with gallery card and 4 images will be shown at most. Post thumbnail will not be included if set, gallery cards are meant for attachments.','jm-tc'); ?></p>
+</fieldset>
 <fieldset>   
 <legend>Home - <?php _e('Posts page', 'jm-tc'); ?></legend>  
 <p>

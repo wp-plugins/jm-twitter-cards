@@ -13,11 +13,13 @@ A plugin meant to simplify Twitter cards integration on WordPress. But this is m
 == Description ==
 
 Once activated the plugin adds Twitter cards on your posts according to your settings. Enjoy !
-3.0.5 is quite compatible with SEO By Yoast and All in ONe SEO. You won't have to fulfill the same fields again and again. The plugin grabs title and description generated with Yoast or All in one SEO.
+Compatible with :
+* WP SEO by Yoast (do not check cards option in this plugin if activated)
+* All in One SEO
 
+Now includes Gallery cards (experimental feature available only in full custom mode)
 
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
-
 If you choose full customization metabox is now on the right side in your edit. It's shorter simply because now twitter account is retrieved from author's profile.
 
 <a href="http://twitter.com/tweetpressfr">Follow me on Twitter</a>
@@ -30,8 +32,13 @@ En Français
 Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts selon vos réglages. Profitez-en bien !
 3.0.5 est bien compatible avec SEO by Yoast et All in One SEO et vous n'aurez donc pas à remplir 36 fois les mêmes champs. Le plugin s'aligne sur vos title et description personnalisées avec Yoast ou All in One SEO.
 
-Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
+Compatible avec : 
+* WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si activé)
+* All in One SEO
 
+Les cards Gallery sont maintenant inclues (option expérimentale disponible uniquement en mode full custom).
+
+Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
 
 <a href="http://twitter.com/tweetpressfr">Me suivre sur Twitter</a>
@@ -64,7 +71,7 @@ So, when users click on Tweets with an Instagram link, photos appear cropped.*
 
 = Plugin is fine but Twitter cards doesn't appear in my tweets =
 1. Make sure you correctly fulfilled fields in option page according to <a href="https://dev.twitter.com/docs/cards" title="Twitter cards documentation">Twitter documentation</a>
-2. Make sure you have correctly <a href="https://dev.twitter.com/node/7940" title="Twitter cards submit">submitted your website to Twitter</a>
+2. Make sure you have correctly <a href="https://dev.twitter.com/docs/cards/validation/validator" title="Twitter cards submit">submitted your website to Twitter</a>
 3. Wait for Twitter's answer (a mail that tells you your site has been approved)
 4. Be careful with your robots.txt and put some rules to allow Twitter to fetch your website :
 `User-agent: Twitterbot
@@ -80,7 +87,7 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 = Le plugin marche mais je n'obtiens pas de Twitter Cards dans mes tweets =
 1. Assurez-vous bien d'avoir rempli correctement les champs dans la page d'options suivant <a href="https://dev.twitter.com/docs/cards" title="Twitter cards documentation">la documentation Twitter</a>
-2. Assurez-vous bien d'avoir <a href="https://dev.twitter.com/node/7940" title="Twitter cards formulaire de validation">soumis votre site à Twitter</a>
+2. Assurez-vous bien d'avoir <a href="https://dev.twitter.com/docs/cards/validation/validator" title="Twitter cards formulaire de validation">soumis votre site à Twitter</a>
 3. Attendez la réponse de Twitter (un mail qui vous indique que votre site a été approuvé)
 4. Attention avec le fichier robots.txt, vous devez autoriser le robot de Twitter à crawler votre site:
 `User-agent: Twitterbot
@@ -91,8 +98,14 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 1. admin
 2. confirmation mail
 3. metabox
+4. cards gallery
 
 == Changelog ==
+
+=  3.1.0 =
+* 06 Apr 2013
+* Add gallery card support and fix minor bug regarding photo option
+* Update link to validator 
 
 =  3.0.5 =
 * 02 Apr 2013
