@@ -101,7 +101,7 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 =  3.1.1 =
 * 20 Apr 2013
-* Add support for summary_large_image
+* Add support for summary_large_image (newest feature)
 
 =  3.1.0 =
 * 06 Apr 2013
