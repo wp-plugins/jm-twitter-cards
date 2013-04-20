@@ -22,7 +22,7 @@ Now includes Gallery cards (experimental feature available only in full custom m
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
 If you choose full customization metabox is now on the right side in your edit. It's shorter simply because now twitter account is retrieved from author's profile.
 
-<a href="http://twitter.com/tweetpressfr">Follow me on Twitter</a>
+<a href="http://twitter.com/intent/user?screen_name=tweetpressfr">Follow me on Twitter</a>
 
 
 ––––
@@ -41,7 +41,7 @@ Les cards Gallery sont maintenant inclues (option expérimentale disponible uniq
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
 
-<a href="http://twitter.com/tweetpressfr">Me suivre sur Twitter</a>
+<a href="http://twitter.com/intent/user?screen_name=tweetpressfr">Me suivre sur Twitter</a>
 
 
 == Installation ==
@@ -63,10 +63,7 @@ En Français
 == Frequently asked questions ==
 
 = I got problem with Instagram = 
-It's a known issue due to Instagram. Twitter said it recently :
-*Users are experiencing issues with viewing Instagram photos on Twitter. 
-Issues include cropped images. 
-This is due to Instagram disabling its Twitter cards integration, and as a result, photos are being displayed using a pre-cards experience. 
+It's a known issue due to Instagram. Twitter said it recently : Users are experiencing issues with viewing Instagram photos on Twitter. Issues include cropped images.This is due to Instagram disabling its Twitter cards integration, and as a result, photos are being displayed using a pre-cards experience. 
 So, when users click on Tweets with an Instagram link, photos appear cropped.*
 
 = Plugin is fine but Twitter cards doesn't appear in my tweets =
@@ -101,6 +98,10 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 4. cards gallery
 
 == Changelog ==
+
+=  3.1.1 =
+* 20 Apr 2013
+* Add support for summary_large_image
 
 =  3.1.0 =
 * 06 Apr 2013

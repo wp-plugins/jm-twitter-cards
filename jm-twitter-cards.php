@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.1.0
+Version: 3.1.1
 License: GPL2++
 */
 
@@ -18,12 +18,11 @@ License: GPL2++
 *			  - http://stackoverflow.com/questions/13677265/wordpress-how-to-get-the-second-article-attached-images
 *			  - https://github.com/rilwis/meta-box
 *			  - http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src
-*			  - 
 */
 
 
 // Some constants
-define ('JM_TC_VERSION','3.1.0');
+define ('JM_TC_VERSION','3.1.1');
 
 
 // Plugin activation: create default values if they don't exist
@@ -64,6 +63,7 @@ wp_nonce_field( 'jm_tc_meta_box_nonce', 'meta_box_nonce' );
 <label for="twitterCardType"><?php _e('Choose what type of card you want to use', 'jm-tc'); ?></label>
 <select name="twitterCardType" id="twitterCardType">
 <option value="summary" <?php selected( $selected, 'summary' ); ?>><?php _e('summary', 'jm-tc'); ?></option>
+<option value="summary_large_image" <?php selected( $selected, 'summary_large_image' ); ?>><?php _e('summary_large_image', 'jm-tc'); ?></option>
 <option value="photo" <?php selected( $selected, 'photo' ); ?>><?php _e('photo', 'jm-tc'); ?></option>
 <option value="gallery" <?php selected( $selected, 'gallery' ); ?>><?php _e('gallery', 'jm-tc'); ?></option>
 </select>
@@ -319,6 +319,7 @@ $opts = jm_tc_get_options();
 <label for="twitterCardType"><?php _e('Choose what type of card you want to use', 'jm-tc'); ?> :</label>
 <select id="twitterCardType" name="jm_tc[twitterCardType]">
 <option value="summary" <?php echo $opts['twitterCardType'] == 'summary' ? 'selected="selected"' : ''; ?> ><?php _e('summary', 'jm-tc'); ?></option>
+<option value="summary_large_image" <?php echo $opts['twitterCardType'] == 'summary_large_image' ? 'selected="selected"' : ''; ?> ><?php _e('summary_large_image', 'jm-tc'); ?></option>
 <option value="photo" <?php echo $opts['twitterCardType'] == 'photo' ? 'selected="selected"' : ''; ?> ><?php _e('photo', 'jm-tc'); ?></option>
 </select>
 </p>

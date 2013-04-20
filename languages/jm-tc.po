@@ -161,6 +161,11 @@ msgstr ""
 msgid "summary"
 msgstr ""
 
+#. Text in function
+#: jm-twitter-cards.php
+msgid "summary_large_image"
+msgstr ""
+
 #. Text in echo
 #: jm-twitter-cards.php
 msgid "yes"
