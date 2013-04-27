@@ -99,6 +99,12 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+=  3.1.2 =
+* 27 Apr 2013
+* Totally rebuild extra user profile field for multi-author blog with appropriate name for meta key (less confusing) and a real section in profile, not just another field that users might skip.
+* Add some regex to eliminate any unecessary @ from input values.
+* Special thank to Greglone, these hooks are good !
+
 =  3.1.1 =
 * 20 Apr 2013
 * Add support for summary_large_image (newest feature)

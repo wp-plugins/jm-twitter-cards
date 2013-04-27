@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.1.1
+Version: 3.1.2
 License: GPL2++
 */
 
@@ -22,7 +22,7 @@ License: GPL2++
 
 
 // Some constants
-define ('JM_TC_VERSION','3.1.1');
+define ('JM_TC_VERSION','3.1.2');
 
 
 // Plugin activation: create default values if they don't exist
@@ -38,6 +38,13 @@ update_option('jm_tc', jm_tc_get_default_options());
 register_uninstall_hook( __FILE__, 'jm_tc_uninstall' );
 function jm_tc_uninstall() {
 delete_option( 'jm_tc' );
+}
+
+
+// Remove any @ from input value
+function jm_tc_remove_at($at) { 
+$noat = str_replace('@','',$at);
+return $noat;
 }
 
 
@@ -101,15 +108,52 @@ update_post_meta( $post_id, 'twitterCardType', esc_attr( $_POST['twitterCardType
 
 //add twitter infos
 $opts = jm_tc_get_options(); 
-if(!function_exists( 'jm_tc_contactmethods' ) && $opts['twitterProfile'] == 'yes') {
-function jm_tc_contactmethods( $contactmethods ) {
-if ( current_user_can( 'publish_posts') ) 
-// Add Twitter
-$contactmethods['twitter'] = 'Twitter Cards Creator @';                     
-return $contactmethods;
+if($opts['twitterProfile'] == 'yes') {
+add_action( 'show_user_profile', 'jm_tc_add_field_user_profile' );
+add_action( 'edit_user_profile', 'jm_tc_add_field_user_profile' );
+
+function jm_tc_add_field_user_profile( $user ) {
+wp_nonce_field( 'jm_tc_twitter_field_update', 'jm_tc_twitter_field_update', false );
+?>
+<h3><?php _e("Twitter Card Creator","jm-tc");?></h3>	
+<table class="form-table">
+<tr>
+<th><label for="jm_tc_twitter"><?php _e("Twitter Account", "jm_tc"); ?></label></th>
+<td>
+<input type="text" name="jm_tc_twitter" id="jm_tc_twitter" value="<?php echo esc_attr( get_the_author_meta( 'jm_tc_twitter', $user->ID ) ); ?>" class="regular-text" /><br />
+<span class="description"><?php _e("Enter your Twitter Account (without @)", "jm-tc"); ?></span>
+</td>
+</tr>
+</table>
+<?php
 }
-add_filter('user_contactmethods','jm_tc_contactmethods',10,1);
 }
+
+// save value for extra field in user profile
+add_action( 'personal_options_update', 'jm_tc_save_extra_user_profile_field', 10,1 );
+add_action( 'edit_user_profile_update', 'jm_tc_save_extra_user_profile_field',10,1 );
+
+function jm_tc_save_extra_user_profile_field( $user_id ) {
+if( !current_user_can( 'edit_user', $user_id ) || ! isset( $_POST['jm_tc_twitter_field_update'] ) || ! wp_verify_nonce( $_POST['jm_tc_twitter_field_update'], 'jm_tc_twitter_field_update' ) ) { return false; }
+$tc_twitter = wp_filter_nohtml_kses($_POST['jm_tc_twitter']);
+update_user_meta( $user_id, 'jm_tc_twitter', $tc_twitter );
+}
+
+// apply a filter on input to delete any @ 
+add_filter('user_profile_update_errors','jm_tc_check_at', 10, 3); // wp-admin/includes/users.php, thanks Greglone for this great hint
+function jm_tc_check_at($errors, $update, $user)  {
+if($update) {  
+// do the error handling here
+if( preg_match('/ +/',$_POST['jm_tc_twitter'] ) || preg_match(' ',$_POST['jm_tc_twitter'] ) ) {
+$errors->add('jm_tc_twitter', __('Wait ! Do not leave spaces in your Twitter account please.','jm-tc'), array('form-field' => 'Twitter for Comments'));
+}
+else {
+//let's save it but in case there's a @ just remove it before saving
+update_user_meta($user->ID, 'jm_tc_twitter', str_replace('@','',$_POST['jm_tc_twitter']) );
+}
+}
+}
+
 
 
 //grab excerpt
@@ -155,11 +199,11 @@ echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'.
 echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 } 
 
-	else {
+else {
 echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";  
-	
+
 // get current post meta data
-$creator   = get_the_author_meta('twitter', $post->post_author);		
+$creator   = get_the_author_meta('jm_tc_twitter', $post->post_author);		
 $cardType  = get_post_meta($post->ID, 'twitterCardType', true);
 
 // support for custom meta description WordPress SEO by Yoast or All in One SEO
@@ -208,18 +252,18 @@ $args = array(
 'post_status' => null, 
 'post_parent' => $post->ID 
 ); 
- $attachments = get_posts($args);
+$attachments = get_posts($args);
 if ($attachments &&  count( $attachments ) > 3 ) {
-	$i = 0; 
-	  foreach ( $attachments as $attachment ) {
-	  // get attachment array with the ID from the returned posts 
-	  $pic = wp_get_attachment_url( $attachment->ID);
-	  echo '<meta property="twitter:image'.$i.'" content="' . $pic . '"/>'."\n";
-	  $i++;
-	  if ($i > 3) break; //in case there are more than 4 images in post
-	  }
-	 }	
- } else {
+$i = 0; 
+foreach ( $attachments as $attachment ) {
+// get attachment array with the ID from the returned posts 
+$pic = wp_get_attachment_url( $attachment->ID);
+echo '<meta property="twitter:image'.$i.'" content="' . $pic . '"/>'."\n";
+$i++;
+if ($i > 3) break; //in case there are more than 4 images in post
+}
+}	
+} else {
 $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
 echo '<meta property="twitter:image" content="' . $thumb[0] . '"/>'."\n";
 }
@@ -325,11 +369,11 @@ $opts = jm_tc_get_options();
 </p>
 <p>
 <label for="twitterCreator"><?php _e('Enter your Personal Twitter account', 'jm-tc'); ?> :</label>
-<input id="twitterCreator" type="text" name="jm_tc[twitterCreator]" class="regular-text" value="<?php echo $opts['twitterCreator']; ?>" />
+<input id="twitterCreator" type="text" name="jm_tc[twitterCreator]" class="regular-text" value="<?php echo jm_tc_remove_at($opts['twitterCreator']); ?>" />
 </p>
 <p>
 <label for="twitterSite"><?php _e('Enter Twitter account for your Website', 'jm-tc'); ?> :</label>
-<input id="twitterSite" type="text" name="jm_tc[twitterSite]" class="regular-text" value="<?php echo $opts['twitterSite']; ?>" />
+<input id="twitterSite" type="text" name="jm_tc[twitterSite]" class="regular-text" value="<?php echo jm_tc_remove_at($opts['twitterSite']); ?>" />
 </p>
 <p>
 <label for="twitterExcerptLength"><?php _e('Set description according to excerpt length (words count)', 'jm-tc'); ?> :</label>
@@ -478,9 +522,9 @@ return $new;
 if ( isset($options['twitterCardType']) )
 $new['twitterCardType']       = $options['twitterCardType'];
 if ( isset($options['twitterCreator']) )
-$new['twitterCreator']		  = esc_attr(strip_tags( $options['twitterCreator'] ));
+$new['twitterCreator']		  = esc_attr(strip_tags( jm_tc_remove_at($options['twitterCreator']) ));
 if ( isset($options['twitterSite']) )
-$new['twitterSite']           = esc_attr(strip_tags($options['twitterSite']));
+$new['twitterSite']           = esc_attr(strip_tags(jm_tc_remove_at($options['twitterSite']) ));
 if ( isset($options['twitterExcerptLength']) )
 $new['twitterExcerptLength']  = (int) $options['twitterExcerptLength'];
 if ( isset($options['twitterImage']) )

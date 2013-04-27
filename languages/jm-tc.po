@@ -268,3 +268,18 @@ msgid ""
 "shown at most. Post thumbnail will not be included if set, gallery cards are "
 "meant for attachments."
 msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter your Twitter Account (without @)"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Twitter Account"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Wait ! Do not leave spaces in your Twitter account please."
+msgstr ""

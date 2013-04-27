@@ -78,9 +78,7 @@ msgstr "Obtenez une <strong>metabox dédiée</strong> sur chaque édit"
 #. Text in echo
 #: jm-twitter-cards.php
 msgid "If enabled, a custom metabox will appear (admin panel) in your edit"
-msgstr ""
-"Si activé, une métabox dédiée apparaîtra sur vos édit (partie admin des "
-"posts)"
+msgstr "Si activé, une métabox dédiée apparaîtra sur vos édit (partie admin des posts)"
 
 #. Text in echo
 #: jm-twitter-cards.php
@@ -110,31 +108,17 @@ msgstr "Noter ce plugin sur WordPress.org"
 #. Text in echo
 #: jm-twitter-cards.php
 msgid "Set description according to excerpt length (words count)"
-msgstr ""
-"Régler la description en fonction de la longueur de l'extrait (nombre total "
-"de mot)"
+msgstr "Régler la description en fonction de la longueur de l'extrait (nombre total de mot)"
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid ""
-"If you activate this option, you can custom every single post (page or post "
-"or even attachment). You are able to choose creator and card type for each "
-"post."
-msgstr ""
-"Si vous activez cette option, vous pourrez personnaliser vos cards sur "
-"chaque post (page, article ou même média). Vous pourrez choisir le type de "
-"card ainsi que le pseudo Twitter du Creator."
+msgid "If you activate this option, you can custom every single post (page or post or even attachment). You are able to choose creator and card type for each post."
+msgstr "Si vous activez cette option, vous pourrez personnaliser vos cards sur chaque post (page, article ou même média). Vous pourrez choisir le type de card ainsi que le pseudo Twitter du Creator."
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid ""
-"This plugin allows you to get Twitter photo, summary <strong>and gallery</"
-"strong> cards for your blog. You can even go further in your Twitter Cards "
-"experience, see last section."
-msgstr ""
-"Ce plugin vous permet d'obtenir des cards Twitter de type photo, résumé et "
-"<strong>gallery</strong> sur vos blogs. Vous pouvez même aller plus loin "
-"dans votre expérience des cards Twitter, voir la dernière section."
+msgid "This plugin allows you to get Twitter photo, summary <strong>and gallery</strong> cards for your blog. You can even go further in your Twitter Cards experience, see last section."
+msgstr "Ce plugin vous permet d'obtenir des cards Twitter de type photo, résumé et <strong>gallery</strong> sur vos blogs. Vous pouvez même aller plus loin dans votre expérience des cards Twitter, voir la dernière section."
 
 #. Text in echo
 #: jm-twitter-cards.php
@@ -153,18 +137,8 @@ msgstr "Formulaire de validation"
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid ""
-"https://twitter.com/intent/tweet?source=webclient&amp;hastags=WordPress,"
-"Plugin&amp;text=JM%20Twitter%20Cards%20%20is%20a%20great%20WordPress%20plugin"
-"%20to%20get%20Twitter%20Cards%20Try%20it!&amp;url=http://wordpress.org/"
-"extend/plugins/jm-twitter-cards/&amp;related=TweetPressFr&amp;"
-"via=TweetPressFr"
-msgstr ""
-"https://twitter.com/intent/tweet?source=webclient&amp;hastags=WordPress,"
-"Plugin&amp;text=JM%20Twitter%20Cards%20%20est%20un%20excellent%20plugin"
-"%20WordPress%20pour%20obtenir%20des%20Twitter%20Cards%20Essayez-le!&amp;"
-"url=http://wordpress.org/extend/plugins/jm-twitter-cards/&amp;"
-"related=TweetPressFr&amp;via=TweetPressFr"
+msgid "https://twitter.com/intent/tweet?source=webclient&amp;hastags=WordPress,Plugin&amp;text=JM%20Twitter%20Cards%20%20is%20a%20great%20WordPress%20plugin%20to%20get%20Twitter%20Cards%20Try%20it!&amp;url=http://wordpress.org/extend/plugins/jm-twitter-cards/&amp;related=TweetPressFr&amp;via=TweetPressFr"
+msgstr "https://twitter.com/intent/tweet?source=webclient&amp;hastags=WordPress,Plugin&amp;text=JM%20Twitter%20Cards%20%20est%20un%20excellent%20plugin%20WordPress%20pour%20obtenir%20des%20Twitter%20Cards%20Essayez-le!&amp;url=http://wordpress.org/extend/plugins/jm-twitter-cards/&amp;related=TweetPressFr&amp;via=TweetPressFr"
 
 #. Text in echo
 #: jm-twitter-cards.php
@@ -193,27 +167,13 @@ msgstr "oui"
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid ""
-"WordPress SEO by Yoast is activated, please uncheck Twitter Card option in "
-"this plugin if it is enabled to avoid adding markup twice | <a href=\"%1$s"
-"\">Hide Notice</a>"
-msgstr ""
-"WordPress SEO by Yoast est activé, SVP décocher l'option Twitter Card option "
-"si elle est activée pour éviter un double ajout de markup | <a href=\"%1$s"
-"\">Cacher la notice</a>"
+msgid "WordPress SEO by Yoast is activated, please uncheck Twitter Card option in this plugin if it is enabled to avoid adding markup twice | <a href=\"%1$s\">Hide Notice</a>"
+msgstr "WordPress SEO by Yoast est activé, SVP décocher l'option Twitter Card option si elle est activée pour éviter un double ajout de markup | <a href=\"%1$s\">Cacher la notice</a>"
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid ""
-"In 1.1.8 creator has been removed from metabox. Now it will grab this "
-"directly from profiles. This should be more comfortable for guest "
-"bltwitterging. If you do not have any Twitter option like that on profiles, "
-"just activate it here :"
-msgstr ""
-"Dans la version 1.1.8 le champ creator a été retiré de la métabox. "
-"Maintenant ce sera directement repris depuis les profils. Ce devrait être "
-"plus confortable pour le guest blogging. Si Twitter est absent de vos page "
-"de profil, activez cette option ici :"
+msgid "In 1.1.8 creator has been removed from metabox. Now it will grab this directly from profiles. This should be more comfortable for guest bltwitterging. If you do not have any Twitter option like that on profiles, just activate it here :"
+msgstr "Dans la version 1.1.8 le champ creator a été retiré de la métabox. Maintenant ce sera directement repris depuis les profils. Ce devrait être plus confortable pour le guest blogging. Si Twitter est absent de vos page de profil, activez cette option ici :"
 
 #. Text in echo
 #: jm-twitter-cards.php
@@ -227,16 +187,8 @@ msgstr "Page des articles"
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid ""
-"In case you use home page as post page, this part will allow you to specify "
-"some parameters. Otherwise it would not work for this specific page. I know "
-"this is not ideal but until I find a better solution it fixes bug!"
-msgstr ""
-"Au cas où vous utilisez la page d'accueil de votre site ou toute autre page "
-"en tant que page des articles, cette section vous permet de spécifier "
-"certains paramètres. Autrement il ne fonctionneraient pas ou mal sur cette "
-"page spécifique. Cette solution n'est pas parfaite mais en attendant de "
-"trouver mieux cela corrige le bug !"
+msgid "In case you use home page as post page, this part will allow you to specify some parameters. Otherwise it would not work for this specific page. I know this is not ideal but until I find a better solution it fixes bug!"
+msgstr "Au cas où vous utilisez la page d'accueil de votre site ou toute autre page en tant que page des articles, cette section vous permet de spécifier certains paramètres. Autrement il ne fonctionneraient pas ou mal sur cette page spécifique. Cette solution n'est pas parfaite mais en attendant de trouver mieux cela corrige le bug !"
 
 #. Text in echo
 #: jm-twitter-cards.php
@@ -270,12 +222,8 @@ msgstr "Utilisateurs de WordPress SEO By Yoast ou de All in one SEO"
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid ""
-"Use SEO by Yoast or All in ONE SEO meta title for your cards "
-"(<strong>default is yes</strong>)"
-msgstr ""
-"Utiliser le contenu de la meta title de SEO by Yoast ou de All in One SEO "
-"pour vos cards (<strong>oui par défaut</strong>)"
+msgid "Use SEO by Yoast or All in ONE SEO meta title for your cards (<strong>default is yes</strong>)"
+msgstr "Utiliser le contenu de la meta title de SEO by Yoast ou de All in One SEO pour vos cards (<strong>oui par défaut</strong>)"
 
 #. Text in echo
 #: jm-twitter-cards.php
@@ -289,26 +237,26 @@ msgstr "galerie"
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid ""
-"Gallery cards is a brand new feature that enhance Twitter Card Experience. "
-"This is quite experimental so be careful with it. Nevertheless this is a "
-"cool way to integrate multiple images in your tweets (4 images). See the "
-"screenshot in plugin folder :"
-msgstr ""
-"Les cards de type galerie viennent d'arriver et améliore l'expérience des "
-"cards Twitter. Cela reste tout de même expérimental donc attention pour le "
-"moment. Néanmoins c'est une façon bien sympathique d'intégrer de multiples "
-"images dans un tweet (4 images). Voici le screenshot du dossier du plugin :"
+msgid "Gallery cards is a brand new feature that enhance Twitter Card Experience. This is quite experimental so be careful with it. Nevertheless this is a cool way to integrate multiple images in your tweets (4 images). See the screenshot in plugin folder :"
+msgstr "Les cards de type galerie viennent d'arriver et améliore l'expérience des cards Twitter. Cela reste tout de même expérimental donc attention pour le moment. Néanmoins c'est une façon bien sympathique d'intégrer de multiples images dans un tweet (4 images). Voici le screenshot du dossier du plugin :"
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid ""
-"This option is available <strong>only in full custom mode</strong>. You must "
-"insert at least 4 images in a post with gallery card and 4 images will be "
-"shown at most. Post thumbnail will not be included if set, gallery cards are "
-"meant for attachments."
-msgstr ""
-"Cette option est présente <strong>uniquement en mode full custom</strong>. "
-"Vous devez insérer au moins 4 images dans le post pour le cards gallery card "
-"et seulement 4 images seront affichées dans le tweet. Les posts thumbnails "
-"ne sont pas inclues car les cards gallery concernent les médias attachés."
+msgid "This option is available <strong>only in full custom mode</strong>. You must insert at least 4 images in a post with gallery card and 4 images will be shown at most. Post thumbnail will not be included if set, gallery cards are meant for attachments."
+msgstr "Cette option est présente <strong>uniquement en mode full custom</strong>. Vous devez insérer au moins 4 images dans le post pour le cards gallery card et seulement 4 images seront affichées dans le tweet. Les posts thumbnails ne sont pas inclues car les cards gallery concernent les médias attachés."
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter your Twitter Account (without @)"
+msgstr "Entrez votre pseudo Twitter (sans @)"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Twitter Account"
+msgstr "Compte Twitter"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Wait ! Do not leave spaces in your Twitter account please."
+msgstr "Attention ! Ne laissez pas d'espace avant, après ou au milieu de votre pseudo Twitter SVP"
+
