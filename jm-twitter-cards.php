@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.1.2
+Version: 3.1.3
 License: GPL2++
 */
 
@@ -209,14 +209,14 @@ $cardType  = get_post_meta($post->ID, 'twitterCardType', true);
 // support for custom meta description WordPress SEO by Yoast or All in One SEO
 if (class_exists('WPSEO_Frontend') ) { // little trick to check if plugin is here and active :)
 $object = new WPSEO_Frontend();
-if($opts['twitterCardSEOTitle'] == 'yes') { $cardTitle = $object->title( false );} else { $cardTitle = the_title_attribute( array('echo' => false) );}
-if($opts['twitterCardSEODesc'] == 'yes') { $cardDescription = $object->metadesc( false ); } else { $cardDescription = get_excerpt_by_id($post->ID);}
+if($opts['twitterCardSEOTitle'] == 'yes' && $object->title( false ) )  { $cardTitle = $object->title( false );} else { $cardTitle = the_title_attribute( array('echo' => false) );}
+if($opts['twitterCardSEODesc'] == 'yes' && $object->metadesc( false ) ) { $cardDescription = $object->metadesc( false ); } else { $cardDescription = get_excerpt_by_id($post->ID);}
 } elseif (class_exists('All_in_One_SEO_Pack')) {
 global $post;
 $post_id = $post;
 if (is_object($post_id)) $post_id = $post_id->ID;
-if($opts['twitterCardSEOTitle'] == 'yes') { $cardTitle  = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_title', true))); } else { $cardTitle = the_title_attribute( array('echo' => false) );}
-if($opts['twitterCardSEODesc'] == 'yes') { $cardDescription = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_description', true))); } else { $cardDescription = get_excerpt_by_id($post->ID); }
+if($opts['twitterCardSEOTitle'] == 'yes' && get_post_meta(get_the_ID(), '_aioseop_title', true) ) { $cardTitle  = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_title', true))); } else { $cardTitle = the_title_attribute( array('echo' => false) );}
+if($opts['twitterCardSEODesc'] == 'yes' && get_post_meta(get_the_ID(), '_aioseop_description', true)) { $cardDescription = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_description', true))); } else { $cardDescription = get_excerpt_by_id($post->ID); }
 }
 else { //default (I'll probaly make a switch next time)
 $cardTitle = the_title_attribute( array('echo' => false) );

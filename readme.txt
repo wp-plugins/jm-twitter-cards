@@ -99,6 +99,10 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+=  3.1.3 =
+* 29 Apr 2013
+* Add some flexibility for SEO plugin option as suggested by Matsuri Times in support. Now even if SEO option is activated, you can leave SEO fields blank. The plugin will grab post title and/or desc from the content. 
+
 =  3.1.2 =
 * 27 Apr 2013
 * Totally rebuild extra user profile field for multi-author blog with appropriate name for meta key (less confusing) and a real section in profile, not just another field that users might skip.
