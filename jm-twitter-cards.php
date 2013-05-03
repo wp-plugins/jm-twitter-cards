@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.1.3
+	Version: 3.1.4
 License: GPL2++
 */
 
@@ -22,7 +22,7 @@ License: GPL2++
 
 
 // Some constants
-define ('JM_TC_VERSION','3.1.2');
+define ('JM_TC_VERSION','3.1.4');
 
 
 // Plugin activation: create default values if they don't exist
@@ -199,7 +199,7 @@ echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'.
 echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 } 
 
-else {
+elseif( is_singular() && !is_front_page() && !is_home() && !is_404() && !is_tag()) {
 echo "\n".'<!-- JM Twitter Cards by Julien Maury '.JM_TC_VERSION.' -->'."\n";  
 
 // get current post meta data

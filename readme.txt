@@ -99,6 +99,10 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 == Changelog ==
 
+=  3.1.4 =
+* 03 May 2013
+* Remove markup from 404 and other pages where it's useless
+
 =  3.1.3 =
 * 29 Apr 2013
 * Add some flexibility for SEO plugin option as suggested by Matsuri Times in support. Now even if SEO option is activated, you can leave SEO fields blank. The plugin will grab post title and/or desc from the content. 
