@@ -3,7 +3,7 @@ Contributors: jmlapam
 Tags: twitter, cards, semantic markup, metabox, meta
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=jmlapam%40gmail%2ecom&item_name=JM%20Twitter%20Cards&no_shipping=0&no_note=1&tax=0&currency_code=EUR&bn=PP%2dDonationsBF&charset=UTF%2d8
 Requires at least: 3.0
-Tested up to: 3.5
+Tested up to: 3.6
 License: GPLv2 or later
 Stable tag: trunk
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,8 +16,6 @@ Once activated the plugin adds Twitter cards on your posts according to your set
 Compatible with :
 * WP SEO by Yoast (do not check cards option in this plugin if activated)
 * All in One SEO
-
-Now includes Gallery cards (experimental feature available only in full custom mode)
 
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
 If you choose full customization metabox is now on the right side in your edit. It's shorter simply because now twitter account is retrieved from author's profile.
@@ -35,8 +33,6 @@ Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts sel
 Compatible avec : 
 * WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si activé)
 * All in One SEO
-
-Les cards Gallery sont maintenant inclues (option expérimentale disponible uniquement en mode full custom).
 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
@@ -73,7 +69,8 @@ So, when users click on Tweets with an Instagram link, photos appear cropped.*
 4. Be careful with your robots.txt and put some rules to allow Twitter to fetch your website :
 `User-agent: Twitterbot
     Disallow:`
-5. If it still doesn't work please open a thread on support or at this URL: <a href="http://tweetpress.fr/en/plugin/new-plugin-jm-twitter-cards/">TweetPress, JM Twitter Cards</a>
+If it still doesn't work please open a thread on support or at this URL: <a href="http://tweetpress.fr/en/plugin/new-plugin-jm-twitter-cards/">TweetPress, JM Twitter Cards</a>
+
 
 ––––
 En Français 
@@ -89,15 +86,20 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 4. Attention avec le fichier robots.txt, vous devez autoriser le robot de Twitter à crawler votre site:
 `User-agent: Twitterbot
     Disallow:`
-5. Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin ou à cette adresse : <a href="http://tweetpress.fr/plugin/jm-twitter-cards">TweetPress, JM Twitter Cards</a>
+Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin ou à cette adresse : <a href="http://tweetpress.fr/plugin/jm-twitter-cards">TweetPress, JM Twitter Cards</a>
 
 == Screenshots ==
 1. admin
 2. confirmation mail
 3. metabox
-4. cards gallery
 
 == Changelog ==
+
+=  3.1.5 =
+* 24 May 2013
+* Suspend support for gallery cards because Twitter is not completely ready for it (approval is problematic)
+* Add support for external images (now you can set image file URL for each post)
+* Improve features in meta box
 
 =  3.1.4 =
 * 03 May 2013

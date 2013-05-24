@@ -117,8 +117,8 @@ msgstr "Si vous activez cette option, vous pourrez personnaliser vos cards sur c
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "This plugin allows you to get Twitter photo, summary <strong>and gallery</strong> cards for your blog. You can even go further in your Twitter Cards experience, see last section."
-msgstr "Ce plugin vous permet d'obtenir des cards Twitter de type photo, résumé et <strong>gallery</strong> sur vos blogs. Vous pouvez même aller plus loin dans votre expérience des cards Twitter, voir la dernière section."
+msgid "This plugin allows you to get Twitter photo, summary, summary large cards for your blog. You can even go further in your Twitter Cards experience, see last section."
+msgstr "Ce plugin vous permet d'obtenir des cards Twitter de type photo, résumé et <strong>résumé à large image</strong> sur vos blogs. Vous pouvez même aller plus loin dans votre expérience des cards Twitter, voir la dernière section."
 
 #. Text in echo
 #: jm-twitter-cards.php
@@ -227,26 +227,6 @@ msgstr "Utiliser le contenu de la meta title de SEO by Yoast ou de All in One SE
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "New feature : Gallery Cards"
-msgstr "Nouveau type de card : les galeries"
-
-#. Text in echo
-#: jm-twitter-cards.php
-msgid "gallery"
-msgstr "galerie"
-
-#. Text in echo
-#: jm-twitter-cards.php
-msgid "Gallery cards is a brand new feature that enhance Twitter Card Experience. This is quite experimental so be careful with it. Nevertheless this is a cool way to integrate multiple images in your tweets (4 images). See the screenshot in plugin folder :"
-msgstr "Les cards de type galerie viennent d'arriver et améliore l'expérience des cards Twitter. Cela reste tout de même expérimental donc attention pour le moment. Néanmoins c'est une façon bien sympathique d'intégrer de multiples images dans un tweet (4 images). Voici le screenshot du dossier du plugin :"
-
-#. Text in echo
-#: jm-twitter-cards.php
-msgid "This option is available <strong>only in full custom mode</strong>. You must insert at least 4 images in a post with gallery card and 4 images will be shown at most. Post thumbnail will not be included if set, gallery cards are meant for attachments."
-msgstr "Cette option est présente <strong>uniquement en mode full custom</strong>. Vous devez insérer au moins 4 images dans le post pour le cards gallery card et seulement 4 images seront affichées dans le tweet. Les posts thumbnails ne sont pas inclues car les cards gallery concernent les médias attachés."
-
-#. Text in echo
-#: jm-twitter-cards.php
 msgid "Enter your Twitter Account (without @)"
 msgstr "Entrez votre pseudo Twitter (sans @)"
 
@@ -259,4 +239,29 @@ msgstr "Compte Twitter"
 #: jm-twitter-cards.php
 msgid "Wait ! Do not leave spaces in your Twitter account please."
 msgstr "Attention ! Ne laissez pas d'espace avant, après ou au milieu de votre pseudo Twitter SVP"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "What is new in version "
+msgstr "Quoi de neuf dans la version "
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "You can now set height and width for image on each post if photo card is set. Gallery card support has been removed because it seems that this new card type raises issues regarding approval according to some threads (dev.twitter.com)"
+msgstr "Vous pouvez maintenant régler la largeur et la longueur sur les post où le type photo est sélectionné. Le support pour les gallery cards a été retiré car il semblerait qu'il pose problème pour la validation d'apprès certains billets (dev.twitter.com)"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "About"
+msgstr "À propos"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Set another source as twitter image (enter URL)"
+msgstr "Définir une autre image en tant que twitter image (entrez l'URL)"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "(This is optional but some users wanted alternatives for featured image.)"
+msgstr "(facultatif mais certains utilisateurs ont réclamé cette alternative aux featured images.)"
 

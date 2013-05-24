@@ -1,4 +1,4 @@
-msgid ""
+gmsgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -123,7 +123,7 @@ msgstr ""
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "This plugin allows you to get Twitter photo, summary <strong>and gallery</strong> cards for your blog. You can even go further in your Twitter Cards experience, see last section."
+msgid "This plugin allows you to get Twitter photo, summary, summary large cards for your blog. You can even go further in your Twitter Cards experience, see last section."
 msgstr ""
 
 #. Text in echo
@@ -243,34 +243,6 @@ msgstr ""
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "New feature : Gallery Cards"
-msgstr ""
-
-#. Text in echo
-#: jm-twitter-cards.php
-msgid "gallery"
-msgstr ""
-
-#. Text in echo
-#: jm-twitter-cards.php
-msgid ""
-"Gallery cards is a brand new feature that enhance Twitter Card Experience. "
-"This is quite experimental so be careful with it. Nevertheless this is a "
-"cool way to integrate multiple images in your tweets (4 images). See the "
-"screenshot in plugin folder :"
-msgstr ""
-
-#. Text in echo
-#: jm-twitter-cards.php
-msgid ""
-"This option is available <strong>only in full custom mode</strong>. You must "
-"insert at least 4 images in a post with gallery card and 4 images will be "
-"shown at most. Post thumbnail will not be included if set, gallery cards are "
-"meant for attachments."
-msgstr ""
-
-#. Text in echo
-#: jm-twitter-cards.php
 msgid "Enter your Twitter Account (without @)"
 msgstr ""
 
@@ -282,4 +254,29 @@ msgstr ""
 #. Text in echo
 #: jm-twitter-cards.php
 msgid "Wait ! Do not leave spaces in your Twitter account please."
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "What is new in version "
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "You can now set height and width for image on each post if photo card is set. Gallery card support has been removed because it seems that this new card type raises issues regarding approval according to some threads (dev.twitter.com)"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "About"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Set another source as twitter image"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "(This is optional but some users wanted alternatives for featured image.)"
 msgstr ""
