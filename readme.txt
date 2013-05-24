@@ -97,7 +97,7 @@ Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin ou Ã
 
 =  3.1.5 =
 * 24 May 2013
-* Suspend support for gallery cards because Twitter is not completely ready for it (approval is problematic)
+* Remove support for gallery cards because Twitter is not completely ready for it (approval is problematic)
 * Add support for external images (now you can set image file URL for each post)
 * Improve features in meta box
 
