@@ -506,8 +506,8 @@ function jm_tc_options_page() {
 	<legend id="tab6"><?php _e('Validation', 'jm-tc') ?></legend>
 	<p><strong><?php _e('Do not forget to valid your website on dev.twitter :', 'jm-tc') ?></strong></p>
 	<ul class="jm-tools">
-	<li><a class="jm-preview" title="Twitter Cards Preview Tool" target="_blank" href="https://dev.twitter.com/docs/cards/preview" rel="nofollow" target="_blank"><?php _e('Preview tool', 'jm-tc') ?></a></li>
-	<li><a class="jm-valid-card" title="Twitter Cards Application Form" target="_blank" href="https://dev.twitter.com/node/7940" rel="nofollow" target="_blank"><?php _e('Validation form', 'jm-tc') ?></a></li>
+	<li><a class="jm-preview" title="Twitter Cards Preview Tool" target="_blank" href="https://dev.twitter.com/docs/cards/validation/validator" rel="nofollow" target="_blank"><?php _e('Preview tool', 'jm-tc') ?></a></li>
+	<li><a class="jm-valid-card" title="Twitter Cards Application Form" target="_blank" href="https://dev.twitter.com/docs/cards/validation/validator" rel="nofollow" target="_blank"><?php _e('Validation form', 'jm-tc') ?></a></li>
 	</ul>
 	</fieldset> 
 	
