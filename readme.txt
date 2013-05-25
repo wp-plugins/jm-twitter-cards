@@ -1,7 +1,7 @@
 === JM Twitter Cards ===
 Contributors: jmlapam
 Tags: twitter, cards, semantic markup, metabox, meta
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=jmlapam%40gmail%2ecom&item_name=JM%20Twitter%20Cards&no_shipping=0&no_note=1&tax=0&currency_code=EUR&bn=PP%2dDonationsBF&charset=UTF%2d8
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=tweetpressfr%40gmail%2ecom&item_name=JM%20Twitter%20Cards&no_shipping=0&no_note=1&tax=0&currency_code=EUR&bn=PP%2dDonationsBF&charset=UTF%2d8
 Requires at least: 3.0
 Tested up to: 3.6
 License: GPLv2 or later
