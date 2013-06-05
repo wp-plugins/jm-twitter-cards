@@ -8,14 +8,12 @@ License: GPLv2 or later
 Stable tag: trunk
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A plugin meant to simplify Twitter cards integration on WordPress. But this is more than just adding markup. You can customize your Twitter card
+A plugin meant to simplify Twitter cards integration on WordPress. You can customize your Twitter cards per each post.
 
 == Description ==
 
 Once activated the plugin adds Twitter cards on your posts according to your settings. Enjoy !
-Compatible with :
-* WP SEO by Yoast (do not check cards option in this plugin if activated)
-* All in One SEO
+Compatible with : WP SEO by Yoast (do not check cards option in this plugin if activated) and All in One SEO
 
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
 If you choose full customization metabox is now on the right side in your edit. It's shorter simply because now twitter account is retrieved from author's profile.
@@ -28,11 +26,8 @@ En Français
 –––––––––––––––––––––––––––––––––––
 
 Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts selon vos réglages. Profitez-en bien !
-3.0.5 est bien compatible avec SEO by Yoast et All in One SEO et vous n'aurez donc pas à remplir 36 fois les mêmes champs. Le plugin s'aligne sur vos title et description personnalisées avec Yoast ou All in One SEO.
 
-Compatible avec : 
-* WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si activé)
-* All in One SEO
+Compatible avec WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si activé) et All in One SEO
 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
@@ -94,6 +89,10 @@ Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin ou �
 3. metabox
 
 == Changelog ==
+
+=  3.1.6 =
+* 05 Jun 2013
+* Remove useless spaces in content for meta description. Thanks to @aarontgrogg for having reported this issue and shared the solution.
 
 =  3.1.5 =
 * 24 May 2013

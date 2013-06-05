@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.1.5
+Version: 3.1.6
 License: GPL2++
 */
 
@@ -53,6 +53,11 @@ function jm_tc_remove_at($at) {
 	return $noat;
 }
 
+// New function that remove unecessary spaces
+function jm_tc_remove_spaces($space) {
+	$nospace =  strip_shortcodes(  strip_tags( preg_replace("/\s+/", " ", $space) )  );// great regex by @aarontgrogg tips http://tweetpress.fr/plugin/jm-twitter-cards/comment-page-3#comment-618
+	return $nospace;
+}
 
 // grab our datas
 $opts = jm_tc_get_options();          
@@ -214,7 +219,7 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";								
 			echo '<meta property="twitter:domain" content="' . get_bloginfo('wpurl') . '"/>'."\n";//URL is no longer necessary and it's quite logical because if domain is approuved all URL are approuved
 			echo '<meta property="twitter:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
-			echo '<meta property="twitter:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
+			echo '<meta property="twitter:description" content="' . jm_tc_remove_spaces($opts['twitterPostPageDesc']) . '"/>'."\n"; 
 			echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";                   
 			echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 		} 
@@ -261,7 +266,7 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
 			echo '<meta property="twitter:domain" content="' . get_bloginfo('wpurl') . '"/>'."\n";
 			echo '<meta property="twitter:title" content="' . $cardTitle  . '"/>'."\n";  // filter used by plugin to customize title  
-			echo '<meta property="twitter:description" content="' . $cardDescription . '"/>'."\n"; 
+			echo '<meta property="twitter:description" content="' . jm_tc_remove_spaces($cardDescription) . '"/>'."\n"; 
 
 			if(get_the_post_thumbnail( $post->ID ) && empty($cardImage)) { //featured image is set but not cardImage
 				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
