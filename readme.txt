@@ -15,6 +15,9 @@ A plugin meant to simplify Twitter cards integration on WordPress. You can custo
 Once activated the plugin adds Twitter cards on your posts according to your settings. Enjoy !
 Compatible with : WP SEO by Yoast (do not check cards option in this plugin if activated) and All in One SEO
 
+**New feature in version 3.1.8 : Product cards**
+
+
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
 If you choose full customization metabox is now on the right side in your edit. It's shorter simply because now twitter account is retrieved from author's profile.
 
@@ -28,6 +31,8 @@ En Français
 Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts selon vos réglages. Profitez-en bien !
 
 Compatible avec WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si activé) et All in One SEO
+
+**Nouveauté dans la version 3.1.8 : les cards de type Produit**
 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
@@ -89,6 +94,18 @@ Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin ou �
 3. metabox
 
 == Changelog ==
+
+=  3.1.8 =
+* 19 Jun 2013
+* Fix some typo and bugs reported in support
+* Add brand new feature : Twitter Cards Product
+* For both product and photo card, you have to select card type in metabox and save draft so you will see additional fields in metabox.
+* Maybe you'll need another validation for product cards, so apply for it
+* Enjoy
+
+=  3.1.7 =
+* date unknownn
+* missed that update in changelog sorry
 
 =  3.1.6 =
 * 05 Jun 2013

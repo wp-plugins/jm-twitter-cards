@@ -117,8 +117,8 @@ msgstr "Si vous activez cette option, vous pourrez personnaliser vos cards sur c
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "This plugin allows you to get Twitter photo, summary, summary large cards for your blog. You can even go further in your Twitter Cards experience, see last section."
-msgstr "Ce plugin vous permet d'obtenir des cards Twitter de type photo, résumé et <strong>résumé à large image</strong> sur vos blogs. Vous pouvez même aller plus loin dans votre expérience des cards Twitter, voir la dernière section."
+msgid "This plugin allows you to get Twitter photo, summary, summary large and product cards for your blog. You can even go further in your Twitter Cards experience."
+msgstr "Ce plugin vous permet d'obtenir des cards Twitter de type photo, résumé, <strong>résumé à large image</strong> et produit sur vos blogs. Vous pouvez même aller plus loin dans votre expérience des cards Twitter"
 
 #. Text in echo
 #: jm-twitter-cards.php
@@ -264,4 +264,89 @@ msgstr "Définir une autre image en tant que twitter image (entrez l'URL)"
 #: jm-twitter-cards.php
 msgid "(This is optional but some users wanted alternatives for featured image.)"
 msgstr "(facultatif mais certains utilisateurs ont réclamé cette alternative aux featured images.)"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "I am a WordPress Developer, I like to make it simple."
+msgstr "Je suis intégrateur WordPress, j'aime faire simple."
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "My WordPress Profile"
+msgstr "Mon profil WordPress"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Help me keep this free"
+msgstr " Maintenir le plugin gratuit"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Other plugins you might dig"
+msgstr "D'autres plugins que vous pourriez aimer"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Display any timeline you want the Twitter 1.1 way with a simple shortcode"
+msgstr "Affiche n'importe quelle timeline en respectant les derniers changement de l'API Twitter 1.1 et grâce à un simple shortcode"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Fix poor native markup for WordPress gallery with some HTML5 markup and add responsive rules."
+msgstr "Corrige le markup natif assez pauvre de WordPress concernant les galeries et ajoute quelques règles CSS responsive"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Make your comments tweetable"
+msgstr "Rend vos commentaires tweetables"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Add a third RSS widget to your dashboard"
+msgstr "Ajoute un 3ème widget RSS dans votre dashboard"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Monitor the Twitter API 1.1 from dashboard"
+msgstr "Permet de surveiller l'API Twitter"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter the first key data for product"
+msgstr "Entrez le premier détail data de votre produit"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter the first key label for product"
+msgstr "Entrez le label associé au premier data de votre produit"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter the second key data for product"
+msgstr "Entrez le second détail de votre produit"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter the second key label for product"
+msgstr "Entrez le label associé au second data de votre produit"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "This is where you set fallback for product cards. You will find fields in metabox."
+msgstr "C'est ici que vous définissez un fallback pour vos cards de type produit. Vous retrouverez les champs dans la meta box."
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "This is just a fallback, you will have to customize these details per each product!"
+msgstr "Il ne s'agit que d'un fallback, vous devrez personnaliser les détails pour chaque produit."
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Here you can set 2 key details for your product (e.g price, size, etc)"
+msgstr "C'est ici que vous pouvez saisir les 2 détails que vous voulez mettre en avant pour votre produit (ex: prix, taille, etc)"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "About the developer"
+msgstr "À propos de l'auteur"
 

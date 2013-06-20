@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.1.6
+Version: 3.1.8
 License: GPL2++
 */
 
@@ -83,27 +83,54 @@ if($opts['twitterCardCustom'] == 'yes') {
 		<option value="summary" <?php selected( $selected, 'summary' ); ?>><?php _e('summary', 'jm-tc'); ?></option>
 		<option value="summary_large_image" <?php selected( $selected, 'summary_large_image' ); ?>><?php _e('summary_large_image', 'jm-tc'); ?></option>
 		<option value="photo" <?php selected( $selected, 'photo' ); ?>><?php _e('photo', 'jm-tc'); ?></option>
+		<option value="product" <?php selected( $selected, 'product' ); ?>><?php _e('product', 'jm-tc'); ?></option>
 		</select>
 		
-		<?php if (get_post_meta($post->ID, 'twitterCardType', true) == 'photo') : ?>
-		<p><label for="twitterImageWidth"><?php _e('Image width', 'jm-tc'); ?> :</label>
-		<input id="twitterImageWidth" type="number" min="280" name="cardPhotoWidth" class="small-number" value="<?php echo get_post_meta(get_the_ID(),'cardPhotoWidth',true); ?>" />
-		</p>
+		<!-- set img from another source -->
 		<p>
-		<label for="twitterImageHeight"><?php _e('Image height', 'jm-tc'); ?> :</label>
-		<input id="twitterImageHeight" type="number" min="150" name="cardPhotoHeight" class="small-number" value="<?php echo get_post_meta(get_the_ID(),'cardPhotoHeight',true); ?>" />
+		<label for="twitterCardImage"><?php _e('Set another source as twitter image (enter URL)', 'jm-tc'); ?> :</label><br />
+		<input id="twitterCardImage" type="url" name="cardImage" style="padding:.3em;" size="120" class="regular-text" value="<?php echo get_post_meta(get_the_ID(),'cardImage',true); ?>" />
 		</p>
-		<?php endif; ?>
-		</p>
+		<p class="description"><?php _e('(This is optional but some users wanted alternatives for featured image.)', 'jm-tc'); ?></p>
 		
-		<p>
-		<label for="twitterCardImage"><?php _e('Set another source as twitter image (enter URL)', 'jm-tc'); ?> :</label>
-		<input id="twitterCardImage" type="url" name="cardImage" size="60" class="regular-text" value="<?php echo get_post_meta(get_the_ID(),'cardImage',true); ?>" />
-		<br /><em><?php _e('(This is optional but some users wanted alternatives for featured image.)', 'jm-tc'); ?></em>
-		</p>
+		<!-- ~conditional fields -->
+		<?php switch ($selected) {
+		case 'photo': ?>
+			<p><label for="twitterImageWidth"><?php _e('Image width', 'jm-tc'); ?> :</label>
+			<input id="twitterImageWidth" type="number" min="280" name="cardPhotoWidth" class="small-number" value="<?php echo get_post_meta(get_the_ID(),'cardPhotoWidth',true); ?>" />
+			</p>
+			<p>
+			<label for="twitterImageHeight"><?php _e('Image height', 'jm-tc'); ?> :</label>
+			<input id="twitterImageHeight" type="number" min="150" name="cardPhotoHeight" class="small-number" value="<?php echo get_post_meta(get_the_ID(),'cardPhotoHeight',true); ?>" />
+			</p>
 		<?php
+		break;
+		case 'product' :?>
+			<p>
+			<label for="cardData1"><?php _e('Enter the first key data for product', 'jm-tc'); ?> :</label>
+			<input id="cardData1" type="text" name="cardData1" style="padding:.3em;" class="regular-text" value="<?php echo get_post_meta(get_the_ID(),'cardData1',true); ?>" />
+			</p>
+			<p>
+			<label for="cardLabel1"><?php _e('Enter the first key label for product', 'jm-tc'); ?> :</label>
+			<input id="cardLabel1" type="text" name="cardLabel1" style="padding:.3em;" class="regular-text" value="<?php echo get_post_meta(get_the_ID(),'cardLabel1',true); ?>" />
+			</p>
+			<p>
+			<label for="cardData2"><?php _e('Enter the second key data for product', 'jm-tc'); ?> :</label>
+			<input id="cardData2" type="text" name="cardData2" style="padding:.3em;" class="regular-text" value="<?php echo get_post_meta(get_the_ID(),'cardData2',true); ?>" />
+			</p>
+			<p>
+			<label for="cardLabel2"><?php _e('Enter the second key label for product', 'jm-tc'); ?> :</label>
+			<input id="cardLabel2" type="text" name="cardLabel2" style="padding:.3em;" class="regular-text" value="<?php echo get_post_meta(get_the_ID(),'cardLabel2',true); ?>" />
+			</p>
+			<p class="description"><?php _e('Here you can set 2 key details for your product (e.g price, size, etc)', 'jm-tc'); ?></p>
+		<?php 
+		break;
+		default: ?>
+		<!-- @(-_-)] -->
+		<?php
+		break;
+		}
 	}
-
 
 	add_action( 'save_post', 'jm_tc_meta_box_save' );
 	function jm_tc_meta_box_save( $post_id )
@@ -127,6 +154,13 @@ if($opts['twitterCardCustom'] == 'yes') {
 		if( isset($_POST['cardPhotoWidth'],$_POST['cardPhotoHeight']))
 		update_post_meta( $post_id, 'cardPhotoWidth', esc_attr( $_POST['cardPhotoWidth'] ) );
 		update_post_meta( $post_id, 'cardPhotoHeight', esc_attr( $_POST['cardPhotoHeight'] ) );
+	
+		if( isset($_POST['cardData1'],$_POST['cardLabel1'],$_POST['cardData2'],$_POST['cardLabel2']))
+		update_post_meta( $post_id, 'cardData1', esc_attr( $_POST['cardData1'] ) );
+		update_post_meta( $post_id, 'cardLabel1', esc_attr( $_POST['cardLabel1'] ) );
+		update_post_meta( $post_id, 'cardData2', esc_attr( $_POST['cardData2'] ) );
+		update_post_meta( $post_id, 'cardLabel2', esc_attr( $_POST['cardLabel2'] ) );
+	
 	}
 
 } 
@@ -214,13 +248,13 @@ if(!function_exists( 'add_twitter_card_info' )) {
 		$opts = jm_tc_get_options(); 	
 		if ( is_front_page()||is_home()) {
 			echo "\n".'<!-- JM Twitter Cards by Julien Maury '.jm_tc_plugin_get_version().' -->'."\n";  	                   					
-			echo '<meta property="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
-			echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
-			echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";								
-			echo '<meta property="twitter:domain" content="' . get_bloginfo('wpurl') . '"/>'."\n";//URL is no longer necessary and it's quite logical because if domain is approuved all URL are approuved
+			echo '<meta property="twitter:card" content="'. $opts['twitterCardType'] .'">'."\n"; 
+			echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'">'."\n";
+			echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'">'."\n";								
+			echo '<meta property="twitter:domain" content="' . get_bloginfo('url') . '">'."\n";//URL is no longer necessary and it's quite logical because if domain is approuved all URL are approuved
 			echo '<meta property="twitter:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
-			echo '<meta property="twitter:description" content="' . jm_tc_remove_spaces($opts['twitterPostPageDesc']) . '"/>'."\n"; 
-			echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";                   
+			echo '<meta property="twitter:description" content="' . jm_tc_remove_spaces($opts['twitterPostPageDesc']) . '">'."\n"; 
+			echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '">'."\n";                   
 			echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 		} 
 
@@ -233,6 +267,11 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			$cardPhotoWidth = get_post_meta(get_the_ID(),'cardPhotoWidth',true);
 			$cardPhotoHeight = get_post_meta(get_the_ID(),'cardPhotoHeight',true);
 			$cardImage = get_post_meta(get_the_ID(),'cardImage',true);
+			$cardData1 = get_post_meta(get_the_ID(),'cardData1',true);
+			$cardLabel1 = get_post_meta(get_the_ID(),'cardLabel2',true);
+			$cardData2 = get_post_meta(get_the_ID(),'cardData2',true);
+			$cardLabel2 = get_post_meta(get_the_ID(),'cardLabel2',true);
+			
 
 			// support for custom meta description WordPress SEO by Yoast or All in One SEO
 			if (class_exists('WPSEO_Frontend') ) { // little trick to check if plugin is here and active :)
@@ -253,28 +292,28 @@ if(!function_exists( 'add_twitter_card_info' )) {
 
 			if(($opts['twitterCardCustom'] == 'yes') && !empty($cardType)) {
 
-				echo '<meta property="twitter:card" content="'. $cardType .'"/>'."\n";
+				echo '<meta property="twitter:card" content="'. $cardType .'">'."\n";
 			} else {
-				echo '<meta property="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
+				echo '<meta property="twitter:card" content="'. $opts['twitterCardType'] .'">'."\n"; 
 			}
 			if(!empty($creator)) { // this part has to be optional, this is more for guest bltwitterging but it's no reason to bother everybody.
-				echo '<meta property="twitter:creator" content="@'. $creator .'"/>'."\n";												
+				echo '<meta property="twitter:creator" content="@'. $creator .'">'."\n";												
 			} else {
-				echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
+				echo '<meta property="twitter:creator" content="@'. $opts['twitterCreator'] .'">'."\n";
 			}
 			// these next 4 parameters should not be editable in post admin 
-			echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
-			echo '<meta property="twitter:domain" content="' . get_bloginfo('wpurl') . '"/>'."\n";
-			echo '<meta property="twitter:title" content="' . $cardTitle  . '"/>'."\n";  // filter used by plugin to customize title  
-			echo '<meta property="twitter:description" content="' . jm_tc_remove_spaces($cardDescription) . '"/>'."\n"; 
+			echo '<meta property="twitter:site" content="@'. $opts['twitterSite'] .'">'."\n";												  
+			echo '<meta property="twitter:domain" content="' . get_bloginfo('url') . '">'."\n";
+			echo '<meta property="twitter:title" content="' . $cardTitle  . '">'."\n";  // filter used by plugin to customize title  
+			echo '<meta property="twitter:description" content="' . jm_tc_remove_spaces($cardDescription) . '">'."\n"; 
 
 			if(get_the_post_thumbnail( $post->ID ) && empty($cardImage)) { //featured image is set but not cardImage
 				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
-				echo '<meta property="twitter:image" content="' . $thumb[0] . '"/>'."\n";
+				echo '<meta property="twitter:image" content="' . $thumb[0] . '">'."\n";
 			} elseif( !empty($cardImage) ) { // cardImage is set
-				echo '<meta property="twitter:image" content="' . $cardImage . '"/>'."\n";
+				echo '<meta property="twitter:image" content="' . $cardImage . '">'."\n";
 			} else { //fallback
-				echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";
+				echo '<meta property="twitter:image" content="' . $opts['twitterImage'] . '">'."\n";
 			}
 			if($cardType  == 'photo') {
 				if(!empty($cardPhotoWidth) && !empty($cardPhotoHeight)) {
@@ -285,6 +324,19 @@ if(!function_exists( 'add_twitter_card_info' )) {
 					echo '<meta property="twitter:image:height" content="'.$opts['twitterImageHeight'].'">'."\n";
 				}	
 			} 
+			if($cardType == 'product') {
+				if(!empty($cardData1) && !empty($cardLabel1) && !empty($cardData2) && !empty($cardLabel2)) {
+					echo '<meta property="twitter:data:1" content="'.$cardData1.'">'."\n";
+					echo '<meta property="twitter:label:1" content="'.strtoupper($cardLabel1).'">'."\n";
+					echo '<meta property="twitter:data:2" content="'.$cardData2.'">'."\n";
+					echo '<meta property="twitter:label:2" content="'.strtoupper($cardLabel2).'">'."\n";
+				} else {
+					echo '<meta property="twitter:data:1" content="'.$opts['twitterData1'].'">'."\n";
+					echo '<meta property="twitter:label:1" content="'.strtoupper($opts['twitterLabel1']).'">'."\n";
+					echo '<meta property="twitter:data:2" content="'.$opts['twitterData2'].'">'."\n";
+					echo '<meta property="twitter:label:2" content="'.strtoupper($opts['twitterLabel2']).'">'."\n";
+				}		
+			}
 			echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 		}      
 
@@ -377,15 +429,15 @@ function jm_tc_options_page() {
 	<a href="#tab3" class="nav-tab"><?php _e('Photo cards','jm-tc');?></a>
 	<a href="#tab4" class="nav-tab"><?php _e('Custom','jm-tc');?></a>
 	<a href="#tab5" class="nav-tab"><?php _e('Home page','jm-tc');?></a>
-	<a href="#tab6" class="nav-tab"><?php _e('Validation','jm-tc');?></a>
-	<a href="#tab7" class="nav-tab"><?php _e('About','jm-tc');?></a>
+	<a href="#tab6" class="nav-tab"><?php _e('Product Cards','jm-tc');?></a>
+	<a href="#tab7" class="nav-tab"><?php _e('Validation','jm-tc');?></a>
+	<a href="#tab8" class="nav-tab"><?php _e('About','jm-tc');?></a>
 	</h2>
 
-	<p><?php _e('This plugin allows you to get Twitter photo, summary, summary large cards for your blog. You can even go further in your Twitter Cards experience, see last section.', 'jm-tc'); ?></p>
+	<p><?php _e('This plugin allows you to get Twitter photo, summary, summary large and product cards for your blog. You can even go further in your Twitter Cards experience.', 'jm-tc'); ?></p>
 
 	<?php echo '<h2>'.__('What is new in version ', 'jm-tc') . jm_tc_plugin_get_version().'</h2>' ;?>
-	<p class="new"><?php _e('You can now set height and width for image on each post if photo card is set. Gallery card support has been removed because it seems that this new card type raises issues regarding approval according to some threads (dev.twitter.com)', 'jm-tc'); ?>
-	</p>
+	<p class="new"><?php _e('Product cards support', 'jm-tc'); ?></p>
 	
 	<form id="jm-tc-form" method="post" action="options.php">
 
@@ -439,8 +491,8 @@ function jm_tc_options_page() {
 	</fieldset> 
   	
 	<fieldset>
-	<legend id="tab3"><?php _e('Options for photo cards', 'jm-tc'); ?></legend>			              
-	<p>
+	<legend id="tab3"><?php _e('Cards Photo', 'jm-tc'); ?></legend>			              
+	
 	<blockquote class="jm-doc">
 	<?php _e(' To define a photo card experience, set your card type to "photo" and provide a twitter:image. Twitter will resize images, maintaining original aspect ratio to fit the following sizes:', 'jm-tc'); ?>
 	<ul class="jm-doc-photocard">
@@ -450,7 +502,7 @@ function jm_tc_options_page() {
 	<li> <?php _e('Twitter will not create a photo card unless the twitter:image is of a minimum size of 280px wide by 150px tall. Images will not be cropped unless they have an exceptional aspect ratio', 'jm-tc'); ?></li>
 	</ul>                                    
 	</blockquote>
-	</p>
+	
 	<p>
 	<label for="twitterImageWidth"><?php _e('Image width', 'jm-tc'); ?> :</label>
 	<input id="twitterImageWidth" type="number" min="280" name="jm_tc[twitterImageWidth]" class="small-number" value="<?php echo $opts['twitterImageWidth']; ?>" />
@@ -501,32 +553,84 @@ function jm_tc_options_page() {
 	</p>
 	<p>
 	<label for="twitterPostPageDesc"><strong><?php _e('Enter description for Posts Page (max: 70 words)', 'jm-tc'); ?> </strong>:</label><br />
-	<textarea id="twitterPostPageDesc" rows="4" cols="100" name="jm_tc[twitterPostPageDesc]" class="regular-text"><?php echo $opts['twitterPostPageDesc']; ?></textarea>
+	<textarea id="twitterPostPageDesc" rows="4" cols="80" name="jm_tc[twitterPostPageDesc]" class="regular-text"><?php echo $opts['twitterPostPageDesc']; ?></textarea>
 	</p>
 
 	<?php submit_button(null, 'primary', '_submit5'); ?>	
-	</fieldset>  
+	</fieldset> 
 	
 	<fieldset>  
-	<legend id="tab6"><?php _e('Validation', 'jm-tc') ?></legend>
+	<legend id="tab6"><?php _e('Cards Product', 'jm-tc') ?></legend>
+	
+	<p><?php _e('This is where you set fallback for product cards. You will find fields in metabox.','jm-tc');?>
+	<label for="twitterData1"><?php _e('Enter the first key data for product', 'jm-tc'); ?> :</label>
+	<input id="twitterData1" type="text" name="jm_tc[twitterData1]" class="regular-text" value="<?php echo $opts['twitterData1']; ?>" />
+	</p>
+	<p>
+	<label for="twitterLabel1"><?php _e('Enter the first key label for product', 'jm-tc'); ?> :</label>
+	<input id="twitterLabel1" type="text" name="jm_tc[twitterLabel1]" class="regular-text" value="<?php echo $opts['twitterLabel1']; ?>" />
+	</p>
+	<p>
+	<label for="twitterData2"><?php _e('Enter the second key data for product', 'jm-tc'); ?> :</label>
+	<input id="twitterData2" type="text" name="jm_tc[twitterData2]" class="regular-text" value="<?php echo $opts['twitterData2']; ?>" />
+	</p>
+	<p>
+	<label for="twitterLabel2"><?php _e('Enter the second key label for product', 'jm-tc'); ?> :</label>
+	<input id="twitterLabel2" type="text" name="jm_tc[twitterLabel2]" class="regular-text" value="<?php echo $opts['twitterLabel2']; ?>" />
+	</p>
+	<br />
+	(<em><?php _e('This is just a fallback, you will have to customize these details per each product!', 'jm-tc'); ?></em>)
+	
+	<?php submit_button(null, 'primary', '_submit6'); ?>
+	 </fieldset>
+	</form>
+		
+	<div class="fieldset-like">  
+	<h3 class="legend-like" id="tab7"><?php _e('Validation', 'jm-tc') ?></h3>
 	<p><strong><?php _e('Do not forget to valid your website on dev.twitter :', 'jm-tc') ?></strong></p>
 	<ul class="jm-tools">
 	<li><a class="jm-preview" title="Twitter Cards Preview Tool" target="_blank" href="https://dev.twitter.com/docs/cards/validation/validator" rel="nofollow" target="_blank"><?php _e('Preview tool', 'jm-tc') ?></a></li>
 	<li><a class="jm-valid-card" title="Twitter Cards Application Form" target="_blank" href="https://dev.twitter.com/docs/cards/validation/validator" rel="nofollow" target="_blank"><?php _e('Validation form', 'jm-tc') ?></a></li>
 	</ul>
-	</fieldset> 
+	</div> 
+
+		<div id="tab8" class="postbox medium">
+			<h3 class="hndle"><span><?php _e('About the developer','jm-tc');?></span></h3>
+			<div class="inside">
+				<p><img src="http://www.gravatar.com/avatar/<?php echo md5( 'tweetpressfr'.'@'.'gmail'.'.'.'com' ); ?>" style="float:left;margin-right:10px;"/>
+				<strong>Julien Maury</strong><br />
+				<?php _e('I am a WordPress Developer, I like to make it simple.', 'jm-tc') ?> <br />
+				<a href="http://www.tweetpress.fr" target="_blank" title="TweetPress.fr - WordPress and Twitter tips">www.tweetpress.fr</a> - <a href="http://twitter.com/intent/user?screen_name=tweetpressfr" >@TweetPressFR</a><br />
+				<a href="http://profiles.wordpress.org/jmlapam/" title="on WordPress.org"><?php _e('My WordPress Profile', 'jm-tc') ?></a><br />
+				</p>
+			</div>
+		</div>
+
+		<div class="postbox medium">
+			<h3 class="hndle"><span><?php _e('Help me keep this free', 'jm-tc'); ?></span></h3>
+			<div class="inside">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="2NBS57W3XG62L">
+					<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
+					<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+				</form>
+			</div>
+		</div>	
+
+		<div class="postbox large">
+			<h3 class="hndle"><span><?php _e('Other plugins you might dig','jm-tc');?></span></h3>
+			<div class="inside">
+				<ul>
+					<li><a href="http://wordpress.org/plugins/jm-last-twit-shortcode/">JM Last Twit Shortcode</a> - <?php _e('Display any timeline you want the Twitter 1.1 way with a simple shortcode','jm-tc');?></li>
+					<li><a href="http://wordpress.org/plugins/jm-html5-and-responsive-gallery/">JM HTML5 and Responsive Gallery</a> - <?php _e('Fix poor native markup for WordPress gallery with some HTML5 markup and add responsive rules.','jm-tc');?></li>
+					<li><a href="http://wordpress.org/plugins/jm-twit-this-comment/">JM Twit This Comment</a> - <?php _e('Make your comments tweetable','jm-tc');?></li>
+					<li><a href="http://wordpress.org/plugins/jm-widget-feed-panel/">JM Widget Feed Panel</a> - <?php _e('Add a third RSS widget to your dashboard','jm-tc');?></li>
+					<li><a href="http://wordpress.org/plugins/jm-twitter-status-api-monitor/">JM Twitter Status API Monitor</a> - <?php _e('Monitor the Twitter API 1.1 from dashboard','jm-tc');?></li>
+				</ul>
+			</div>
+		</div>
 	
-    <fieldset>  
-	<legend id="tab7"><?php _e('About the plugin', 'jm-tc') ?></legend>
-	<ul class="jm-other-links">
-	<li><a class="jm-rating" target="_blank" href="http://wordpress.org/support/view/plugin-reviews/jm-twitter-cards"><?php _e('Rate the plugin on WordPress.org', 'jm-tc') ?></a></li>
-	<li><a class="jm-twitter" target="_blank" href="<?php _e('https://twitter.com/intent/tweet?source=webclient&amp;hastags=WordPress,Plugin&amp;text=JM%20Twitter%20Cards%20%20is%20a%20great%20WordPress%20plugin%20to%20get%20Twitter%20Cards%20Try%20it!&amp;url=http://wordpress.org/extend/plugins/jm-twitter-cards/&amp;related=TweetPressFr&amp;via=TweetPressFr','jm-tc'); ?>"><?php _e('Tweet it', 'jm-tc') ?></a></li>
-	<li><a class="jm-donate" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=tweetpressfr%40gmail%2ecom&amp;item_name=JM%20Twitter%20Cards&amp;no_shipping=0&amp;no_note=1&amp;tax=0&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8"><?php _e('Make a donation', 'jm-tc') ?></a></li>	 
-	<li><a class="jm-api-version" target="_blank" href="https://dev.twitter.com/docs/api/1.1"><?php _e('REST API version 1.1 (last version)', 'jm-tc'); ?></a></li>			
-	</ul>
-    </fieldset> 
-	
-	</form>
 	</div>
 	
 	<?php
@@ -574,6 +678,14 @@ function jm_tc_sanitize_options($options) {
 	$new['twitterCardSEOTitle']   = $options['twitterCardSEOTitle'];
 	if ( isset($options['twitterCardSEODesc']) )
 	$new['twitterCardSEODesc']   = $options['twitterCardSEODesc'];
+	if ( isset($options['twitterData1']) )
+	$new['twitterData1']  = esc_attr(strip_tags($options['twitterData1']));
+	if ( isset($options['twitterLabel1']) )
+	$new['twitterLabel2']   = esc_attr(strip_tags($options['twitterLabel2']));
+	if ( isset($options['twitterData2']) )
+	$new['twitterData2']  = esc_attr(strip_tags($options['twitterData2']));
+	if ( isset($options['twitterLabel2']) )
+	$new['twitterLabel2']   = esc_attr(strip_tags($options['twitterLabel2']));
 	return $new;
 }
 
@@ -585,15 +697,19 @@ function jm_tc_get_default_options() {
 	'twitterCreator'		    => 'TweetPressFr',
 	'twitterSite'               => 'TweetPressFr',
 	'twitterExcerptLength'	    => 35,
-	'twitterImage'              => 'http://www.gravatar.com/avatar/avatar.jpg',
+	'twitterImage'              => 'http://www.tweetpress.fr/tweetpress.png',
 	'twitterImageWidth'         => '280',
 	'twitterImageHeight'        => '150',
 	'twitterCardCustom'         => 'no',
 	'twitterProfile'            => 'no',
 	'twitterPostPageTitle' 		=> get_bloginfo ( 'name' ),// filter used by plugin to customize title
-	'twitterPostPageDesc'       => __('Welcome to','jm-tc').' '.get_bloginfo ( 'name' ).' - '. __('see bltwitter posts','jm-tc'),
+	'twitterPostPageDesc'       => __('Welcome to','jm-tc').' '.get_bloginfo ( 'name' ).' - '. __('see blog posts','jm-tc'),
 	'twitterCardSEOTitle'       => 'yes',
-	'twitterCardSEODesc'        => 'yes'
+	'twitterCardSEODesc'        => 'yes',
+	'twitterData1'     		    => 'France',
+	'twitterLabel1'       	    => 'COUNTRY',
+	'twitterData2'              => '5 stars',
+	'twitterLabel2'             => 'NOTE'
 	);
 }
 
