@@ -15,7 +15,7 @@ A plugin meant to simplify Twitter cards integration on WordPress. You can custo
 Once activated the plugin adds Twitter cards on your posts according to your settings. Enjoy !
 Compatible with : WP SEO by Yoast (do not check cards option in this plugin if activated) and All in One SEO
 
-**New feature in version 3.1.8 : Product cards**
+**New feature in version 3.1.8 : Product cards** see FAQ
 
 
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
@@ -32,7 +32,7 @@ Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts sel
 
 Compatible avec WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si activé) et All in One SEO
 
-**Nouveauté dans la version 3.1.8 : les cards de type Produit**
+**Nouveauté dans la version 3.1.8 : les cards de type Produit** : consultez la FAQ
 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
@@ -71,6 +71,8 @@ So, when users click on Tweets with an Instagram link, photos appear cropped.*
     Disallow:`
 If it still doesn't work please open a thread on support or at this URL: <a href="http://tweetpress.fr/en/plugin/new-plugin-jm-twitter-cards/">TweetPress, JM Twitter Cards</a>
 
+= Use of new feature product cards = 
+Just activate meta box, select **card type product** and save draft. 4 new fields will appear and you'll be able to set your product card.
 
 ––––
 En Français 
@@ -87,6 +89,9 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 `User-agent: Twitterbot
     Disallow:`
 Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin ou à cette adresse : <a href="http://tweetpress.fr/plugin/jm-twitter-cards">TweetPress, JM Twitter Cards</a>
+
+= Utilisez la nouvelle card product = 
+Activez la meta box et sélectionnez **le type product** pour la card. Sauvez le brouillon et 4 champs apparaîtront pour mettre en place la card product.
 
 == Screenshots ==
 1. admin
