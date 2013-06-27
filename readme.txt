@@ -100,6 +100,12 @@ Activez la meta box et sélectionnez **le type product** pour la card. Sauvez le
 
 == Changelog ==
 
+=  3.1.9 =
+* 27 Jun 2013
+* Fix some bugs in profile with checking function
+* Name attribute are now compliant with W3C recommandation
+* Remove meta twitter domain simply because it's useless now >> https://dev.twitter.com/docs/cards/markup-reference
+
 =  3.1.8 =
 * 19 Jun 2013
 * Fix some typo and bugs reported in support
