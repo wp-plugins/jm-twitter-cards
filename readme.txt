@@ -100,6 +100,12 @@ Activez la meta box et sélectionnez **le type product** pour la card. Sauvez le
 
 == Changelog ==
 
+
+=  3.2.0 =
+* 30 Jun 2013
+* Fix product cards typos in markup thanks Cecily for having reported this.
+* It was due to unecessary colons from markup that triggers bugs for product cards validation
+
 =  3.1.9 =
 * 27 Jun 2013
 * Fix some bugs in profile with checking function

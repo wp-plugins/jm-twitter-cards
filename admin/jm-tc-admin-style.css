@@ -5,7 +5,7 @@
 */
 
 /* content */
-#jm-tc { padding: 1.2em; max-width: 800px;}
+#jm-tc { padding: 1.2em; max-width: 900px;}
 .nav-tab-wrapper a:before { content:""; }
 .nav-tab-wrapper a:after { content:""; }
 #jm-tc h2, #jm-tc h3, legend,.legend-like {font-size: 2em;margin-bottom: 1em;color: #444;font-weight: normal;}

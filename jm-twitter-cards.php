@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.1.9
+Version: 3.2.0
 License: GPL2++
 */
 
@@ -257,7 +257,7 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			$cardPhotoHeight = get_post_meta(get_the_ID(),'cardPhotoHeight',true);
 			$cardImage = get_post_meta(get_the_ID(),'cardImage',true);
 			$cardData1 = get_post_meta(get_the_ID(),'cardData1',true);
-			$cardLabel1 = get_post_meta(get_the_ID(),'cardLabel2',true);
+			$cardLabel1 = get_post_meta(get_the_ID(),'cardLabel1',true);
 			$cardData2 = get_post_meta(get_the_ID(),'cardData2',true);
 			$cardLabel2 = get_post_meta(get_the_ID(),'cardLabel2',true);
 			
@@ -314,15 +314,15 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			} 
 			if($cardType == 'product') {
 				if(!empty($cardData1) && !empty($cardLabel1) && !empty($cardData2) && !empty($cardLabel2)) {
-					echo '<meta name="twitter:data:1" content="'.$cardData1.'">'."\n";
-					echo '<meta name="twitter:label:1" content="'.strtoupper($cardLabel1).'">'."\n";
-					echo '<meta name="twitter:data:2" content="'.$cardData2.'">'."\n";
-					echo '<meta name="twitter:label:2" content="'.strtoupper($cardLabel2).'">'."\n";
+					echo '<meta name="twitter:data1" content="'.$cardData1.'">'."\n";
+					echo '<meta name="twitter:label1" content="'.strtoupper($cardLabel1).'">'."\n";
+					echo '<meta name="twitter:data2" content="'.$cardData2.'">'."\n";
+					echo '<meta name="twitter:label2" content="'.strtoupper($cardLabel2).'">'."\n";
 				} else {
-					echo '<meta name="twitter:data:1" content="'.$opts['twitterData1'].'">'."\n";
-					echo '<meta name="twitter:label:1" content="'.strtoupper($opts['twitterLabel1']).'">'."\n";
-					echo '<meta name="twitter:data:2" content="'.$opts['twitterData2'].'">'."\n";
-					echo '<meta name="twitter:label:2" content="'.strtoupper($opts['twitterLabel2']).'">'."\n";
+					echo '<meta name="twitter:data1" content="'.$opts['twitterData1'].'">'."\n";
+					echo '<meta name="twitter:label1" content="'.strtoupper($opts['twitterLabel1']).'">'."\n";
+					echo '<meta name="twitter:data2" content="'.$opts['twitterData2'].'">'."\n";
+					echo '<meta name="twitter:label2" content="'.strtoupper($opts['twitterLabel2']).'">'."\n";
 				}		
 			}
 			echo '<!-- /JM Twitter Cards -->'."\n\n"; 
