@@ -366,3 +366,13 @@ msgstr ""
 #: jm-twitter-cards.php
 msgid "Here you can set 2 key details for your product (e.g price, size, etc)"
 msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Choose a size for this image to be displayed at"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Depend on theme setting"
+msgstr ""
