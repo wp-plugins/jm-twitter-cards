@@ -369,10 +369,40 @@ msgstr ""
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "Choose a size for this image to be displayed at"
+msgid "I\'ve been told on support that plugin should provide a better control of image size for cards. Here we are, use this section to define size for you cards and it will apply to all your post thumbnails. You can override this on each post."
 msgstr ""
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "Depend on theme setting"
+msgid "Set featured image dimensions"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Be careful with Retina displays, image must be tall enough. <br />Also make sure your image is not heavier than 1 MB if used for summary large cards"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Max mobile non retina (width: 280px - height: 375px)"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Max mobile retina (width: 560px - height: 750px)"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Max web size(width: 435px - height: 375px)"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Small (width: 280px - height: 150px)"
+msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Current featured image size is : "
 msgstr ""

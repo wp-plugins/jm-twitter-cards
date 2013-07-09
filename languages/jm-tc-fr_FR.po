@@ -434,10 +434,54 @@ msgstr "À propos de l'auteur"
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "Choose a size for this image to be displayed at"
-msgstr "Choisissez une taille pour la featured image"
+msgid ""
+"I have been told on support that plugin should provide a better control of "
+"image size for cards. Here we are, use this section to define size for you "
+"cards and it will apply to all your post thumbnails. You can override this "
+"on each post."
+msgstr ""
+"Cette version intègre certaines remarques faites dans la partie support "
+"concernant un contrôle de la taille des images. Voici un réglage qui vous "
+"permettra de définir la taille de vos images et ceci concernera l'ensemble "
+"des featured images. Vous pouvez écraser ce choix sur chaque post."
 
 #. Text in echo
 #: jm-twitter-cards.php
-msgid "Depend on theme setting"
-msgstr "Suivant les réglages du thème"
+msgid "Set featured image dimensions"
+msgstr "Définir les dimension de la featured image"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid ""
+"Be careful with Retina displays, image must be tall enough. <br />Also make "
+"sure your image is not heavier than 1 MB if used for summary large cards"
+msgstr ""
+"Attention avec les affichages Retina, votre image doit être suffisamment "
+"lourde pour le crop. <br />Faites également attention à ne pas dépasser les "
+"1 MB si vous utilisez les cards résumé avec image large."
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Max mobile non retina (width: 280px - height: 375px)"
+msgstr ""
+"Taille maximum mobile affichage non retina (width: 280px - height: 375px)"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Max mobile retina (width: 560px - height: 750px)"
+msgstr "Taille maximum mobile affichage retina (width: 560px - height: 750px)"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Max web size(width: 435px - height: 375px)"
+msgstr "Taille maximum pour le web (width: 435px - height: 375px)"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Small (width: 280px - height: 150px)"
+msgstr "Taile minimum (width: 280px - height: 150px)"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Current featured image size is : "
+msgstr "La taille de la featured image actuelle est : "

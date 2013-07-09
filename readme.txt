@@ -16,7 +16,7 @@ Once activated the plugin adds Twitter cards on your posts according to your set
 Compatible with : WP SEO by Yoast (do not check cards option in this plugin if activated) and All in One SEO
 
 **New feature in version 3.1.8 : Product cards** see FAQ
-**New feature in 3.2.1 : you can define thumbnail size for featured image, just use the simple drop down menu
+**New feature in 3.2.1** : you can define thumbnail size for featured image, just use the simple drop down menu
 
 
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
@@ -34,7 +34,7 @@ Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts sel
 Compatible avec WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si activé) et All in One SEO
 
 **Nouveauté dans la version 3.1.8 : les cards de type Produit** : consultez la FAQ
-**Nouveauté dans la version 3.2.1 : vous pouvez définir la taille de la featured image, utilisez le menu déroulant
+**Nouveauté dans la version 3.2.1**: vous pouvez définir la taille de la featured image, utilisez le menu déroulant
 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
@@ -101,6 +101,11 @@ Activez la meta box et sélectionnez **le type product** pour la card. Sauvez le
 3. metabox
 
 == Changelog ==
+
+=  3.2.2 =
+* 08 Jul 2013
+* Rebuilt featured image system to make it flexible. You can now set thumbnail sizes in option page AND per each post.
+* In full custom mode you'll be able to see image file size. This should prevent you from using image heavier than 1MB which is not allowed for some card types such as summary_large_image.
 
 =  3.2.1 =
 * 08 Jul 2013

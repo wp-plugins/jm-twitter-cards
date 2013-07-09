@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.2.1
+Version: 3.2.2
 License: GPL2++
 */
 
@@ -14,7 +14,6 @@ License: GPL2++
 * 			  - http://codex.wordpress.org/Function_Reference/wp_enqueue_style
 *			  - https://github.com/rilwis/meta-box [GREAT]
 *			  - http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src
-*			  - https://github.com/trepmal/featured-image-sizes/blob/v1/featured-image-sizes.php [GREAT]
 */
 
 
@@ -57,96 +56,64 @@ function jm_tc_remove_spaces($space) {
 }
 
 
-// Very simple class made by @trepmal but pretty handy
-$featured_image_sizes = new Featured_Image_Sizes();
-
-class Featured_Image_Sizes {
-
-	var $textdomain = 'jm-tc';
-
-	function __construct() {
-
-		global $_wp_post_type_features;
-		$possible_post_types = wp_list_filter( $_wp_post_type_features, array( 'thumbnail' => 1 ) );
-
-		$this->allowed_post_types = apply_filters( 'fis_post_types', $possible_post_types );
-
-		add_filter( 'admin_post_thumbnail_html', array( &$this, 'admin_post_thumbnail_html' ), 10, 2 );
-		add_action( 'save_post', array( &$this, 'save_post' ), 10, 2 );
-
-		add_filter( 'post_thumbnail_size', array( &$this, 'post_thumbnail_size' ) );
-
-	}
-
-	function admin_post_thumbnail_html( $content, $post_id ) {
-
-		$post_type = get_post_type( $post_id );
-		if ( ! isset( $this->allowed_post_types[ $post_type ] ) ) return $content;
-
-		ob_start();
-		wp_nonce_field( 'na-fis-image', 'nn-fis-image' );
-		$saved_value = get_post_meta( $post_id, 'fis-image-size', true );
-
-		echo '<label>';
-		_e( 'Choose a size for this image to be displayed at', $this->textdomain );
-		echo '<select name="fis-image-size">';
-		echo '<option value="">' . __( 'Depend on theme setting', $this->textdomain ) .'</option>';
-
-		foreach( get_intermediate_image_sizes() as $size ) {
-			$selected = selected( $size, $saved_value, false );
-			echo "<option value='$size'$selected>$size</option>";
-		}
-		echo '</select></label>';
-
-		$html = ob_get_clean();
-
-		return $content . $html;
-	}
-
-	function save_post( $post_id, $post ) {
-
-		if ( ! isset( $_POST['nn-fis-image'] ) ) //make sure our custom value is being sent
-			return;
-		if ( ! wp_verify_nonce( $_POST['nn-fis-image'], 'na-fis-image' ) ) //verify intent
-			return;
-		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) //no auto saving
-			return;
-		if ( ! current_user_can( 'edit_post', $post_id ) ) //verify permissions
-			return;
-
-		$fis_size = trim( $_POST['fis-image-size'] );
-		if ( empty( $fis_size ) ) {
-			delete_post_meta( $post_id, 'fis-image-size' );
-			return;
-		}
-
-		// make sure the POSTed value is an okay size name
-		$ok_sizes = get_intermediate_image_sizes();
-		if ( ! in_array( $fis_size, $ok_sizes ) ) return;
-
-		update_post_meta( $post_id, 'fis-image-size', $fis_size );
-
-	}
-
-	function post_thumbnail_size( $size ) {
-
-		// make sure we're in the main loop
-		// so as not to interfere with secondary loops (perhaps widgets)
-		global $wp_query;
-		if ( ! $wp_query->in_the_loop ) return $size;
-
-		// var_dump( get_the_ID() );
-
-		$fis_size = get_post_meta( get_the_ID(), 'fis-image-size', true );
-
-		if ( empty( $fis_size ) ) return $size;
-
-		return $fis_size;
-	}
-
+// Add stuffs in init such as img size
+add_action('init','jm_tc_initialize');
+function jm_tc_initialize() {
+	if ( function_exists( 'add_theme_support' ) ) 
+	add_theme_support( 'post-thumbnails' );
+	if ( function_exists( 'add_image_size' ) ) 
+	add_image_size( 'jmtc-small-thumb', 280, 150 );  /* the minimum size possible for Twitter Cards */
+	add_image_size( 'jmtc-max-web-thumb', 435, 375 );  /* maximum web size for photo cards */
+	add_image_size( 'jmtc-max-mobile-non-retina-thumb', 280, 375 );  /* maximum non retina mobile size for photo cards  */
+	add_image_size( 'jmtc-max-mobile-retina-thumb', 560, 750 );  /* maximum retina mobile size for photo cards  */
 }
 
+// Get user choice and convert it into post thumbnail sizes
+// I know there are much better ways but I want my free plugins to be easily modifiable
+function jm_tc_thumbnail_sizes() {
+	$opts = jm_tc_get_options(); 
+	if( $thumbnail_size = get_post_meta( get_the_ID(), 'cardImgSize', true ))  $size = $thumbnail_size; else $size = $opts ['twitterCardImgSize'];
+	switch ($size) {
+	case 'small':
+		$twitterCardImgSize = array(280,150);
+		
+		break;
+	case 'web':
+		$twitterCardImgSize = array(435,375);
+		
+		break;
+	case 'mobile-non-retina':
+		$twitterCardImgSize = array(280,375);
+		
+		break;
+	case 'mobile-retina':
+		$twitterCardImgSize = array(560,750);
+		break;
+	default: 
+		$twitterCardImgSize = array(280,150);
+		?><!-- @(-_-)] --><?php
+		break;
+	}
+	return $twitterCardImgSize;
+}
 
+// get featured image
+function jm_tc_get_post_thumbnail_size() {
+	global $post;
+	$args = array(
+	'post_type'         => 'attachment',
+	'post_mime_type'    => array('image/png','image/jpeg','image/gif'),
+	'numberposts'       => -1,
+	'post_status'       => null,
+	'post_parent'       => $post->ID
+	);
+	$attachments = get_posts($args);
+
+	foreach ($attachments as $attachment) {
+		$math = filesize( get_attached_file( $attachment->ID ) ) / 1000000;
+		return $math;//Am I bold enough to call it a math?
+	}
+}
 
 // grab our datas
 $opts = jm_tc_get_options();          
@@ -162,29 +129,54 @@ if($opts['twitterCardCustom'] == 'yes') {
 	function jm_tc_meta_box_cb( $post )
 	{
 		$values = get_post_custom( $post->ID );
-		$selected = isset( $values['twitterCardType'] ) ? esc_attr( $values['twitterCardType'][0] ) : '';
+		$selectedType = isset( $values['twitterCardType'] ) ? esc_attr( $values['twitterCardType'][0] ) : '';
+		$selectedSize = isset( $values['cardImgSize'] ) ? esc_attr( $values['cardImgSize'][0] ) : '';
 		wp_nonce_field( 'jm_tc_meta_box_nonce', 'meta_box_nonce' );
 		?>
-
-		<p>
-		<label for="twitterCardType"><?php _e('Choose what type of card you want to use', 'jm-tc'); ?></label>
-		<select name="twitterCardType" id="twitterCardType">
-		<option value="summary" <?php selected( $selected, 'summary' ); ?>><?php _e('summary', 'jm-tc'); ?></option>
-		<option value="summary_large_image" <?php selected( $selected, 'summary_large_image' ); ?>><?php _e('summary_large_image', 'jm-tc'); ?></option>
-		<option value="photo" <?php selected( $selected, 'photo' ); ?>><?php _e('photo', 'jm-tc'); ?></option>
-		<option value="product" <?php selected( $selected, 'product' ); ?>><?php _e('product', 'jm-tc'); ?></option>
-		</select>
 		
+		<!-- select card type -->
+		<section style="background-color:#eee; margin:1em; padding:1em;line-height:150%;">
+		<p>
+		<label for="twitterCardType"><?php _e('Choose what type of card you want to use', 'jm-tc'); ?></label><br />
+		<select name="twitterCardType" id="twitterCardType">
+		<option value="summary" <?php selected( $selectedType, 'summary' ); ?>><?php _e('summary', 'jm-tc'); ?></option>
+		<option value="summary_large_image" <?php selected( $selectedType, 'summary_large_image' ); ?>><?php _e('summary_large_image', 'jm-tc'); ?></option>
+		<option value="photo" <?php selected( $selectedType, 'photo' ); ?>><?php _e('photo', 'jm-tc'); ?></option>
+		<option value="product" <?php selected( $selectedType, 'product' ); ?>><?php _e('product', 'jm-tc'); ?></option>
+		</select>
+		</p>
+		</section>
 		<!-- set img from another source -->
+		<section style="background-color:#eee; margin:1em; padding:1em;line-height:150%;">
 		<p>
 		<label for="twitterCardImage"><?php _e('Set another source as twitter image (enter URL)', 'jm-tc'); ?> :</label><br />
 		<input id="twitterCardImage" type="url" name="cardImage" style="padding:.3em;" size="120" class="regular-text" value="<?php echo get_post_meta(get_the_ID(),'cardImage',true); ?>" />
 		</p>
 		<p class="description"><?php _e('(This is optional but some users wanted alternatives for featured image.)', 'jm-tc'); ?></p>
+		</section>
 		
-		<!-- ~conditional fields -->
-		<?php switch ($selected) {
+		<!-- set img dimensions -->
+		<section style="background-color:#eee; margin:1em; padding:1em;line-height:150%;">
+		<label for="cardImgSize"><?php _e('Set featured image dimensions', 'jm-tc'); ?> :</label><br />
+		<select id="cardImgSize" name="cardImgSize">
+		<option value="mobile-non-retina" <?php selected( $selectedSize, 'mobile-non-retina' ); ?>><?php _e('Max mobile non retina (width: 280px - height: 375px)', 'jm-tc'); ?></option>
+		<option value="mobile-retina" <?php selected( $selectedSize, 'mobile-retina' ); ?>><?php _e('Max mobile retina (width: 560px - height: 750px)', 'jm-tc'); ?></option>
+		<option value="web" <?php selected( $selectedSize, 'web' ); ?>><?php _e('Max web size(width: 435px - height: 375px)', 'jm-tc'); ?></option>
+		<option value="small" <?php selected( $selectedSize, 'small' ); ?>><?php _e('Small (width: 280px - height: 150px)', 'jm-tc'); ?></option>
+		</select>
+		<br /><em><?php _e('Be careful with Retina displays, image must be tall enough. <br />Also make sure your image is not heavier than 1 MB if used for summary large cards','jm-tc');?></em>
+		<?php 
+		$color = "black";
+		if( function_exists('jm_tc_get_post_thumbnail_size') && jm_tc_get_post_thumbnail_size() >= 1 ) 
+		$color = "red"; //again it is just to make sure everybody understand what I'm doing
+		?>
+		<br /><em> <?php if( function_exists('jm_tc_get_post_thumbnail_size') && jm_tc_get_post_thumbnail_size() != 0 ) echo __('Current featured image size is : ','jm-tc').'<strong style="color:'.$color.';">'. jm_tc_get_post_thumbnail_size();?><?php _e(' MB','jm-tc'). '</strong>';?></em>
+		</section>
+		
+		<!-- ~conditional fields (maybe some AJAX could be added but is it really worth?) -->
+		<?php switch ($selectedType) {
 		case 'photo': ?>
+			<section style="background-color:#eee; margin:1em; padding:1em;line-height:150%;">
 			<p><label for="twitterImageWidth"><?php _e('Image width', 'jm-tc'); ?> :</label>
 			<input id="twitterImageWidth" type="number" min="280" name="cardPhotoWidth" class="small-number" value="<?php echo get_post_meta(get_the_ID(),'cardPhotoWidth',true); ?>" />
 			</p>
@@ -192,9 +184,11 @@ if($opts['twitterCardCustom'] == 'yes') {
 			<label for="twitterImageHeight"><?php _e('Image height', 'jm-tc'); ?> :</label>
 			<input id="twitterImageHeight" type="number" min="150" name="cardPhotoHeight" class="small-number" value="<?php echo get_post_meta(get_the_ID(),'cardPhotoHeight',true); ?>" />
 			</p>
+			</section>
 			<?php
 			break;
 		case 'product' :?>
+			<section style="background-color:#eee; margin:1em; padding:1em;line-height:150%;">
 			<p>
 			<label for="cardData1"><?php _e('Enter the first key data for product', 'jm-tc'); ?> :</label>
 			<input id="cardData1" type="text" name="cardData1" style="padding:.3em;" class="regular-text" value="<?php echo get_post_meta(get_the_ID(),'cardData1',true); ?>" />
@@ -212,13 +206,16 @@ if($opts['twitterCardCustom'] == 'yes') {
 			<input id="cardLabel2" type="text" name="cardLabel2" style="padding:.3em;" class="regular-text" value="<?php echo get_post_meta(get_the_ID(),'cardLabel2',true); ?>" />
 			</p>
 			<p class="description"><?php _e('Here you can set 2 key details for your product (e.g price, size, etc)', 'jm-tc'); ?></p>
+			</section>
 			<?php 
 			break;
 		default: ?>
 			<!-- @(-_-)] -->
 			<?php
 			break;
-		}
+		} ?>
+		
+		<?php	
 	}
 
 	add_action( 'save_post', 'jm_tc_meta_box_save' );
@@ -250,6 +247,8 @@ if($opts['twitterCardCustom'] == 'yes') {
 		update_post_meta( $post_id, 'cardData2', esc_attr( $_POST['cardData2'] ) );
 		update_post_meta( $post_id, 'cardLabel2', esc_attr( $_POST['cardLabel2'] ) );
 		
+		if( isset($_POST['cardImgSize']))
+		update_post_meta( $post_id, 'cardImgSize', $_POST['cardImgSize'] );
 	}
 
 } 
@@ -291,10 +290,10 @@ function jm_tc_save_extra_user_profile_field( $user_id ) {
 add_filter('user_profile_update_errors','jm_tc_check_at', 10, 3); // wp-admin/includes/users.php, thanks Greglone for this great hint
 function jm_tc_check_at($errors, $update, $user)  {
 	if($update) {  
-			//let's save it but in case there's a @ just remove it before saving
-			update_user_meta($user->ID, 'jm_tc_twitter', jm_tc_remove_at($_POST['jm_tc_twitter']) );
-		}
+		//let's save it but in case there's a @ just remove it before saving
+		update_user_meta($user->ID, 'jm_tc_twitter', jm_tc_remove_at($_POST['jm_tc_twitter']) );
 	}
+}
 
 
 
@@ -344,16 +343,16 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			echo "\n".'<!-- JM Twitter Cards by Julien Maury '.jm_tc_plugin_get_version().' -->'."\n";  
 
 			// get current post meta data
-			$creator   = get_the_author_meta('jm_tc_twitter', $post->post_author);		
-			$cardType  = get_post_meta($post->ID, 'twitterCardType', true);
-			$cardPhotoWidth = get_post_meta(get_the_ID(),'cardPhotoWidth',true);
-			$cardPhotoHeight = get_post_meta(get_the_ID(),'cardPhotoHeight',true);
-			$cardImage = get_post_meta(get_the_ID(),'cardImage',true);
-			$cardData1 = get_post_meta(get_the_ID(),'cardData1',true);
-			$cardLabel1 = get_post_meta(get_the_ID(),'cardLabel1',true);
-			$cardData2 = get_post_meta(get_the_ID(),'cardData2',true);
-			$cardLabel2 = get_post_meta(get_the_ID(),'cardLabel2',true);
-			$fis_size = get_post_meta( get_the_ID(), 'fis-image-size', true );
+			$creator           = get_the_author_meta('jm_tc_twitter', $post->post_author);		
+			$cardType          = get_post_meta($post->ID, 'twitterCardType', true);
+			$cardPhotoWidth    = get_post_meta(get_the_ID(),'cardPhotoWidth',true);
+			$cardPhotoHeight   = get_post_meta(get_the_ID(),'cardPhotoHeight',true);
+			$cardImage         = get_post_meta(get_the_ID(),'cardImage',true);
+			$cardData1         = get_post_meta(get_the_ID(),'cardData1',true);
+			$cardLabel1        = get_post_meta(get_the_ID(),'cardLabel1',true);
+			$cardData2         = get_post_meta(get_the_ID(),'cardData2',true);
+			$cardLabel2        = get_post_meta(get_the_ID(),'cardLabel2',true);
+			$cardImgSize       = get_post_meta(get_the_ID(),'cardImgSize',true);
 			
 
 			// support for custom meta description WordPress SEO by Yoast or All in One SEO
@@ -389,11 +388,14 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			echo '<meta name="twitter:title" content="' . $cardTitle  . '">'."\n";  // filter used by plugin to customize title  
 			echo '<meta name="twitter:description" content="' . jm_tc_remove_spaces($cardDescription) . '">'."\n"; 
 
-			if(get_the_post_thumbnail( $post->ID ) && empty($cardImage)) { //featured image is set but not cardImage
-				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),$fis_size);
+			if( get_the_post_thumbnail( $post->ID ) && empty($cardImage) && empty($cardImgSize) && function_exists('jm_tc_thumbnail_sizes') ) { //featured image is set but not cardImage
+				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), jm_tc_thumbnail_sizes());
 				echo '<meta name="twitter:image" content="' . $thumb[0] . '">'."\n";
 			} elseif( !empty($cardImage) ) { // cardImage is set
 				echo '<meta name="twitter:image" content="' . $cardImage . '">'."\n";
+			} elseif ( empty($cardImage) && !empty($cardImgSize) && function_exists('jm_tc_thumbnail_sizes') ){
+				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),jm_tc_thumbnail_sizes());
+				echo '<meta name="twitter:image" content="' . $thumb[0] . '">'."\n";
 			} else { //fallback
 				echo '<meta name="twitter:image" content="' . $opts['twitterImage'] . '">'."\n";
 			}
@@ -509,6 +511,7 @@ function jm_tc_options_page() {
 	<a href="#tab1" class="nav-tab nav-tab-active"><?php _e('General','jm-tc');?></a>
 	<a href="#tab2" class="nav-tab"><?php _e('SEO','jm-tc');?></a>
 	<a href="#tab3" class="nav-tab"><?php _e('Photo cards','jm-tc');?></a>
+	<a href="#tab3a" class="nav-tab"><?php _e('Thumb size','jm-tc');?></a>
 	<a href="#tab4" class="nav-tab"><?php _e('Custom','jm-tc');?></a>
 	<a href="#tab5" class="nav-tab"><?php _e('Home page','jm-tc');?></a>
 	<a href="#tab6" class="nav-tab"><?php _e('Product Cards','jm-tc');?></a>
@@ -580,7 +583,7 @@ function jm_tc_options_page() {
 	<ul class="jm-doc-photocard">
 	<li> <?php _e('<strong>Web</strong>: maximum height of 375px, maximum width of 435px', 'jm-tc'); ?></li>
 	<li> <?php _e('<strong>Mobile (non-retina displays)</strong>: maximum height of 375px, maximum width of 280px', 'jm-tc'); ?></li>
-	<li> <?php _e('<strong>Mobile (retina displays)</strong>: maximum height of 750px, maximum with of 560px', 'jm-tc'); ?></li>
+	<li> <?php _e('<strong>Mobile (retina displays)</strong>: maximum height of 750px, maximum width of 560px', 'jm-tc'); ?></li>
 	<li> <?php _e('Twitter will not create a photo card unless the twitter:image is of a minimum size of 280px wide by 150px tall. Images will not be cropped unless they have an exceptional aspect ratio', 'jm-tc'); ?></li>
 	</ul>                                    
 	</blockquote>
@@ -594,6 +597,21 @@ function jm_tc_options_page() {
 	<input id="twitterImageHeight" type="number" min="150" name="jm_tc[twitterImageHeight]" class="small-number" value="<?php echo $opts['twitterImageHeight']; ?>" />
 	</p>
 	<?php submit_button(null, 'primary', '_submit3'); ?>	
+	</fieldset>	
+	
+	<fieldset>
+	<legend id="tab3a"><?php _e('Thumb sizes', 'jm-tc'); ?></legend>			              
+	<?php _e("I have been told on support that plugin should provide a better control of image size for cards. Here we are, use this section to define size for you cards and it will apply to all your post thumbnails. You can override this on each post.", 'jm-tc'); ?>
+	<p>
+	<label for="twitterCardImgSize"><?php _e('Choose what type of card you want to use', 'jm-tc'); ?> :</label>
+	<select id="twitterCardImgSize" name="jm_tc[twitterCardImgSize]">
+	<option value="mobile-non-retina" <?php echo $opts['twitterCardImgSize'] == 'mobile-non-retina' ? 'selected="selected"' : ''; ?> ><?php _e('Max mobile non retina (width: 280px - height: 375px)', 'jm-tc'); ?></option>
+	<option value="mobile-retina" <?php echo $opts['twitterCardImgSize'] == 'mobile-retina' ? 'selected="selected"' : ''; ?> ><?php _e('Max mobile retina (width: 560px - height: 750px)', 'jm-tc'); ?></option>
+	<option value="web" <?php echo $opts['twitterCardImgSize'] == 'web' ? 'selected="selected"' : ''; ?> ><?php _e('Max web size(width: 435px - height: 375px)', 'jm-tc'); ?></option>
+	<option value="small" <?php echo $opts['twitterCardImgSize'] == 'small' ? 'selected="selected"' : ''; ?> ><?php _e('Small (width: 280px - height: 150px)', 'jm-tc'); ?></option>
+	</select>
+	</p>
+	<?php submit_button(null, 'primary', '_submit3a'); ?>	
 	</fieldset>	
 	
 	<fieldset>  
@@ -761,13 +779,15 @@ function jm_tc_sanitize_options($options) {
 	if ( isset($options['twitterCardSEODesc']) )
 	$new['twitterCardSEODesc']   = $options['twitterCardSEODesc'];
 	if ( isset($options['twitterData1']) )
-	$new['twitterData1']  = esc_attr(strip_tags($options['twitterData1']));
+	$new['twitterData1']         = esc_attr(strip_tags($options['twitterData1']));
 	if ( isset($options['twitterLabel1']) )
-	$new['twitterLabel2']   = esc_attr(strip_tags($options['twitterLabel2']));
+	$new['twitterLabel2']        = esc_attr(strip_tags($options['twitterLabel2']));
 	if ( isset($options['twitterData2']) )
-	$new['twitterData2']  = esc_attr(strip_tags($options['twitterData2']));
+	$new['twitterData2']         = esc_attr(strip_tags($options['twitterData2']));
 	if ( isset($options['twitterLabel2']) )
-	$new['twitterLabel2']   = esc_attr(strip_tags($options['twitterLabel2']));
+	$new['twitterLabel2']        = esc_attr(strip_tags($options['twitterLabel2']));
+	if ( isset($options['twitterCardImgSize']) )
+	$new['twitterCardImgSize']   = $options['twitterCardImgSize'];
 	return $new;
 }
 
@@ -791,7 +811,8 @@ function jm_tc_get_default_options() {
 	'twitterData1'     		    => 'France',
 	'twitterLabel1'       	    => 'COUNTRY',
 	'twitterData2'              => '5 stars',
-	'twitterLabel2'             => 'NOTE'
+	'twitterLabel2'             => 'NOTE',
+	'twitterCardImgSize'		=> 'small'
 	);
 }
 
