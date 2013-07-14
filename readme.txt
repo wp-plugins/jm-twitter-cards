@@ -16,8 +16,7 @@ Once activated the plugin adds Twitter cards on your posts according to your set
 Compatible with : WP SEO by Yoast (do not check cards option in this plugin if activated) and All in One SEO
 
 **New feature in version 3.1.8 : Product cards** see FAQ
-**New feature in 3.2.1** : you can define thumbnail size for featured image, just use the simple drop down menu
-
+**New feature in 3.2.1** : you can define thumbnail size for featured image, just use the simple drop down menu (be careful with this feature, a lot of files are generated, **see FAQ** for the solution)
 
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
 If you choose full customization metabox is now on the right side in your edit. It's shorter simply because now twitter account is retrieved from author's profile.
@@ -34,7 +33,7 @@ Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts sel
 Compatible avec WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si activé) et All in One SEO
 
 **Nouveauté dans la version 3.1.8 : les cards de type Produit** : consultez la FAQ
-**Nouveauté dans la version 3.2.1**: vous pouvez définir la taille de la featured image, utilisez le menu déroulant
+**Nouveauté dans la version 3.2.1**: vous pouvez définir la taille de la featured image, utilisez le menu déroulant (attention avec cette nouvelle fonctionnalité, elle peut générer beaucoup de fichiers image, **voir la FAQ** pour la solution)
 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
@@ -76,6 +75,8 @@ If it still doesn't work please open a thread on support or at this URL: <a href
 = Use of new feature product cards = 
 Just activate meta box, select **card type product** and save draft. 4 new fields will appear and you'll be able to set your product card.
 
+= The plugin generates a lot of images (different sizes) = 
+I can be a problem when you work with HD and/or a lot of images. So you can use plugins that just delete unused image, e.g <a href="files http://wordpress.org/plugins/dnui-delete-not-used-image-wordpress/">DNUI Delete not used image</a>
 ––––
 En Français 
 –––––––––––––––––––––––––––––––––––
@@ -94,6 +95,9 @@ Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin ou �
 
 = Utilisez la nouvelle card product = 
 Activez la meta box et sélectionnez **le type product** pour la card. Sauvez le brouillon et 4 champs apparaîtront pour mettre en place la card product.
+
+= Le plugin génère beaucoup trop de fichiers images = 
+Cela peut poser problème si vous travaillez avec de la HD et/ou beaucoup d'images. Vous pouvez donc utiliser un plugin qui va effacer les fichiers images non utilisés comme par exmple <a href="files http://wordpress.org/plugins/dnui-delete-not-used-image-wordpress/">DNUI Delete not used image</a>
 
 == Screenshots ==
 1. admin
