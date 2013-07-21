@@ -5,12 +5,12 @@
 */
 
 /* content */
-#jm-tc { padding: 1.2em; max-width: 900px;}
+#jm-tc { padding: 1.2em; max-width: 900px; line-height:152%; }
 .nav-tab-wrapper a:before { content:""; }
 .nav-tab-wrapper a:after { content:""; }
 #jm-tc h2, #jm-tc h3, legend,.legend-like {font-size: 2em;margin-bottom: 1em;color: #444;font-weight: normal;}
 #jm-tc h2 {font-size: 2.5em;}
-.new {  }
+.new { font-size:large; }
 
 /* quotes */
 .jm-doc {margin: 0.5em 10px 0.5em 0;padding: 1.5em 10px;quotes: "\201C" "\201D";background-color: #fefefe;font-style: italic;-webkit-border-radius: .5em;-moz-border-radius: .5em;-o-border-radius: .5em;-khtml-border-radius: .5em;border-radius: .5em;border:1px solid #ddd;}
@@ -26,6 +26,7 @@ fieldset,.fieldset-like { border:1px solid #ddd; background-color:#FDFCF9; paddi
 .inbl { display: inline-block; vertical-align: top;}
 #jm-tc-form input[type="text"] { padding:.4em;}
 #jm-tc-form,.fieldset-like {line-height: 1.6;}
+#jm-tc-form label { font-weight:bold; }
 
 .postbox { display: block; float:left;margin:10px; }
 .dev { padding:1em; }
