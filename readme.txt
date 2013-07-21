@@ -76,7 +76,7 @@ If it still doesn't work please open a thread on support or at this URL: <a href
 Just activate meta box, select **card type product** and save draft. 4 new fields will appear and you'll be able to set your product card.
 
 = The plugin generates a lot of images (different sizes) = 
-I can be a problem when you work with HD and/or a lot of images. So you can use plugins that just delete unused image, e.g <a href="http://wordpress.org/plugins/dynamic-image-resizer/">dynamic-image-resizer</a>
+I can be a problem when you work with HD and/or a lot of images. So you can use plugins that just delete unused image, e.g <a href="http://wordpress.org/plugins/dnui-delete-not-used-image-wordpress/">DNUI</a>
 ––––
 En Français 
 –––––––––––––––––––––––––––––––––––
@@ -97,7 +97,7 @@ Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin ou �
 Activez la meta box et sélectionnez **le type product** pour la card. Sauvez le brouillon et 4 champs apparaîtront pour mettre en place la card product.
 
 = Le plugin génère beaucoup trop de fichiers images = 
-Cela peut poser problème si vous travaillez avec de la HD et/ou beaucoup d'images. Vous pouvez donc utiliser un plugin qui va effacer les fichiers images non utilisés comme par exmple <a href="http://wordpress.org/plugins/dynamic-image-resizer/">dynamic-image-resizer</a>
+Cela peut poser problème si vous travaillez avec de la HD et/ou beaucoup d'images. Vous pouvez donc utiliser un plugin qui va effacer les fichiers images non utilisés comme par exmple <a href="http://wordpress.org/plugins/dnui-delete-not-used-image-wordpress/">DNUI</a>
 
 == Screenshots ==
 1. admin
