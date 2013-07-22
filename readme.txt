@@ -106,6 +106,10 @@ Cela peut poser problème si vous travaillez avec de la HD et/ou beaucoup d'imag
 
 == Changelog ==
 
+=  3.2.5 =
+* 22 Jul 2013
+* remove strip_tags() and strip_shortcodes() in jm_tc_remove_space() I already use in get_excerpt_by_id()
+
 =  3.2.4 =
 * 22 Jul 2013
 * fix bug array to string conversion if no option is set

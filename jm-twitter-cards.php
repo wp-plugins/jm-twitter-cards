@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.2.4
+Version: 3.2.5
 License: GPL2++
 */
 
@@ -51,7 +51,7 @@ function jm_tc_remove_at($at) {
 
 // New function that remove unecessary spaces
 function jm_tc_remove_spaces($space) {
-	$noextraspace = strip_tags( strip_shortcodes( preg_replace("/\s+/", " ", $space) ) ); // fix order
+	$noextraspace = preg_replace("/\s+/", " ", $space); // remove strip tags and strip shortcodes I already use in get_excerpt_by_id()
 	return $noextraspace;
 }
 
