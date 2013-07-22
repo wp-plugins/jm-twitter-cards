@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.2.3
+Version: 3.2.4
 License: GPL2++
 */
 
@@ -51,8 +51,8 @@ function jm_tc_remove_at($at) {
 
 // New function that remove unecessary spaces
 function jm_tc_remove_spaces($space) {
-	$nospace =  strip_shortcodes(  strip_tags( preg_replace("/\s+/", " ", $space) )  );// great regex by @aarontgrogg tips http://tweetpress.fr/plugin/jm-twitter-cards/comment-page-3#comment-618
-	return $nospace;
+	$noextraspace = strip_tags( strip_shortcodes( preg_replace("/\s+/", " ", $space) ) ); // fix order
+	return $noextraspace;
 }
 
 
@@ -113,16 +113,6 @@ function jm_tc_get_post_thumbnail_size() {
 		$math = filesize( get_attached_file( $attachment->ID ) ) / 1000000;
 		return $math;//Am I bold enough to call it a math?
 	}
-}
-
-// get custom fields
-if(!function_exists('jm_tc_get_custom_field_value')) {
-	function jm_tc_get_custom_field_value($tcKey, $echo = false) {
-			global $post;
-			$tcValue = get_post_meta($post->ID, $tcKey, true);
-			if ( $echo == false ) return $tcValue; else return $tcValue;
-	}
-	 
 }
 
 // grab our datas
@@ -365,12 +355,11 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			$cardData2         = get_post_meta(get_the_ID(),'cardData2',true);
 			$cardLabel2        = get_post_meta(get_the_ID(),'cardLabel2',true);
 			$cardImgSize       = get_post_meta(get_the_ID(),'cardImgSize',true);
-			
+			$cardTitleKey      = $opts['twitterCardTitle'];
+			$cardDescKey	   = $opts['twitterCardDesc'];
 			// Custom fields
-			if (function_exists('jm_tc_get_custom_field_value')) {
-				$tctitle = jm_tc_get_custom_field_value($opts['twitterCardTitle'], true);
-				$tcdesc = jm_tc_get_custom_field_value($opts['twitterCardDesc'], true);
-			}
+				$tctitle = get_post_meta($post->ID, $cardTitleKey , true);
+				$tcdesc  = get_post_meta($post->ID, $cardDescKey, true);
 			
 			// support for custom meta description WordPress SEO by Yoast or All in One SEO
 			if (class_exists('WPSEO_Frontend') ) { // little trick to check if plugin is here and active :)
@@ -383,13 +372,17 @@ if(!function_exists( 'add_twitter_card_info' )) {
 				if (is_object($post_id)) $post_id = $post_id->ID;
 				if($opts['twitterCardSEOTitle'] == 'yes' && get_post_meta(get_the_ID(), '_aioseop_title', true) ) { $cardTitle  = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_title', true))); } else { $cardTitle = the_title_attribute( array('echo' => false) );}
 				if($opts['twitterCardSEODesc'] == 'yes' && get_post_meta(get_the_ID(), '_aioseop_description', true)) { $cardDescription = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_description', true))); } else { $cardDescription = get_excerpt_by_id($post->ID); }
-			} elseif ( !empty($tctitle) && !empty($tcdesc) ) {
+			} elseif ( $tctitle != '' && $tcdesc != '' ) {
+			// avoid array to string notice on title and desc
 				$cardTitle = $tctitle;
 				$cardDescription = $tcdesc;
-			} else { //default (I'll probaly make a switch next time)
+			} else { //default (I'll probably make a switch next time)
 				$cardTitle = the_title_attribute( array('echo' => false) );
 				$cardDescription = get_excerpt_by_id($post->ID);
 			}
+			
+			// apply filter
+			if ( function_exists('jm_tc_remove_spaces')) $cardDescription = jm_tc_remove_spaces($cardDescription);
 
 			if(($opts['twitterCardCustom'] == 'yes') && !empty($cardType)) {
 
@@ -405,7 +398,7 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			// these next 4 parameters should not be editable in post admin 
 			echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'">'."\n";												  
 			echo '<meta name="twitter:title" content="' . $cardTitle  . '">'."\n";  // filter used by plugin to customize title  
-			echo '<meta name="twitter:description" content="' . jm_tc_remove_spaces($cardDescription) . '">'."\n"; 
+			echo '<meta name="twitter:description" content="' . $cardDescription . '">'."\n"; 
 
 			if( get_the_post_thumbnail( $post->ID ) && empty($cardImage) && empty($cardImgSize) && function_exists('jm_tc_thumbnail_sizes') ) { //featured image is set but not cardImage
 				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), jm_tc_thumbnail_sizes());

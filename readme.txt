@@ -105,10 +105,15 @@ Cela peut poser problème si vous travaillez avec de la HD et/ou beaucoup d'imag
 3. metabox
 
 == Changelog ==
+
+=  3.2.4 =
+* 22 Jul 2013
+* fix bug array to string conversion if no option is set
+
 =  3.2.3 =
 * 21 Jul 2013
 * Add support for Advanced Custom Field (ACF). You can now use custom fields for title and description in case you do not use SEO plugins.
-* Be careful, if WP SEO or All in One SEO is activated, title and desc from your custom fields will be override.
+* Be careful, if WP SEO or All in One SEO is activated, title and desc from your custom fields will override.
 
 =  3.2.2 =
 * 08 Jul 2013
