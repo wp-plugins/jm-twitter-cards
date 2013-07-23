@@ -2,7 +2,7 @@
 Contributors: jmlapam
 Tags: twitter, cards, semantic markup, metabox, meta
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=tweetpressfr%40gmail%2ecom&item_name=JM%20Twitter%20Cards&no_shipping=0&no_note=1&tax=0&currency_code=EUR&bn=PP%2dDonationsBF&charset=UTF%2d8
-Requires at least: 3.0
+Requires at least: 3.1.0
 Tested up to: 3.6
 License: GPLv2 or later
 Stable tag: trunk
@@ -105,6 +105,13 @@ Cela peut poser problème si vous travaillez avec de la HD et/ou beaucoup d'imag
 3. metabox
 
 == Changelog ==
+
+=  3.2.6 =
+* 23 Jul 2013
+* IMPORTANT bugfix
+* new custom fields grabbing used to break some configuration
+* will work own my own function to prevent description from displaying line-breaks
+
 
 =  3.2.5 =
 * 22 Jul 2013

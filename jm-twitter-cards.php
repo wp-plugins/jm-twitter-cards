@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.2.5
+Version: 3.2.6
 License: GPL2++
 */
 
@@ -49,11 +49,7 @@ function jm_tc_remove_at($at) {
 	return $noat;
 }
 
-// New function that remove unecessary spaces
-function jm_tc_remove_spaces($space) {
-	$noextraspace = preg_replace("/\s+/", " ", $space); // remove strip tags and strip shortcodes I already use in get_excerpt_by_id()
-	return $noextraspace;
-}
+// get meta values
 
 
 // Add stuffs in init such as img size
@@ -61,7 +57,7 @@ add_action('init','jm_tc_initialize');
 function jm_tc_initialize() {
 	if ( function_exists( 'add_theme_support' ) ) 
 	add_theme_support( 'post-thumbnails' );
-	if ( function_exists( 'add_image_size' ) ) 
+	//if ( function_exists( 'add_image_size' ) ) /* no use */
 	add_image_size( 'jmtc-small-thumb', 280, 150 );  /* the minimum size possible for Twitter Cards */
 	add_image_size( 'jmtc-max-web-thumb', 435, 375 );  /* maximum web size for photo cards */
 	add_image_size( 'jmtc-max-mobile-non-retina-thumb', 280, 375 );  /* maximum non retina mobile size for photo cards  */
@@ -336,7 +332,7 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'">'."\n";
 			echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'">'."\n";								
 			echo '<meta name="twitter:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
-			echo '<meta name="twitter:description" content="' . jm_tc_remove_spaces($opts['twitterPostPageDesc']) . '">'."\n"; 
+			echo '<meta name="twitter:description" content="' . $opts['twitterPostPageDesc'] . '">'."\n"; 
 			echo '<meta name="twitter:image" content="' . $opts['twitterImage'] . '">'."\n";                   
 			echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 		} 
@@ -347,19 +343,19 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			// get current post meta data
 			$creator           = get_the_author_meta('jm_tc_twitter', $post->post_author);		
 			$cardType          = get_post_meta($post->ID, 'twitterCardType', true);
-			$cardPhotoWidth    = get_post_meta(get_the_ID(),'cardPhotoWidth',true);
-			$cardPhotoHeight   = get_post_meta(get_the_ID(),'cardPhotoHeight',true);
-			$cardImage         = get_post_meta(get_the_ID(),'cardImage',true);
-			$cardData1         = get_post_meta(get_the_ID(),'cardData1',true);
-			$cardLabel1        = get_post_meta(get_the_ID(),'cardLabel1',true);
-			$cardData2         = get_post_meta(get_the_ID(),'cardData2',true);
-			$cardLabel2        = get_post_meta(get_the_ID(),'cardLabel2',true);
-			$cardImgSize       = get_post_meta(get_the_ID(),'cardImgSize',true);
-			$cardTitleKey      = $opts['twitterCardTitle'];
-			$cardDescKey	   = $opts['twitterCardDesc'];
-			// Custom fields
-				$tctitle = get_post_meta($post->ID, $cardTitleKey , true);
-				$tcdesc  = get_post_meta($post->ID, $cardDescKey, true);
+			$cardPhotoWidth    = get_post_meta($post->ID,'cardPhotoWidth',true);
+			$cardPhotoHeight   = get_post_meta($post->ID,'cardPhotoHeight',true);
+			$cardImage         = get_post_meta($post->ID,'cardImage',true);
+			$cardData1         = get_post_meta($post->ID,'cardData1',true);
+			$cardLabel1        = get_post_meta($post->ID,'cardLabel1',true);
+			$cardData2         = get_post_meta($post->ID,'cardData2',true);
+			$cardLabel2        = get_post_meta($post->ID,'cardLabel2',true);
+			$cardImgSize       = get_post_meta($post->ID,'cardImgSize',true);
+			
+			/* custom fields */
+			$tctitle  = get_post_meta($post->ID,$opts['twitterCardTitle'],true);
+			$tcdesc   = get_post_meta($post->ID,$opts['twitterCardDesc'],true);
+		
 			
 			// support for custom meta description WordPress SEO by Yoast or All in One SEO
 			if (class_exists('WPSEO_Frontend') ) { // little trick to check if plugin is here and active :)
@@ -373,9 +369,10 @@ if(!function_exists( 'add_twitter_card_info' )) {
 				if($opts['twitterCardSEOTitle'] == 'yes' && get_post_meta(get_the_ID(), '_aioseop_title', true) ) { $cardTitle  = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_title', true))); } else { $cardTitle = the_title_attribute( array('echo' => false) );}
 				if($opts['twitterCardSEODesc'] == 'yes' && get_post_meta(get_the_ID(), '_aioseop_description', true)) { $cardDescription = htmlspecialchars(stripcslashes(get_post_meta($post_id, '_aioseop_description', true))); } else { $cardDescription = get_excerpt_by_id($post->ID); }
 			} elseif ( $tctitle != '' && $tcdesc != '' ) {
-			// avoid array to string notice on title and desc
+				// avoid array to string notice on title and desc
 				$cardTitle = $tctitle;
 				$cardDescription = $tcdesc;
+				
 			} else { //default (I'll probably make a switch next time)
 				$cardTitle = the_title_attribute( array('echo' => false) );
 				$cardDescription = get_excerpt_by_id($post->ID);
@@ -520,22 +517,22 @@ function jm_tc_options_page() {
 	<span id="icon-jm-tc" class="icon32"></span>
 	<h1><?php _e('JM Twitter Cards Options', 'jm-tc'); ?></h1>
 	<h2 class="nav-tab-wrapper">
-		<a href="#tab1" class="nav-tab nav-tab-active"><?php _e('General','jm-tc');?></a>
-		<a href="#tab2" class="nav-tab"><?php _e('SEO','jm-tc');?></a>
-		<a href="#tab3" class="nav-tab"><?php _e('Photo cards','jm-tc');?></a>
-		<a href="#tab3a" class="nav-tab"><?php _e('Thumb size','jm-tc');?></a>
-		<a href="#tab4" class="nav-tab"><?php _e('Custom','jm-tc');?></a>
-		<a href="#tab5" class="nav-tab"><?php _e('Home page','jm-tc');?></a>
-		<a href="#tab6" class="nav-tab"><?php _e('Product Cards','jm-tc');?></a>
-		<a href="#tab7" class="nav-tab"><?php _e('ACF','jm-tc');?></a>
-		<a href="#tab8" class="nav-tab"><?php _e('Validation','jm-tc');?></a>
-		<a href="#tab9" class="nav-tab"><?php _e('About','jm-tc');?></a>
+	<a href="#tab1" class="nav-tab nav-tab-active"><?php _e('General','jm-tc');?></a>
+	<a href="#tab2" class="nav-tab"><?php _e('SEO','jm-tc');?></a>
+	<a href="#tab3" class="nav-tab"><?php _e('Photo cards','jm-tc');?></a>
+	<a href="#tab3a" class="nav-tab"><?php _e('Thumb size','jm-tc');?></a>
+	<a href="#tab4" class="nav-tab"><?php _e('Custom','jm-tc');?></a>
+	<a href="#tab5" class="nav-tab"><?php _e('Home page','jm-tc');?></a>
+	<a href="#tab6" class="nav-tab"><?php _e('Product Cards','jm-tc');?></a>
+	<a href="#tab7" class="nav-tab"><?php _e('ACF','jm-tc');?></a>
+	<a href="#tab8" class="nav-tab"><?php _e('Validation','jm-tc');?></a>
+	<a href="#tab9" class="nav-tab"><?php _e('About','jm-tc');?></a>
 	</h2>
 
 	<p><?php _e('This plugin allows you to get Twitter photo, summary, summary large and product cards for your blog. You can even go further in your Twitter Cards experience.', 'jm-tc'); ?></p>
 
 	<?php echo '<div class="new"><strong>'.__('What is new in version ', 'jm-tc') . jm_tc_plugin_get_version().'?</strong>' ;?>
-		&Rarr;<?php _e('Advanced Custom Field support', 'jm-tc'); ?>
+	&Rarr;<?php _e('Advanced Custom Field support', 'jm-tc'); ?>
 	</div>
 	
 	<form id="jm-tc-form" method="post" action="options.php">
