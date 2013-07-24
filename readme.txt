@@ -77,6 +77,10 @@ Just activate meta box, select **card type product** and save draft. 4 new field
 
 = The plugin generates a lot of images (different sizes) = 
 I can be a problem when you work with HD and/or a lot of images. So you can use plugins that just delete unused image, e.g <a href="http://wordpress.org/plugins/dnui-delete-not-used-image-wordpress/">DNUI</a>
+
+= How do I use the custom fields option? = 
+Basically you provide your custom field keys in plugin option page and then it will grab datas.
+
 ––––
 En Français 
 –––––––––––––––––––––––––––––––––––
@@ -99,12 +103,21 @@ Activez la meta box et sélectionnez **le type product** pour la card. Sauvez le
 = Le plugin génère beaucoup trop de fichiers images = 
 Cela peut poser problème si vous travaillez avec de la HD et/ou beaucoup d'images. Vous pouvez donc utiliser un plugin qui va effacer les fichiers images non utilisés comme par exmple <a href="http://wordpress.org/plugins/dnui-delete-not-used-image-wordpress/">DNUI</a>
 
+= Comment utiliser l'option custom fields? = 
+Il suffit de renseigner les clés de vos custom fields en page d'option et le plugin s'occupera de récupérer les datas correspondantes.
+
+
 == Screenshots ==
 1. admin
 2. confirmation mail
 3. metabox
 
 == Changelog ==
+
+=  3.2.7 =
+* 24 Jul 2013
+* bug fix for users who report issues with title and desc >> "array" error
+* Thanks a lot to BuckBeaver who's tested this update in real live condition to ensure it's working again.
 
 =  3.2.6 =
 * 23 Jul 2013
