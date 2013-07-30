@@ -114,6 +114,11 @@ Il suffit de renseigner les clés de vos custom fields en page d'option et le pl
 
 == Changelog ==
 
+=  3.2.8 =
+* 30 Jul 2013
+* bugfix with image size.
+* add crop to thumbnails to prevent error due to images with sumarry large image cards
+
 =  3.2.7 =
 * 24 Jul 2013
 * bug fix for users who report issues with title and desc >> "array" error
