@@ -114,6 +114,10 @@ Il suffit de renseigner les clés de vos custom fields en page d'option et le pl
 
 == Changelog ==
 
+=  3.2.9 =
+* 07 Aug 2013
+* bugfix: cf support. Twitter card Image should not be empty anymore in case you use external URL for image but no featured image.
+
 =  3.2.8 =
 * 30 Jul 2013
 * bugfix with image size.

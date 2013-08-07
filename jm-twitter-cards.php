@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.2.8
+Version: 3.2.9
 License: GPL2++
 */
 
@@ -349,11 +349,12 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			$cardData2         = get_post_meta($post->ID,'cardData2',true);
 			$cardLabel2        = get_post_meta($post->ID,'cardLabel2',true);
 			$cardImgSize       = get_post_meta($post->ID,'cardImgSize',true);
-			$cardTitleKey = $opts['twitterCardTitle'];
-			$cardDescKey = $opts['twitterCardDesc'];
+			$cardTitleKey      = $opts['twitterCardTitle'];
+			$cardDescKey       = $opts['twitterCardDesc'];
+			
 			/* custom fields */
-			$tctitle  = get_post_meta($post->ID,$cardTitleKey,true);
-			$tcdesc   = get_post_meta($post->ID,$cardDescKey,true);
+			$tctitle           = get_post_meta($post->ID,$cardTitleKey,true);
+			$tcdesc            = get_post_meta($post->ID,$cardDescKey,true);
 			
 			
 			// support for custom meta description WordPress SEO by Yoast or All in One SEO
@@ -396,12 +397,14 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			echo '<meta name="twitter:description" content="' . $cardDescription . '">'."\n"; 
 
 			if( has_post_thumbnail() ) {
-				  if(  $cardImage != '' ) { // cardImage is set
+				if(  $cardImage != '' ) { // cardImage is set
 					echo '<meta name="twitter:image" content="' . $cardImage . '">'."\n";
 				} else {
 					$image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), jm_tc_thumbnail_sizes() );
 					echo '<meta name="twitter:image" content="' . $image_attributes[0] . '">'."\n";
 				} 
+			} elseif( !has_post_thumbnail() &&  $cardImage != '') {
+				echo '<meta name="twitter:image" content="' . $cardImage . '">'."\n";
 			} else { //fallback
 				echo '<meta name="twitter:image" content="' . $opts['twitterImage'] . '">'."\n";
 			}
