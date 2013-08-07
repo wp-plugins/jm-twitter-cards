@@ -53,6 +53,7 @@ function jm_tc_remove_at($at) {
 // Add stuffs in init such as img size
 add_action('init','jm_tc_initialize');
 function jm_tc_initialize() {
+
 	if ( function_exists( 'add_theme_support' ) ) add_theme_support( 'post-thumbnails' );
 	add_image_size( 'jmtc-small-thumb', 280, 150, true );  /* the minimum size possible for Twitter Cards */
 	add_image_size( 'jmtc-max-web-thumb', 435, 375, true );  /* maximum web size for photo cards */
