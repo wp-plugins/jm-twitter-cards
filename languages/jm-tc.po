@@ -426,3 +426,5 @@ msgstr ""
 #: jm-twitter-cards.php
 msgid "This allows you to grab datas from custom fields you have created."
 msgstr ""
+
+

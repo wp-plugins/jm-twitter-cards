@@ -15,9 +15,6 @@ A plugin meant to simplify Twitter cards integration on WordPress. You can custo
 Once activated the plugin adds Twitter cards on your posts according to your settings. Enjoy !
 Compatible with : WP SEO by Yoast (do not check cards option in this plugin if activated) and All in One SEO
 
-**New feature in version 3.1.8 : Product cards** see FAQ
-**New feature in 3.2.1** : you can define thumbnail size for featured image, just use the simple drop down menu (be careful with this feature, a lot of files are generated, **see FAQ** for the solution)
-
 The plugin allows you to customize your cards per each post. But do not activate cards in SEO by Yoast plugin. Otherwise markup will be added twice.
 If you choose full customization metabox is now on the right side in your edit. It's shorter simply because now twitter account is retrieved from author's profile.
 
@@ -31,9 +28,6 @@ En Français
 Une fois activé le plugin s'occupe d'ajouter une card Twitter sur vos posts selon vos réglages. Profitez-en bien !
 
 Compatible avec WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si activé) et All in One SEO
-
-**Nouveauté dans la version 3.1.8 : les cards de type Produit** : consultez la FAQ
-**Nouveauté dans la version 3.2.1**: vous pouvez définir la taille de la featured image, utilisez le menu déroulant (attention avec cette nouvelle fonctionnalité, elle peut générer beaucoup de fichiers image, **voir la FAQ** pour la solution)
 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom la metabox est maintenant située sur le côté tout en haut, elle est réduite car le compte Twitter de l'auteur est récupéré directement depuis son profil.
@@ -114,9 +108,17 @@ Il suffit de renseigner les clés de vos custom fields en page d'option et le pl
 
 == Changelog ==
 
+=  3.3.0 =
+* 09 Aug 2013
+* Simpler UI is better. I just merged some fieldsets in option page to make it clearer. Don't panic I did not delete anything.
+* Add a documentation (only in English for the moment)
+* Crop can now be deactivated on images. Do not forget to regenerate your thumbnails if you set this option to false.
+* Add an uninstall.php file (to clean database if plugin is desinstalled) 
+
 =  3.2.9 =
 * 07 Aug 2013
-* bugfix: cf issue reported support regarding twitter image. Twitter card Image should not be empty anymore in case you use external URL for image but no featured image.
+* bugfix: cf issue reported support regarding twitter image. 
+* Twitter card Image should not be empty anymore in case you use external URL for image but no featured image.
 
 =  3.2.8 =
 * 30 Jul 2013
