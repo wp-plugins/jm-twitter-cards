@@ -898,7 +898,7 @@ function jm_tc_sanitize_options($options) {
 	if ( isset($options['twitterCardCrop']) )
 	$new['twitterCardCrop']      = $options['twitterCardCrop'];
 	if ( isset($options['twitterUsernameKey']) )
-	$new['twitterUsernameKey']   = $options['twitterUsernameKey'];
+	$new['twitterUsernameKey']   = esc_attr(strip_tags($options['twitterUsernameKey'] ) );
 	return $new;
 }
 
