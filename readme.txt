@@ -108,6 +108,11 @@ Il suffit de renseigner les clés de vos custom fields en page d'option et le pl
 
 == Changelog ==
 
+=  3.3.5 =
+* 30 Aug 2013
+* Re-add Twitter meta domain that handles the "view on" on Twitter Cards.
+* fix minor bug in option page (<em> not closed)
+
 =  3.3.4 =
 * 23 Aug 2013
 * New feature : if your theme already have a Twitter option in profile you can now use it (just provide the key).

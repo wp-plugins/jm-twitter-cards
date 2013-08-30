@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.3.4
+Version: 3.3.5
 License: GPL2++
 */
 
@@ -388,6 +388,7 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'">'."\n";								
 			echo '<meta name="twitter:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
 			echo '<meta name="twitter:description" content="' . $opts['twitterPostPageDesc'] . '">'."\n"; 
+			echo '<meta name="twitter:domain" content="' . get_bloginfo( 'url' ). '"/>'."\n";
 			echo '<meta name="twitter:image" content="' . $opts['twitterImage'] . '">'."\n";                   
 			echo '<!-- /JM Twitter Cards -->'."\n\n"; 
 		} 
@@ -455,7 +456,8 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'">'."\n";												  
 			echo '<meta name="twitter:title" content="' . $cardTitle  . '">'."\n";  // filter used by plugin to customize title  
 			echo '<meta name="twitter:description" content="' . jm_tc_remove_lb( $cardDescription ). '">'."\n"; 
-
+			echo '<meta name="twitter:domain" content="' . get_bloginfo( 'url' ). '"/>'."\n";
+			
 			if( has_post_thumbnail() ) {
 				if(  $cardImage != '' && $twitterCardCancel != 'yes') { // cardImage is set
 					echo '<meta name="twitter:image" content="' . $cardImage . '">'."\n";
@@ -642,7 +644,7 @@ function jm_tc_options_page() {
 	<p>
 	<label for="twitterUsernameKey"><?php _e('Modify user meta key associated with Twitter Account in profiles :', 'jm-tc'); ?></label>
 	<input id="twitterUsernameKey" type="text" name="jm_tc[twitterUsernameKey]" class="regular-text" value="<?php echo $opts['twitterUsernameKey']; ?>" />
-	<br />(<em><?php _e('Be careful, this meta key MUST be associated with a meta value which is a USERNAME not a link such as http://twitter.com/user. This could break the cards ! If you do not know what it is, you should not modify this field).','jm-tc'); ?>
+	<br />(<em><?php _e('Be careful, this meta key MUST be associated with a meta value which is a USERNAME not a link such as http://twitter.com/user. This could break the cards ! If you do not know what it is, you should not modify this field).','jm-tc'); ?> </em>)
 	</p>
 	<?php endif; ?>
 	<?php submit_button(null, 'primary', '_submit'); ?>
