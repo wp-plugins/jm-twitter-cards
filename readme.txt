@@ -130,6 +130,10 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Changelog ==
 
+=  3.3.7.1 =
+* 30 Oct 2013
+* Fix script bug in admin that broke saving in option page
+
 =  3.3.7 =
 * 28 Oct 2013
 * Add some AJAX in option page to make things faster and smooth
