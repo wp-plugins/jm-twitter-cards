@@ -129,6 +129,12 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Changelog ==
 
+=  3.3.9 =
+* 03 Jan 2014
+* check closing meta to make cleaner HTML (thanks @Dan_Silber for the report)
+* add filter for developers => 'jmtc_markup'
+* fix documentation
+
 =  3.3.8 =
 * 17 Dec 2013
 * Delete JetPack Notice

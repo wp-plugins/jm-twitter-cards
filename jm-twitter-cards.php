@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.3.8
+Version: 3.3.9
 License: GPL2++
 */
 
@@ -20,6 +20,7 @@ License: GPL2++
 *			  - http://codex.wordpress.org/AJAX_in_Plugins	
 *			  - http://codex.wordpress.org/Plugin_API/Action_Reference/wp_ajax_(action)
 *			  - http://byronyasgur.wordpress.com/2011/06/27/frontend-forward-facing-ajax-in-wordpress/	
+*			  - https://dev.twitter.com/docs/cards/getting-started#open-graph	
 */
 
 
@@ -409,22 +410,22 @@ if(!function_exists( 'get_excerpt_by_id' )) {
 
 
 // function to add markup in head section of post types
-if(!function_exists( 'add_twitter_card_info' )) {
+if(!function_exists( 'add_twitter_card_markup' )) {
 
-	function add_twitter_card_info() {
+	function add_twitter_card_markup() {
 		global $post;	
 		/* get options */          		
 		$opts = jm_tc_get_options(); 	
 		if ( is_front_page()||is_home()) {
-			echo "\n".'<!-- JM Twitter Cards by Julien Maury '.jm_tc_plugin_get_version().' -->'."\n";  	                   					
-			echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'">'."\n"; 
-			echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'">'."\n";
-			echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'">'."\n";								
-			echo '<meta name="twitter:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
-			echo '<meta name="twitter:description" content="' . $opts['twitterPostPageDesc'] . '">'."\n"; 
-			echo '<meta name="twitter:domain" content="' . get_bloginfo( 'name' ). '"/>'."\n";
-			echo '<meta name="twitter:image" content="' . $opts['twitterImage'] . '">'."\n";                   
-			echo '<!-- /JM Twitter Cards -->'."\n\n"; 
+			$output = "\n".'<!-- JM Twitter Cards by Julien Maury '.jm_tc_plugin_get_version().' -->'."\n";  	                   					
+			$output .= '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
+			$output .= '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
+			$output .= '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";								
+			$output .= '<meta name="twitter:title" content="' .$opts['twitterPostPageTitle'] . '"/>'."\n";     
+			$output .= '<meta name="twitter:description" content="' . $opts['twitterPostPageDesc'] . '"/>'."\n"; 
+			$output .= '<meta name="twitter:domain" content="' . get_bloginfo( 'name' ). '"/>'."\n";
+			$output .= '<meta name="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";                   
+			$output .= '<!-- /JM Twitter Cards -->'."\n\n"; 
 		} 
 
 		elseif( is_singular() && !is_front_page() && !is_home() && !is_404() && !is_tag()) {
@@ -475,36 +476,36 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			
 			if(($opts['twitterCardMetabox'] == 'yes') && !empty($cardType) && $twitterCardCancel != 'yes' ) {
 
-				echo '<meta name="twitter:card" content="'. $cardType .'">'."\n";
+				$output = '<meta name="twitter:card" content="'. $cardType .'"/>'."\n";
 			} else {
-				echo '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'">'."\n"; 
+				$output = '<meta name="twitter:card" content="'. $opts['twitterCardType'] .'"/>'."\n"; 
 			}
 			if( $opts['twitterProfile'] == 'yes' && !empty($creator) ) { // this part has to be optional, this is more for guest bltwitterging but it's no reason to bother everybody.
-				echo '<meta name="twitter:creator" content="@'. $creator .'">'."\n";												
+				$output .= '<meta name="twitter:creator" content="@'. $creator .'"/>'."\n";												
 			} elseif( $opts['twitterProfile'] == 'no' && !empty($username) && !is_array($username)) { // http://codex.wordpress.org/Function_Reference/get_user_meta#Return_Values
-				echo '<meta name="twitter:creator" content="@'. $username .'">'."\n";
+				$output .= '<meta name="twitter:creator" content="@'. $username .'"/>'."\n";
 			} else {
-				echo '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'">'."\n";
+				$output .= '<meta name="twitter:creator" content="@'. $opts['twitterCreator'] .'"/>'."\n";
 			}
 			// these next 4 parameters should not be editable in post admin 
-			echo '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'">'."\n";												  
-			echo '<meta name="twitter:title" content="' . $cardTitle  . '">'."\n";  // filter used by plugin to customize title  
-			echo '<meta name="twitter:description" content="' . jm_tc_remove_lb( $cardDescription ). '">'."\n"; 
-			echo '<meta name="twitter:domain" content="' . get_bloginfo( 'name' ). '"/>'."\n";
+			$output .= '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
+			$output .= '<meta name="twitter:title" content="' . $cardTitle  . '"/>'."\n";  // filter used by plugin to customize title  
+			$output .= '<meta name="twitter:description" content="' . jm_tc_remove_lb( $cardDescription ). '">'."\n"; 
+			$output .= '<meta name="twitter:domain" content="' . get_bloginfo( 'name' ). '"/>'."\n";
 			
 			if( $cardType != 'gallery') { 
 			
 				if( get_the_post_thumbnail( $post->ID ) != '' ) {
 					if(  $cardImage != '' && $twitterCardCancel != 'yes') { // cardImage is set
-    					echo '<meta name="twitter:image" content="' . $cardImage . '">'."\n";
+    					$output .= '<meta name="twitter:image" content="' . $cardImage . '"/>'."\n";
 					} else {
 						$image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), jm_tc_thumbnail_sizes() );
-						echo '<meta name="twitter:image" content="' . $image_attributes[0] . '">'."\n";
+						$output .= '<meta name="twitter:image" content="' . $image_attributes[0] . '"/>'."\n";
 					} 
 				} elseif( get_the_post_thumbnail( $post->ID ) == '' &&  $cardImage != '' && $twitterCardCancel != 'yes') {
-					echo '<meta name="twitter:image" content="' . $cardImage . '">'."\n";
+					$output .= '<meta name="twitter:image" content="' . $cardImage . '"/>'."\n";
 				} else { //fallback
-					echo '<meta name="twitter:image" content="' . $opts['twitterImage'] . '">'."\n";
+					$output .= '<meta name="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";
 				}
 			
 			} else { // markup will be different
@@ -525,21 +526,21 @@ if(!function_exists( 'add_twitter_card_info' )) {
 								  foreach ( $attachments as $attachment ) {
 								  // get attachment array with the ID from the returned posts
 								  $pic = wp_get_attachment_url( $attachment->ID);
-								  echo '<meta property="twitter:image'.$i.'" content="' . $pic . '"/>'."\n";
+								  echo '<meta name="twitter:image'.$i.'" content="' . $pic . '"/>'."\n";
 								  $i++;
 								  if ($i > 3) break; //in case there are more than 4 images in post, we are not allowed to add more than 4 images in our card by Twitter
 								  }
 							 } 
 					} else {
-						echo '<!-- ' . __('Warning : Gallery Card is not set properly ! There is no gallery in this post !','jm-tc') .  ' -->'."\n";
-						echo '<!-- @(-_-)] -->'."\n";
+						$output .= '<!-- ' . __('Warning : Gallery Card is not set properly ! There is no gallery in this post !','jm-tc') .  ' -->'."\n";
+						$output .= '<!-- @(-_-)] -->'."\n";
 					}
 				} else {
 					if( has_post_thumbnail() ) {
 					    $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), jm_tc_thumbnail_sizes() );
-						echo '<meta name="twitter:image" content="' . $image_attributes[0] . '">'."\n";
+						$output .= '<meta name="twitter:image" content="' . $image_attributes[0] . '"/>'."\n";
 					} else {
-						echo '<meta name="twitter:image" content="' . $opts['twitterImage'] . '">'."\n";
+						$output .= '<meta name="twitter:image" content="' . $opts['twitterImage'] . '"/>'."\n";
 					}
 				}
 			}
@@ -547,28 +548,37 @@ if(!function_exists( 'add_twitter_card_info' )) {
 	
 			if($opts['twitterCardType'] == 'photo' || $cardType  == 'photo' || $cardType == 'product' ) {
 				if(!empty($cardPhotoWidth) && !empty($cardPhotoHeight) && $twitterCardCancel != 'yes') {
-					echo '<meta name="twitter:image:width" content="'.$cardPhotoWidth.'">'."\n";
-					echo '<meta name="twitter:image:height" content="'.$cardPhotoHeight.'">'."\n";
+					$output .= '<meta name="twitter:image:width" content="'.$cardPhotoWidth.'"/>'."\n";
+					$output .= '<meta name="twitter:image:height" content="'.$cardPhotoHeight.'"/>'."\n";
 				} elseif($opts['twitterCardType'] == 'photo' && $twitterCardCancel != 'yes') {
-					echo '<meta name="twitter:image:width" content="'.$opts['twitterImageWidth'].'">'."\n";
-					echo '<meta name="twitter:image:height" content="'.$opts['twitterImageHeight'].'">'."\n";
+					$output .=  '<meta name="twitter:image:width" content="'.$opts['twitterImageWidth'].'"/>'."\n";
+					$output .= '<meta name="twitter:image:height" content="'.$opts['twitterImageHeight'].'"/>'."\n";
 				}	
 			} 
 
 			if($cardType == 'product') {
 				if(!empty($cardData1) && !empty($cardLabel1) && !empty($cardData2) && !empty($cardLabel2) && $twitterCardCancel != 'yes' ) {
-					echo '<meta name="twitter:data1" content="'.$cardData1.'">'."\n";
-					echo '<meta name="twitter:label1" content="'.strtoupper($cardLabel1).'">'."\n";
-					echo '<meta name="twitter:data2" content="'.$cardData2.'">'."\n";
-					echo '<meta name="twitter:label2" content="'.strtoupper($cardLabel2).'">'."\n";
+					$output .= '<meta name="twitter:data1" content="'.$cardData1.'"/>'."\n";
+					$output .= '<meta name="twitter:label1" content="'.strtoupper($cardLabel1).'"/>'."\n";
+					$output .= '<meta name="twitter:data2" content="'.$cardData2.'"/>'."\n";
+					$output .= '<meta name="twitter:label2" content="'.strtoupper($cardLabel2).'"/>'."\n";
 				}  else {
-						echo '<!-- ' . __('Warning : Product Card is not set properly ! There is no product datas !','jm-tc') .  ' -->'."\n";
+					$output .= '<!-- ' . __('Warning : Product Card is not set properly ! There is no product datas !','jm-tc') .  ' -->'."\n";
 					}		
 			}
-			echo '<!-- /JM Twitter Cards -->'."\n\n"; 
-		}      
+			$output .= '<!-- /JM Twitter Cards -->'."\n\n"; 
+		}
+
+		return apply_filters( 'jmtc_markup', $output ); // provide filter for developers.
 
 	  }
+	}
+	
+	// Function that hooks on wp_head
+	if(!function_exists( 'add_twitter_card_info' )) {
+		function add_twitter_card_info() {
+			echo add_twitter_card_markup();
+		}
 	}
 	add_action( 'wp_head', 'add_twitter_card_info', 99);// it's actually better to load twitter card meta at the very end (SEO desc is more important)
 
@@ -674,9 +684,6 @@ if(!function_exists( 'jm_tc_ignore_this' )) {
 		}
 	}
 }
-
-// Ajax saving
-
 
 
 // Settings page
