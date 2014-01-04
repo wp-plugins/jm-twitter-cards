@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.3.9
+Version: 3.4.0
 License: GPL2++
 */
 
@@ -192,9 +192,10 @@ if( $opts['twitterCardMetabox'] == 'yes' ) {
 
 	function jm_tc_meta_box_cb( $post )
 	{
+		$opts = jm_tc_get_options();//grab default option
 		$values = get_post_custom( $post->ID );
 		$deactivated  = isset( $values['twitterCardCancel'] ) ? esc_attr( $values['twitterCardCancel'][0] ) : '';
-		$selectedType = isset( $values['twitterCardType'] ) ? esc_attr( $values['twitterCardType'][0] ) : '';
+		$selectedType = isset( $values['twitterCardType'] ) ? esc_attr( $values['twitterCardType'][0] ) : $opts['twitterCardType'];//just make the meta box more comfortable ^^
 		$selectedSize = isset( $values['cardImgSize'] ) ? esc_attr( $values['cardImgSize'][0] ) : '';
 		wp_nonce_field( 'jm_tc_meta_box_nonce', 'meta_box_nonce' );
 		?>
@@ -219,6 +220,12 @@ if( $opts['twitterCardMetabox'] == 'yes' ) {
 			<?php if ($deactivated != "yes") : ?>
 			
 				<!-- select card type -->
+				
+				<?php 
+				// make the card type setting the selected Type by default
+				
+				
+				?>
 				<section class="feature further cardTypes">
 				<h1><?php _e('Card types', 'jm-tc'); ?></h1>
 				<p>
@@ -490,7 +497,7 @@ if(!function_exists( 'add_twitter_card_markup' )) {
 			// these next 4 parameters should not be editable in post admin 
 			$output .= '<meta name="twitter:site" content="@'. $opts['twitterSite'] .'"/>'."\n";												  
 			$output .= '<meta name="twitter:title" content="' . $cardTitle  . '"/>'."\n";  // filter used by plugin to customize title  
-			$output .= '<meta name="twitter:description" content="' . jm_tc_remove_lb( $cardDescription ). '">'."\n"; 
+			$output .= '<meta name="twitter:description" content="' . jm_tc_remove_lb( $cardDescription ). '"/>'."\n"; 
 			$output .= '<meta name="twitter:domain" content="' . get_bloginfo( 'name' ). '"/>'."\n";
 			
 			if( $cardType != 'gallery') { 
@@ -886,12 +893,7 @@ function jm_tc_options_page() {
 				<div class="postbox">	
 					<h2 class="hndle"><span><?php _e('Help me keep this free', 'jm-tc'); ?></span></h2>
 					<p><?php _e('Please help me keep this plugin free.', 'jm-tc'); ?></p>
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-							<input type="hidden" name="cmd" value="_s-xclick">
-							<input type="hidden" name="hosted_button_id" value="2NBS57W3XG62L">
-							<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_donateCC_LG.gif" border="0" name="jm_tc_submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
-							<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
-						</form>
+						<a href="http://www.amazon.fr/registry/wishlist/1J90JNIHBBXL8"><?php _e('WishList Amazon', 'jm-ltsc'); ?></a>
 				</div>
 				<div class="postbox link">
 					<h2 class="hndle"><span><?php _e('Other plugins you might dig','jm-tc');?></span></h2>

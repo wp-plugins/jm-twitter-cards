@@ -1,7 +1,6 @@
 === JM Twitter Cards ===
 Contributors: jmlapam
 Tags: twitter, cards, semantic markup, metabox, meta
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=tweetpressfr%40gmail%2ecom&item_name=JM%20Twitter%20Cards&no_shipping=0&no_note=1&tax=0&currency_code=EUR&bn=PP%2dDonationsBF&charset=UTF%2d8
 Requires at least: 3.1.0
 Tested up to: 3.8
 License: GPLv2 or later
@@ -129,9 +128,16 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Changelog ==
 
+=  3.4.0 =
+* 04 Jan 2014
+* Fix the missing closing meta for description that triggers minor HTML error
+* Make card type in meta box the same as option page by default to save your time
+* Quit paypal - if you want to thank me, just use the wishlist <3
+
 =  3.3.9 =
 * 03 Jan 2014
-* check closing meta to make cleaner HTML (thanks @Dan_Silber for the report)
+* check closing meta to make it clean (thanks @Dan_Silber for the report)
+* add support for Open Graph
 * add filter for developers => 'jmtc_markup'
 * fix documentation
 
