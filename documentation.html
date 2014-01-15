@@ -3,114 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <title>JM Twitter API Status Monitor - Documentation</title>
-
 <style type="text/css">
-html {
-background: #eee;
-	font-size: 100%;
-}
-body {
-width: 772px;
-padding:1em 2em;
-margin:auto;
-	font-family: Georgia, Times, "Times New Roman", serif;
-	font-size:100%;
-	line-height: 150%;
-color: #444;
-	font-size: 1;
-background: #fff;
-	box-shadow: 0 0 3px rgba(0,0,0,0.3);
-}
-blockquote{border:none; font-family: Georgia, serif;  font-style: italic; margin: 0.25em 0; padding: 0.25em 40px; line-height: 1.45; position: relative; color:#888; background:transparent;}
-blockquote:before{display: block; content: "\201C"; font-size: 80px; position: absolute; left: -5px; top: -20px; color:#888;}
-
-p { max-width: 650px; }
-img { border:1px solid #ccc; max-width:700px; }
-.right { text-align:right;}
-.pa1 { padding:1em; }
-a { color: #00ACED; }
-h1 { margin-top:1.7em; margin-bottom:.7em;}
-h2 {
-	margin-top: 1.5em;
-	padding-top: 1em;
-	border-top: 1px solid #eee;
-	font-size: 2em;
-	font-weight:normal;
-}
-.author {
-width: 40%;
-margin: 0 0 .9em .9em;
-background: #eee;
-border: 1px solid #ddd;
-padding: 20px;
-	font-size: 0.8em;
-overflow: hidden;
-}
-.author img {
-float: left;
-	margin-top: 5px;
-	margin-right: 20px;
-}
-
-.mess-customer {
-float:left;
-}
-
-.bold {
-border: 1px solid darkred;
-display:inline-block;
-color: #444;
-padding: 12px;
-background: #FFEBE8;
-}
-
-pre {
-	background-color:#FFFFE0;
-padding:1em;
-	border-left:5px solid #ccc;
-}
-
-.btn {
-	text-decoration: none;
-	text-shadow: 0 1px 0 #fff;
-font: bold 11px Helvetica, Arial, sans-serif;
-color: #444;
-	line-height: 17px;
-height: 18px;
-display: inline-block;
-float: left;
-margin: 5px;
-padding: 5px 6px 4px 6px;
-background: #F3F3F3;
-border: solid 1px #D9D9D9;
-	border-radius: 2px;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-transition: border-color .20s;
-	-moz-transition: border-color .20s;
-	-o-transition: border-color .20s;
-transition: border-color .20s;
-height: 29px !important;
-cursor: pointer;
-}
-.btn:hover {
-background: #F4F4F4;
-	border-color: #C0C0C0;
-color: #333;
-}
-.btn:active {
-	border-color: #4D90FE;
-color: #4D90FE;
-	-moz-box-shadow:inset 0 0 10px #D4D4D4;
-	-webkit-box-shadow:inset 0 0 10px #D4D4D4;
-	box-shadow:inset 0 0 10px #D4D4D4;
-}
-
-.footer {
-padding: 1em;
-	border-top:1px solid #ddd;
-}
-
+	html { background: #eee; font-size: 100%; }
+	body { width: 772px; padding:1em 2em; margin:auto; font-family: Georgia, Times, "Times New Roman", serif; font-size:100%; line-height: 150%;
+	color: #444; font-size: 1; background: #fff; box-shadow: 0 0 3px rgba(0,0,0,0.3); }
+	blockquote{ border:none; font-family: Georgia, serif;  font-style: italic; margin: 0.25em 0; padding: 0.25em 40px; line-height: 1.45; position: relative; color:#888; background:transparent; }
+	blockquote:before{ display: block; content: "\201C"; font-size: 80px; position: absolute; left: -5px; top: -20px; color:#888; }
+	p { max-width: 650px; }
+	img { border:1px solid #ccc; max-width:700px; }
+	.right { text-align:right; }
+	.pa1 { padding:1em; }
+	a { color: #00ACED; }
+	h1 { margin-top:1.7em; margin-bottom:.7em; }
+	h2 { margin-top: 1.5em; padding-top: 1em; border-top: 1px solid #eee; font-size: 2em; font-weight:normal; }
+	.author { width: 40%; margin: 0 0 .9em .9em; background: #eee; border: 1px solid #ddd; padding: 20px; font-size: 0.8em; overflow: hidden; }
+	.author img { float: left; margin-top: 5px; margin-right: 20px; }
+	.mess-customer { float:left; }
+	.bold { border: 1px solid darkred; display:inline-block; color: #444; padding: 12px; background: #FFEBE8; }
+	pre { background-color:#FFFFE0; padding:1em; border-left:5px solid #ccc; }
+	.btn { text-decoration: none; text-shadow: 0 1px 0 #fff; font: bold 11px Helvetica, Arial, sans-serif; color: #444; line-height: 17px; height: 18px; display: inline-block; float: left; margin: 5px; padding: 5px 6px 4px 6px; background: #F3F3F3; border: solid 1px #D9D9D9; border-radius: 2px; -webkit-border-radius: 2px; transition: border-color .20s; height: 29px !important; cursor: pointer; }
+	.btn:hover { background: #F4F4F4; border-color: #C0C0C0; color: #333;  }
+	.btn:active { border-color: #4D90FE; color: #4D90FE; -moz-box-shadow:inset 0 0 10px #D4D4D4; -webkit-box-shadow:inset 0 0 10px #D4D4D4; box-shadow:inset 0 0 10px #D4D4D4; }
+	.footer { padding: 1em; border-top:1px solid #ddd; }
 </style>
 </head>
 <body>
@@ -337,7 +251,7 @@ If option is set to "yes, please deactivate it", the datas will be set by genera
 <p>This is meant to let the user know that there is more than just a single image at the URL shared, but rather a gallery of related images. So these images have to be part of a WordPress gallery. Please ensure you use the shortcode [gallery] in your post to enjoy Gallery cards</p>
 
 <h3 id="extrasettings">Extra settings</h3>
-<p>If you select photo, or summary large image or product cards and then <strong>save draft</strong> you'll see additional fields you can set such as :</p>
+<p>If you select photo, or summary large image or product cards then (<strong>save draft</strong> if JavaScript is disabled) you'll see additional fields you can set such as :</p>
 
 <ul>
 <li><strong>Retina display</strong>: Be careful with Retina displays, image must be tall enough. Also make sure your image is not heavier than 1 MB if used for summary large cards</li>
@@ -352,7 +266,7 @@ If option is set to "yes, please deactivate it", the datas will be set by genera
 <li><a href="https://dev.twitter.com/docs/cards">Twitter cards documentation</a></li>
 <li><a href="https://dev.twitter.com/docs/cards/markup-reference">Meta tag references</a></li>
 </ul>
-<p class="right pa1">Julien Maury, 9/8/2013</p>
+<p class="right pa1">Julien Maury, 06/01/2014</p>
 <p class="right pa1"><a href="#menu">Go To Table of Contents</a></p>
 </div>
 </body>
