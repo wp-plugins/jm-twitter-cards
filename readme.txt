@@ -1,6 +1,6 @@
 === JM Twitter Cards ===
 Contributors: jmlapam
-Tags: twitter, cards, semantic markup, metabox, meta, photo, product, gallery
+Tags: twitter, cards, semantic markup, metabox, meta, photo, product, gallery, analytics
 Requires at least: 3.1.0
 Tested up to: 3.8
 License: GPLv2 or later
@@ -135,6 +135,14 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 3. meta box
 
 == Changelog ==
+
+= 3.5.1 =
+* 28 Jan 2014
+* Change priority for Twitter cards Markup (put at the very end of wp_head() )
+* Add some documentation for Analytics which is an amazing new feature (not available for some countries such as France, be patient ^^)
+* Fix links to documentation
+* Add documentation for analytics
+* Regenerate blank po file
 
 = 3.5.0 =
 * 15 Jan 2014

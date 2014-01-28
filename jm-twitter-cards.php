@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.5.0
+Version: 3.5.1
 License: GPL2++
 */
 
@@ -590,7 +590,7 @@ if(!function_exists( 'add_twitter_card_markup' )) {
 			echo add_twitter_card_markup();
 		}
 	}
-	add_action( 'wp_head', 'add_twitter_card_info', 99);// it's actually better to load twitter card meta at the very end (SEO desc is more important)
+	add_action( 'wp_head', 'add_twitter_card_info', PHP_INT_MAX);// it's actually better to load twitter card meta at the very end (SEO desc is more important)
 
 /*
 * ADMIN OPTION PAGE
@@ -697,14 +697,20 @@ if(!function_exists( 'jm_tc_ignore_this' )) {
 
 
 // Settings page
+function jm_tc_docu( $n = 0 ) {
+	$anchor = array('#general','#seo','#images','#metabox','#pagehome','#analytics');
+	
+	$docu   = '<a class="button button-secondary docu" target="_blank" href="'.plugins_url('documentation.html'.$anchor[$n],__FILE__).'">'. __('Documentation','jm-tc').'</a>';
+	
+	return $docu;
+}
+
+
 function jm_tc_options_page() {
 	$loader  = '<div class="form-status"></div>';
 	$loader .= '<div class="form-loading hide" style="background-image:url('.plugins_url('admin/img/loading.gif',__FILE__).')"><span class="text-loading">'. __('SAVING...','jm-tc').'</span></div>';
 	$loader .= '<input type="submit" name="jm_tc_submit" class="submit" value="'. __('Save changes','jm-tc').'"  />';
 	
-	
-	$anchor = '';
-	$docu   = '<a class="button button-secondary docu" target="_blank" href="'.plugins_url('documentation.html#'.$anchor,__FILE__).'">'. __('Documentation','jm-tc').'</a>';
 	
 	$opts = jm_tc_get_options();
 	?>
@@ -731,8 +737,7 @@ function jm_tc_options_page() {
 					<section class="postbox" id="tab1" > 						
 					<h1 class="hndle"><?php _e('General', 'jm-tc'); ?></h1>
 					<?php 
-					$anchor = 'general';
-					echo $docu; 
+					echo jm_tc_docu(0);
 					?>
 						<p>
 							<label class="labeltext" for="twitterCardType"><?php _e('Choose what type of card you want to use', 'jm-tc'); ?> :</label>
@@ -778,8 +783,7 @@ function jm_tc_options_page() {
 					<section class="postbox"  id="tab2" >  
 					<h1 class="hndle"><?php _e('SEO', 'jm-tc'); ?></h1>  	
 					<?php 
-					$anchor = 'seo';
-					echo $docu; 
+					echo jm_tc_docu(1);
 					?>
 					<h2><?php _e('Grab datas from SEO plugins', 'jm-tc'); ?></h2>								
 					<p>
@@ -814,8 +818,7 @@ function jm_tc_options_page() {
 					<section class="postbox"  id="tab3" >
 					<h1 class="hndle"><?php _e('Thumbnails', 'jm-tc'); ?></h1>
 					<?php 
-					$anchor = 'images';
-					echo $docu; 
+					echo jm_tc_docu(2);
 					?>
 						<p>
 							<label class="labeltext" for="twitterCardImgSize"><?php _e('Set thumbnail size', 'jm-tc'); ?> :</label>
@@ -855,8 +858,7 @@ function jm_tc_options_page() {
 					<section class="postbox"  id="tab4" > 					
 					<h1 class="hndle"><?php _e('Meta Box', 'jm-tc'); ?></h1>
 					<?php 
-					$anchor = 'metabox';
-					echo $docu; 
+					echo jm_tc_docu(3);
 					?>
 						<p>
 							<label class="labeltext" for="twitterCardMetabox"><?php _e('Get a <strong>custom metabox</strong> on each post type admin', 'jm-tc'); ?> :</label>
@@ -871,8 +873,7 @@ function jm_tc_options_page() {
 					<section class="postbox"  id="tab5" > 					
 					<h1 class="hndle">Home - <?php _e('Posts page', 'jm-tc'); ?></h1>
 					<?php 
-					$anchor = 'pagehome';
-					echo $docu; 
+					echo jm_tc_docu(4);
 					?>
 						<p>
 							<label class="labeltext" for="twitterPostPageTitle"><strong><?php _e('Enter title for Posts Page :', 'jm-tc'); ?> </strong>:</label><br />
@@ -890,6 +891,20 @@ function jm_tc_options_page() {
 				</form><!-- /#jm-tc-form -->
 				<!-- the about part -->
 				<div id="tab6" class="postbox link">
+					<h1 class="hndle"><span><?php _e('Analytics','jm-tc');?></span></h1>
+					<?php
+					 echo jm_tc_docu(5);
+					?>
+					<p>
+					<?php _e('Now you can combine Twitter Cards with','jm-tc');?> <a href="https://analytics.twitter.com/">Twitter Card analytics</a>. <?php _e('It allows you to make some tests and then you can choose "top performing Twitter Cards that drove clicks".','jm-tc');?> 
+					</p>
+					<p>
+					<?php _e('You can test sources, links, influencers and devices. It is awesome and you should enjoy these new tools.','jm-tc');?>
+					</p>
+					
+					<p><?php _e('This will help you to set the best card type experience and it will probably improve your marketing value.','jm-tc');?></p>
+				
+				
 					<h1 class="hndle"><span><?php _e('About the developer','jm-tc');?></span></h1>
 						<p><img src="http://www.gravatar.com/avatar/<?php echo md5( 'tweetpressfr'.'@'.'gmail'.'.'.'com' ); ?>" style="float:left;margin-right:10px;"/>
 						<strong>Julien Maury</strong><br />
@@ -903,14 +918,6 @@ function jm_tc_options_page() {
 					<p><?php _e('Please help me keep this plugin free.', 'jm-tc'); ?></p>
 						<a href="http://www.amazon.fr/registry/wishlist/1J90JNIHBBXL8"><?php _e('WishList Amazon', 'jm-ltsc'); ?></a>
 				</div>
-				<div class="postbox link">
-					<h2 class="hndle"><span><?php _e('Other plugins you might dig','jm-tc');?></span></h2>
-						<ul>
-							<li><a href="http://wordpress.org/plugins/jm-last-twit-shortcode/">JM Last Twit Shortcode</a> - <?php _e('Display any timeline you want the Twitter 1.1 way with a simple shortcode','jm-tc');?></li>
-							<li><a href="http://wordpress.org/plugins/jm-html5-and-responsive-gallery/">JM HTML5 and Responsive Gallery</a> - <?php _e('Fix poor native markup for WordPress gallery with some HTML5 markup and add responsive rules.','jm-tc');?></li>
-							<li><a href="http://wordpress.org/plugins/jm-twit-this-comment/">JM Twit This Comment</a> - <?php _e('Make your comments tweetable','jm-tc');?></li>
-						</ul>
-				</div>	
 			<!-- /the about part -->
 		</div><!-- /.column 2 -->
 	</div><!-- /#pluginwrapper -->
