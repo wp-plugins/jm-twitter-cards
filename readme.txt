@@ -136,6 +136,13 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Changelog ==
 
+= 3.8.1 =
+* 02 Feb 2014
+* Fix jQuery in meta box => no more hide for additional fields when saving
+* Fix conflicts between product and photo cards with meta width and height
+* Update uninstall.php
+* Sorry for the too many updates today. Bugdfixes have been made quickly ^^.
+
 = 3.7 & 3.8 =
 * 02 Feb 2014
 * fix capability error

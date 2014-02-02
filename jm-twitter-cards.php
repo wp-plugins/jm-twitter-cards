@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.8
+Version: 3.8.1
 License: GPL2++
 */
 
@@ -301,11 +301,11 @@ if( $opts['twitterCardMetabox'] == 'yes' ) {
 					</p>
 					<p>
 						<label class="labeltext" for="twitterImageWidth"><?php _e('Image width', 'jm-tc'); ?> :</label>
-						<input id="twitterImageWidth" type="number" min="280" name="cardPhotoWidth" class="small-number" value="<?php echo get_post_meta($post->ID,'cardPhotoWidth',true); ?>" />
+						<input id="twitterImageWidth" type="number" min="280" name="cardProductWidth" class="small-number" value="<?php echo get_post_meta($post->ID,'cardProductWidth',true); ?>" />
 					</p>
 					<p>
 						<label class="labeltext" for="twitterImageHeight"><?php _e('Image height', 'jm-tc'); ?> :</label>
-						<input id="twitterImageHeight" type="number" min="150" name="cardPhotoHeight" class="small-number" value="<?php echo get_post_meta($post->ID,'cardPhotoHeight',true); ?>" />
+						<input id="twitterImageHeight" type="number" min="150" name="cardProductHeight" class="small-number" value="<?php echo get_post_meta($post->ID,'cardProductHeight',true); ?>" />
 					</p>
 				</section>
 
@@ -340,6 +340,8 @@ if( $opts['twitterCardMetabox'] == 'yes' ) {
 		jm_tc_save_postmeta($post_id, 'cardImage');
 		jm_tc_save_postmeta($post_id, 'cardPhotoWidth');
 		jm_tc_save_postmeta($post_id, 'cardPhotoHeight');
+		jm_tc_save_postmeta($post_id, 'cardProductWidth');
+		jm_tc_save_postmeta($post_id, 'cardProductHeight');
 		jm_tc_save_postmeta($post_id, 'cardData1');
 		jm_tc_save_postmeta($post_id, 'cardLabel1');
 		jm_tc_save_postmeta($post_id, 'cardData2');
@@ -448,6 +450,8 @@ if(!function_exists( 'add_twitter_card_markup' )) {
 			$cardType          = get_post_meta($post->ID,'twitterCardType', true);
 			$cardPhotoWidth    = get_post_meta($post->ID,'cardPhotoWidth',true);
 			$cardPhotoHeight   = get_post_meta($post->ID,'cardPhotoHeight',true);
+			$cardProductWidth  = get_post_meta($post->ID,'cardProductWidth',true);
+			$cardProductHeight = get_post_meta($post->ID,'cardProductHeight',true);
 			$cardImage         = get_post_meta($post->ID,'cardImage',true);
 			$cardData1         = get_post_meta($post->ID,'cardData1',true);
 			$cardLabel1        = get_post_meta($post->ID,'cardLabel1',true);
@@ -558,7 +562,7 @@ if(!function_exists( 'add_twitter_card_markup' )) {
 			}
 			
 	
-			if($opts['twitterCardType'] == 'photo' || $cardType  == 'photo' || $cardType == 'product' ) {
+			if($opts['twitterCardType'] == 'photo' || $cardType  == 'photo'  ) {
 				if(!empty($cardPhotoWidth) && !empty($cardPhotoHeight) && $twitterCardCancel != 'yes') {
 					$output .= '<meta name="twitter:image:width" content="'.$cardPhotoWidth.'"/>'."\n";
 					$output .= '<meta name="twitter:image:height" content="'.$cardPhotoHeight.'"/>'."\n";
@@ -571,12 +575,19 @@ if(!function_exists( 'add_twitter_card_markup' )) {
 			if($cardType == 'product') {
 				if(!empty($cardData1) && !empty($cardLabel1) && !empty($cardData2) && !empty($cardLabel2) && $twitterCardCancel != 'yes' ) {
 					$output .= '<meta name="twitter:data1" content="'.$cardData1.'"/>'."\n";
-					$output .= '<meta name="twitter:label1" content="'.strtoupper($cardLabel1).'"/>'."\n";
+					$output .= '<meta name="twitter:label1" content="'.$cardLabel1.'"/>'."\n";
 					$output .= '<meta name="twitter:data2" content="'.$cardData2.'"/>'."\n";
-					$output .= '<meta name="twitter:label2" content="'.strtoupper($cardLabel2).'"/>'."\n";
+					$output .= '<meta name="twitter:label2" content="'.$cardLabel2.'"/>'."\n";
 				}  else {
 					$output .= '<!-- ' . __('Warning : Product Card is not set properly ! There is no product datas !','jm-tc') .  ' -->'."\n";
-					}		
+					}	
+				if(!empty($cardProductWidth) && !empty($cardProductHeight) && $cardType == 'product') {
+					$output .=  '<meta name="twitter:image:width" content="'.$cardProductWidth.'"/>'."\n";
+					$output .= '<meta name="twitter:image:height" content="'.$cardProductHeight.'"/>'."\n";				
+				} else {
+					$output .=  '<meta name="twitter:image:width" content="'.$opts['twitterImageWidth'].'"/>'."\n";
+					$output .= '<meta name="twitter:image:height" content="'.$opts['twitterImageHeight'].'"/>'."\n";				
+				}
 			} 
 			
 			$output .= '<!-- /JM Twitter Cards -->'."\n\n"; 
