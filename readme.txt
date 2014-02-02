@@ -136,7 +136,7 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Changelog ==
 
-= 3.7 =
+= 3.7 & 3.8 =
 * 02 Feb 2014
 * fix capability error
 

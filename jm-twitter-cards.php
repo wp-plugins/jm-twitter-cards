@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.7
+Version: 3.8
 License: GPL2++
 */
 
@@ -182,12 +182,14 @@ function jm_tc_save_postmeta($post_id,$meta){
 // grab our datas
 $opts = jm_tc_get_options();          
 
-if( $opts['twitterCardMetabox'] == 'yes' && current_user_can('publish_posts') ) {	 
+if( $opts['twitterCardMetabox'] == 'yes' ) {	 
 	add_action( 'add_meta_boxes', 'jm_tc_meta_box_add' );
 	function jm_tc_meta_box_add()
 	{
-		$post_type = get_post_type();// add support for CPT
-		add_meta_box( 'jm_tc-meta-box-id', 'Twitter Cards', 'jm_tc_meta_box_cb', $post_type, 'advanced', 'high' );
+		if( current_user_can('publish_posts') ) {
+			$post_type = get_post_type();// add support for CPT
+			add_meta_box( 'jm_tc-meta-box-id', 'Twitter Cards', 'jm_tc_meta_box_cb', $post_type, 'advanced', 'high' );
+		}
 	}
 
 	function jm_tc_meta_box_cb( $post )
