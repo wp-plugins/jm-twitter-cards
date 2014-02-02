@@ -8,7 +8,8 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.3\n"
+"Language: fr_FR\n"
 
 #. Text in function
 #: jm-twitter-cards.php:143
@@ -488,3 +489,8 @@ msgstr ""
 "Cela vous aidera à mettre en place la meilleure expérience possible avec les "
 "Twitter Cards et peut-être améliorera la valeur marchande de vos contenus si "
 "vous en avez besoin."
+
+#. Text in echo
+#: jm-twitter-cards.php:923
+msgid "Maybe you will like this plugin too: "
+msgstr "Peut-être aimerez-vous aussi ce plugin: "

@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.5.1
+Version: 3.6
 License: GPL2++
 */
 
@@ -182,7 +182,7 @@ function jm_tc_save_postmeta($post_id,$meta){
 // grab our datas
 $opts = jm_tc_get_options();          
 
-if( $opts['twitterCardMetabox'] == 'yes' ) {	 
+if( $opts['twitterCardMetabox'] == 'yes' && current_user_can('publish_posts') ) {	 
 	add_action( 'add_meta_boxes', 'jm_tc_meta_box_add' );
 	function jm_tc_meta_box_add()
 	{
@@ -350,7 +350,7 @@ if( $opts['twitterCardMetabox'] == 'yes' ) {
 
 //add twitter infos
 $opts = jm_tc_get_options(); 
-if($opts['twitterProfile'] == 'yes') {
+if($opts['twitterProfile'] == 'yes' && current_user_can('publish_posts') ) {
 	add_action( 'show_user_profile', 'jm_tc_add_field_user_profile' );
 	add_action( 'edit_user_profile', 'jm_tc_add_field_user_profile' );
 
@@ -371,24 +371,24 @@ if($opts['twitterProfile'] == 'yes') {
 		</table>
 		<?php
 	}
-}
 
-// save value for extra field in user profile
-add_action( 'personal_options_update', 'jm_tc_save_extra_user_profile_field', 10,1 );
-add_action( 'edit_user_profile_update', 'jm_tc_save_extra_user_profile_field',10,1 );
+	// save value for extra field in user profile
+	add_action( 'personal_options_update', 'jm_tc_save_extra_user_profile_field', 10,1 );
+	add_action( 'edit_user_profile_update', 'jm_tc_save_extra_user_profile_field',10,1 );
 
-function jm_tc_save_extra_user_profile_field( $user_id ) {
-	if( !current_user_can( 'edit_user', $user_id ) || ! isset( $_POST['jm_tc_twitter_field_update'] ) || ! wp_verify_nonce( $_POST['jm_tc_twitter_field_update'], 'jm_tc_twitter_field_update' ) ) { return false; }
-	$tc_twitter = wp_filter_nohtml_kses($_POST['jm_tc_twitter']);
-	update_user_meta( $user_id, 'jm_tc_twitter', $tc_twitter );
-}
+	function jm_tc_save_extra_user_profile_field( $user_id ) {
+		if( !current_user_can( 'edit_user', $user_id ) || ! isset( $_POST['jm_tc_twitter_field_update'] ) || ! wp_verify_nonce( $_POST['jm_tc_twitter_field_update'], 'jm_tc_twitter_field_update' ) ) { return false; }
+		$tc_twitter = wp_filter_nohtml_kses($_POST['jm_tc_twitter']);
+		update_user_meta( $user_id, 'jm_tc_twitter', $tc_twitter );
+	}
 
-// apply a filter on input to delete any @ 
-add_filter('user_profile_update_errors','jm_tc_check_at', 10, 3); // wp-admin/includes/users.php, thanks Greglone for this great hint
-function jm_tc_check_at($errors, $update, $user)  {
-	if($update) {  
-		//let's save it but in case there's a @ just remove it before saving
-		update_user_meta($user->ID, 'jm_tc_twitter', jm_tc_remove_at($_POST['jm_tc_twitter']) );
+	// apply a filter on input to delete any @ 
+	add_filter('user_profile_update_errors','jm_tc_check_at', 10, 3); // wp-admin/includes/users.php, thanks Greglone for this great hint
+	function jm_tc_check_at($errors, $update, $user)  {
+		if($update) {  
+			//let's save it but in case there's a @ just remove it before saving
+			update_user_meta($user->ID, 'jm_tc_twitter', jm_tc_remove_at($_POST['jm_tc_twitter']) );
+		}
 	}
 }
 
@@ -735,7 +735,7 @@ function jm_tc_options_page() {
 				<?php settings_fields('jm-tc'); ?>
 					
 					<section class="postbox" id="tab1" > 						
-					<h1 class="hndle"><?php _e('General', 'jm-tc'); ?></h1>
+					<h1 class="hndle"><i class="dashicons dashicons-admin-settings"></i> <?php _e('General', 'jm-tc'); ?></h1>
 					<?php 
 					echo jm_tc_docu(0);
 					?>
@@ -781,7 +781,7 @@ function jm_tc_options_page() {
 					</section>
 					
 					<section class="postbox"  id="tab2" >  
-					<h1 class="hndle"><?php _e('SEO', 'jm-tc'); ?></h1>  	
+					<h1 class="hndle"><i class="dashicons dashicons-search"></i><?php _e('SEO', 'jm-tc'); ?></h1>  	
 					<?php 
 					echo jm_tc_docu(1);
 					?>
@@ -816,7 +816,7 @@ function jm_tc_options_page() {
 					
 					
 					<section class="postbox"  id="tab3" >
-					<h1 class="hndle"><?php _e('Thumbnails', 'jm-tc'); ?></h1>
+					<h1 class="hndle"><i class="dashicons dashicons-format-image"></i><?php _e('Thumbnails', 'jm-tc'); ?></h1>
 					<?php 
 					echo jm_tc_docu(2);
 					?>
@@ -856,7 +856,7 @@ function jm_tc_options_page() {
 					</section>
 					
 					<section class="postbox"  id="tab4" > 					
-					<h1 class="hndle"><?php _e('Meta Box', 'jm-tc'); ?></h1>
+					<h1 class="hndle"><i class="dashicons dashicons-welcome-widgets-menus"></i><?php _e('Meta Box', 'jm-tc'); ?></h1>
 					<?php 
 					echo jm_tc_docu(3);
 					?>
@@ -871,7 +871,7 @@ function jm_tc_options_page() {
 					</section>
 					
 					<section class="postbox"  id="tab5" > 					
-					<h1 class="hndle">Home - <?php _e('Posts page', 'jm-tc'); ?></h1>
+					<h1 class="hndle"><i class="dashicons dashicons-admin-home"></i>Home - <?php _e('Posts page', 'jm-tc'); ?></h1>
 					<?php 
 					echo jm_tc_docu(4);
 					?>
@@ -891,7 +891,7 @@ function jm_tc_options_page() {
 				</form><!-- /#jm-tc-form -->
 				<!-- the about part -->
 				<div id="tab6" class="postbox link">
-					<h1 class="hndle"><span><?php _e('Analytics','jm-tc');?></span></h1>
+					<h1 class="hndle"><i class="dashicons dashicons-chart-area"></i><?php _e('Analytics','jm-tc');?></h1>
 					<?php
 					 echo jm_tc_docu(5);
 					?>
@@ -904,19 +904,22 @@ function jm_tc_options_page() {
 					
 					<p><?php _e('This will help you to set the best card type experience and it will probably improve your marketing value.','jm-tc');?></p>
 				
-				
-					<h1 class="hndle"><span><?php _e('About the developer','jm-tc');?></span></h1>
+					<h1 class="hndle"><i class="dashicons dashicons-businessman"></i><?php _e('About the developer','jm-tc');?></h1>
 						<p><img src="http://www.gravatar.com/avatar/<?php echo md5( 'tweetpressfr'.'@'.'gmail'.'.'.'com' ); ?>" style="float:left;margin-right:10px;"/>
 						<strong>Julien Maury</strong><br />
 						<?php _e('I am a WordPress Developer, I like to make it simple.', 'jm-tc') ?> <br />
-						<a href="http://www.tweetpress.fr" target="_blank" title="TweetPress.fr - WordPress and Twitter tips">www.tweetpress.fr</a> <br />
-						<a href="http://twitter.com/intent/user?screen_name=tweetpressfr" >@TweetPressFR</a>
+						<i class="link-like dashicons dashicons-admin-links"></i><a href="http://www.tweetpress.fr" target="_blank" title="TweetPress.fr - WordPress and Twitter tips">www.tweetpress.fr</a> <br />
+						<i class="link-like dashicons dashicons-twitter"></i> <a href="http://twitter.com/intent/user?screen_name=tweetpressfr" >@TweetPressFR</a>
 						</p>
 				</div>
 				<div class="postbox">	
 					<h2 class="hndle"><span><?php _e('Help me keep this free', 'jm-tc'); ?></span></h2>
 					<p><?php _e('Please help me keep this plugin free.', 'jm-tc'); ?></p>
-						<a href="http://www.amazon.fr/registry/wishlist/1J90JNIHBBXL8"><?php _e('WishList Amazon', 'jm-ltsc'); ?></a>
+						<i class="link-like va-bottom dashicons dashicons-cart"></i><a target="_blank" href="http://www.amazon.fr/registry/wishlist/1J90JNIHBBXL8"><?php _e('WishList Amazon', 'jm-ltsc'); ?></a>
+				</div>
+				<div class="postbox">	
+					<h2 class="hndle"><span><?php _e('Plugin', 'jm-tc'); ?></span></h2>
+								<p><?php _e('Maybe you will like this plugin too: ', 'jm-tc'); ?><a target="_blank" class="button button-secondary docu" href="http://wordpress.org/plugins/jm-dashicons-shortcode/"><?php _e('JM Dashicons Shortcode', 'jm-tc'); ?></a></p>
 				</div>
 			<!-- /the about part -->
 		</div><!-- /.column 2 -->

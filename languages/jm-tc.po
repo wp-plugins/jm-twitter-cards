@@ -419,3 +419,8 @@ msgstr ""
 #: jm-twitter-cards.php:214
 msgid "yes please, deactivate it"
 msgstr ""
+
+#. Text in echo
+#: jm-twitter-cards.php:923
+msgid "Maybe you will like this plugin too: "
+msgstr ""
