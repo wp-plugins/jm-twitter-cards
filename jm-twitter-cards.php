@@ -5,7 +5,7 @@ Plugin URI: http://tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://tweetpress.fr
-Version: 3.6
+Version: 3.7
 License: GPL2++
 */
 
@@ -350,26 +350,29 @@ if( $opts['twitterCardMetabox'] == 'yes' && current_user_can('publish_posts') ) 
 
 //add twitter infos
 $opts = jm_tc_get_options(); 
-if($opts['twitterProfile'] == 'yes' && current_user_can('publish_posts') ) {
+if($opts['twitterProfile'] == 'yes') {
 	add_action( 'show_user_profile', 'jm_tc_add_field_user_profile' );
 	add_action( 'edit_user_profile', 'jm_tc_add_field_user_profile' );
 
 	function jm_tc_add_field_user_profile( $user ) {
-		wp_nonce_field( 'jm_tc_twitter_field_update', 'jm_tc_twitter_field_update', false );
-		?>
-		<h3><?php _e("Twitter Card Creator","jm-tc");?></h3>	
-		<table class="form-table">
-			<tr>
-				<th>
-					<label class="labeltext" for="jm_tc_twitter"><?php _e("Twitter Account", "jm_tc"); ?></label>
-				</th>
-				<td>
-					<input type="text" name="jm_tc_twitter" id="jm_tc_twitter" value="<?php echo esc_attr( get_the_author_meta( 'jm_tc_twitter', $user->ID ) ); ?>" class="regular-text" /><br />
-					<span class="description"><?php _e("Enter your Twitter Account (without @)", "jm-tc"); ?></span>
-				</td>
-			</tr>
-		</table>
-		<?php
+	
+		if( current_user_can( 'publish_posts' ) ) {
+			wp_nonce_field( 'jm_tc_twitter_field_update', 'jm_tc_twitter_field_update', false );
+			?>
+			<h3><?php _e("Twitter Card Creator","jm-tc");?></h3>	
+			<table class="form-table">
+				<tr>
+					<th>
+						<label class="labeltext" for="jm_tc_twitter"><?php _e("Twitter Account", "jm_tc"); ?></label>
+					</th>
+					<td>
+						<input type="text" name="jm_tc_twitter" id="jm_tc_twitter" value="<?php echo esc_attr( get_the_author_meta( 'jm_tc_twitter', $user->ID ) ); ?>" class="regular-text" /><br />
+						<span class="description"><?php _e("Enter your Twitter Account (without @)", "jm-tc"); ?></span>
+					</td>
+				</tr>
+			</table>
+			<?php
+		}
 	}
 
 	// save value for extra field in user profile

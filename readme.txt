@@ -136,6 +136,10 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Changelog ==
 
+= 3.7 =
+* 02 Feb 2014
+* fix capability error
+
 = 3.6 =
 * 02 Feb 2014
 * Bugfix : capability and role => add field in profile only if user can publish posts
