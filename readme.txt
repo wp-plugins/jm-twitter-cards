@@ -133,8 +133,22 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 1. admin
 2. confirmation mail
 3. meta box
+4. player cards validator ( I did not apply for player cards cause I do not have SSL )
+5. gallery cards validator
 
 == Changelog ==
+
+= 3.9 =
+* 08 Feb 2014
+* Delete meta domain which is useless now
+* Tidy code 
+* Add support for player cards (Available only with meta box, please read the documentation, this is a tricky card type and approval is not automatic)
+* Update documentation and fix wrong HTML in the file
+* Update uninstall.php
+* Update meta box and meta box js
+* Update language files
+* Fix hook for translation init for admin_init
+* Fix double echo for gallery card meta
 
 = 3.8.1 =
 * 02 Feb 2014
