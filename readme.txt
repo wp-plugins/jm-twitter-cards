@@ -138,6 +138,10 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Changelog ==
 
+= 3.9.1 =
+* 13 Feb 2014
+* Make warning message appear as HTML comments only for users that can publish posts (front-end)
+
 = 3.9 =
 * 08 Feb 2014
 * Delete meta domain which is useless now

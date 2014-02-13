@@ -5,7 +5,7 @@ Plugin URI: http://www.tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://www.tweetpress.fr
-Version: 3.9
+Version: 3.9.1
 License: GPL2++
 */
 /*
@@ -335,6 +335,10 @@ if ($opts['twitterCardMetabox'] == 'yes')
 </p>
 </section>
 
+
+
+
+
 <!-- set img from another source -->
 <section class="feature further furthermore-non-gallery">
 <h1><?php
@@ -349,6 +353,10 @@ if ($opts['twitterCardMetabox'] == 'yes')
 ?>" />
 </p>
 </section>
+
+
+
+
 
 <!-- set img dimensions -->
 <section class="feature further furthermore-non-gallery resizer nochange">
@@ -408,6 +416,9 @@ if ($opts['twitterCardMetabox'] == 'yes')
 </p>
 </section>
 
+
+
+<!-- set product card -->
 <section class="feature further further-product">
 <h1><?php
 			_e('Product Cards', 'jm-tc');
@@ -462,6 +473,10 @@ if ($opts['twitterCardMetabox'] == 'yes')
 </p>
 </section>
 
+
+
+
+
 <section class="feature further further-gallery">
 <h1><?php
 			_e('Gallery Cards', 'jm-tc');
@@ -472,6 +487,9 @@ if ($opts['twitterCardMetabox'] == 'yes')
 ?>
 </p>
 </section>
+
+
+
 
 <section class="feature further further-player">
 <h1><?php
@@ -670,6 +688,13 @@ if (!function_exists('get_excerpt_by_id'))
 			$the_excerpt = implode(' ', $words);
 		endif;
 		return esc_attr($the_excerpt); // to prevent meta from being broken by ""
+	}
+}
+
+//check user role before displaying any error message on front end
+function jm_tc_check_user_role( $content, $role = 'publish_posts'){
+	if( current_user_can($role) ) {
+		return '<!-- ' .$content.  '@(-_-)] -->' . "\n";
 	}
 }
 
@@ -884,8 +909,7 @@ if (!function_exists('add_twitter_card_markup'))
 					}
 					else
 					{
-						$output .= '<!-- ' . __('Warning : Gallery Card is not set properly ! There is no gallery in this post !', 'jm-tc') . ' -->' . "\n";
-						$output .= '<!-- @(-_-)] -->' . "\n";
+						$output .=  jm_tc_check_user_role( __('Warning : Gallery Card is not set properly ! There is no gallery in this post !', 'jm-tc') );
 					}
 				}
 				else
@@ -929,7 +953,7 @@ if (!function_exists('add_twitter_card_markup'))
 				}
 				else
 				{
-					$output .= '<!-- ' . __('Warning : Product Card is not set properly ! There is no product datas !', 'jm-tc') . ' -->' . "\n";
+					$output .=  __('Warning : Product Card is not set properly ! There is no product datas !', 'jm-tc');
 				}
 
 				if ( $cardProductWidth != '' && $cardProductHeight != '' && $cardType == 'product')
@@ -952,12 +976,12 @@ if (!function_exists('add_twitter_card_markup'))
 				} 
 				else
 				{
-					$output .= '<!-- ' . __('Warning : Player Card is not set properly ! There is no URL provided for iFrame player !', 'jm-tc') . ' -->' . "\n";					
+					$output .=  jm_tc_check_user_role( __('Warning : Player Card is not set properly ! There is no URL provided for iFrame player !', 'jm-tc') ) ;					
 				}
 				
 				if (  $cardPlayer != '' && !preg_match( $regex,$cardPlayer) )
 				{
-					$output .= '<!-- ' . __('Warning : Player Card is not set properly ! The URL of iFrame Player MUST BE https!', 'jm-tc') . ' -->' . "\n";
+					$output .= jm_tc_check_user_role( __('Warning : Player Card is not set properly ! The URL of iFrame Player MUST BE https!', 'jm-tc') );
 				}
 				
 				
@@ -983,7 +1007,7 @@ if (!function_exists('add_twitter_card_markup'))
 				
 				if ( $cardPlayerStream != '' && !preg_match( $regex,$cardPlayerStream) )
 				{
-					$output .= '<!-- ' . __('Warning : Player Card is not set properly ! The URL of raw stream Player MUST BE https!', 'jm-tc') . ' -->' . "\n";
+					$output .= jm_tc_check_user_role( __('Warning : Player Card is not set properly ! The URL of raw stream Player MUST BE https!', 'jm-tc') ) ;
 				}
 			
 			}
