@@ -1,15 +1,16 @@
 msgid ""
 msgstr ""
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: \n"
+"Project-Id-Version: JM Twitter Cards\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
-"Language-Team: \n"
+"Language-Team: jmlapam <contact@tweetpress.fr>\n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.4\n"
 "Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. Text in function
 #: jm-twitter-cards.php:143
@@ -590,3 +591,54 @@ msgstr "Hauteur du player"
 #: jm-twitter-cards.php:503
 msgid "Player width"
 msgstr "Largeur du player"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter iPad ID "
+msgstr "Entrez l'ID iPad"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter iPad Name "
+msgstr "Entrez le nom iPad"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter iPad URL "
+msgstr "Entrez l'URL iPad"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter iPhone Name "
+msgstr "Entrez le nom iPhone"
+
+#. Text in echo
+#: jm-twitter-cards.php:1644 jm-twitter-cards.php
+msgid "Enter iPhone URL "
+msgstr "Entrez l'URL iPhone"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter Google Play ID "
+msgstr "Entrez l'ID Google Play"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter Google Play Name "
+msgstr "Entrez le nom Google Play"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid "Enter Google Play URL "
+msgstr "Entrez l'URL Google Play"
+
+#. Text in echo
+#: jm-twitter-cards.php
+msgid ""
+"For all the following fields, if you do not want to use leave it blank but "
+"be careful with the required markup for your app. Read the documentation "
+"please."
+msgstr ""
+"Pour les champs suivants, si vous ne devez pas utiliser certains laissez "
+"vide mais attention au markup requis pour chaque meta app. Lisez la "
+"documentation SVP."

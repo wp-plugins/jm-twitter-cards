@@ -138,6 +138,18 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Changelog ==
 
+= 4.0 =
+* 16 Feb 2014
+* Improve home and post page settings
+* Add app install and deep linking especially if you want to add some iPhone, iPad and Android IDs (apps)
+* Add documentation as submenu
+* Update translation files and add pot files
+* Make documentation "translation-ready" (if you want to translate it, please keep the same name and add your language slug e.g `jm-tc-doc-es_ES.po`). 
+* Documentation has its own translation file and text-domain. I think it's better than loading everything everywhere on the website.
+* To be done in the next updates : 
+* Translate documentation in French. I'm still looking for volonteers to translate the plugin in other languages. 
+* Find a better solution for home page / post page if possible
+
 = 3.9.1 =
 * 13 Feb 2014
 * Make warning message appear as HTML comments only for users that can publish posts (front-end)
