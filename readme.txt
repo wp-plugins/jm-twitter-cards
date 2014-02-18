@@ -139,7 +139,7 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 == Changelog ==
 
 = 4.1 =
-* 20 Feb 2014
+* 18 Feb 2014
 * Fix unwanted spaces in .pot and .php files for documentation
 * Add appropriate functions for translation e.g __() instead of _e() where it's needed
 * Translate the whole documentation into French
