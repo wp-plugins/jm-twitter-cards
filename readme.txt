@@ -138,6 +138,12 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Changelog ==
 
+= 4.1 =
+* 20 Feb 2014
+* Fix unwanted spaces in .pot and .php files for documentation
+* Add appropriate functions for translation e.g __() instead of _e() where it's needed
+* Translate the whole documentation into French
+
 = 4.0 =
 * 16 Feb 2014
 * Improve home and post page settings
@@ -146,9 +152,6 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 * Update translation files and add pot files
 * Make documentation "translation-ready" (if you want to translate it, please keep the same name and add your language slug e.g `jm-tc-doc-es_ES.po`). 
 * Documentation has its own translation file and text-domain. I think it's better than loading everything everywhere on the website.
-* To be done in the next updates : 
-* Translate documentation in French. I'm still looking for volonteers to translate the plugin in other languages. 
-* Find a better solution for home page / post page if possible
 
 = 3.9.1 =
 * 13 Feb 2014
