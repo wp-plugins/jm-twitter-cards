@@ -19,9 +19,6 @@ Compatible with : WP SEO by Yoast (do not check cards option in this plugin if a
 The plugin allows you to customize your cards per each post. If you use SEO by Yoast plugin do not activate the Twitter card's option. Otherwise markup will be added twice.
 If you choose full customization you will see a metabox in your post edit.
 
-**The plugin has its own <a href="http://support.tweetpress.fr/forums/forum/jm-twitter-cards">support you can find here</a>**
-
-
 Please help me to translate it in other languages: : contact@tweetpress.fr
 
 
@@ -38,8 +35,6 @@ Compatible avec WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si 
 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom une metabox apparaît dans vos edit de post.
-
-**Le plugin a <a href="http://support.tweetpress.fr/forums/forum/jm-twitter-cards">son propre support</a>** (la langue est l'Anglais mais vous pouvez poster en Français).
 
 Appel aux traducteurs pour d'autres langages : contact@tweetpress.fr
 
