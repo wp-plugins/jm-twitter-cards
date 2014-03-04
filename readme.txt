@@ -133,6 +133,16 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Changelog ==
 
+= 4.2 =
+* 04 Mar 2014
+* Add preview in meta box for Twitter cards markup so you do not have to load the page and to view source code to check your config, 
+* Please consider preview as a way to check markup and save draft to see the result
+* Then click on the validator button (if your domain is still not approved) to submit your domain to dev.twitter.com 
+* Add new card type "app" (if ou really need to use this card type set it from the option page and combine with app install & deep linking fields)
+* Fix wrong type of input fields for deep linking in option page
+* Fix wrong output for errors
+* Add link to validator almost everywhere
+
 = 4.1 =
 * 18 Feb 2014
 * Fix unwanted spaces in .pot and .php files for documentation
