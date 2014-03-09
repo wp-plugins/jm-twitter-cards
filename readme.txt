@@ -136,8 +136,36 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 = 4.3 brings new filter for your convenience if you're a developer =
 * `jm_tc_get_excerpt`
-* `jm_tc_source_image`
+* `jm_tc_image_source`
 * `jm_tc_card_type`
+
+= Here is a snippet you can use with new filters =
+
+** Get native excerpt, some themes use them **
+
+`add_filter('jm_tc_get_excerpt','_jm_tc_modify_excerpt');
+function _jm_tc_modify_excerpt() {
+    global $post;
+	return get_excerpt_from_far_far_away($post->ID);
+}
+
+function get_excerpt_from_far_far_away( $post_id )
+{
+	global $wpdb;
+	$query = 'SELECT post_excerpt FROM '. $wpdb->posts .' WHERE ID = '. $post_id .' LIMIT 1';
+	$result = $wpdb->get_results($query, ARRAY_A);
+	$post_excerpt = $result[0]['post_excerpt'];
+	return $post_excerpt;
+}`
+
+** Hack source image e.g if you use relative paths **
+`add_filter('jm_tc_image_source', '_jm_tc_relative_paths');
+function _jm_tc_relative_paths($content) {
+	return trailingslashit( home_url() ).$content;
+}`
+
+**BE CAREFUL WITH THIS! DO NOT USE IF YOU DO NOT KNOW WHAT YOU ARE DOING, YOU CAN BREAK YOUR CARDS WITH THIS !!!**
+
 
 == Changelog ==
 
