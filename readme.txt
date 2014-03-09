@@ -134,7 +134,7 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Other notes ==
 
-4.3 brings new filter for your convenience if you're a developer : 
+= 4.3 brings new filter for your convenience if you're a developer =
 * `jm_tc_get_excerpt`
 * `jm_tc_source_image`
 * `jm_tc_card_type`
@@ -147,7 +147,7 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 * Provide filters a lot of new filters for developers see Other notes
 * Fix unsaved values on attachment, actually wordpress got its own hook for saving values for meta box
 * By default image source will be grabbed from the attached file URL because most of the time it's about images.
-* If you need to set imager for other mime types just use the meta box and set it with external URL section
+* If you need to set image for other mime types just use the meta box and set it with external URL section
 * Add upload button for external URL section in meta box
 * Add different hanles for scripts and styles in admin which is actually a better idea
 * Put the entire code on github : https://github.com/TweetPressFr/jm-twitter-cards
