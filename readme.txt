@@ -19,10 +19,7 @@ Compatible with : WP SEO by Yoast (do not check cards option in this plugin if a
 The plugin allows you to customize your cards per each post. If you use SEO by Yoast plugin do not activate the Twitter card's option. Otherwise markup will be added twice.
 If you choose full customization you will see a metabox in your post edit.
 
-To see more details just install the plugin and read documentation. You can read Twitter's documentation here :<a href="https://dev.twitter.com/docs/cards/twitter-cards-for-cms-wordpress-blogger-tumblr#plugin_jm">CMS Integration Guide</a>
-
 Please help me to translate it in other languages: : contact@tweetpress.fr
-
 
 
 <a href="http://twitter.com/intent/user?screen_name=tweetpressfr">Follow me on Twitter</a>
@@ -39,11 +36,10 @@ Compatible avec WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom une metabox apparaît dans vos edit de post.
 
-zPour plus de détails installez le plugin et lisez la documentation. Vous pouvez aussi consulter la documentation de Twitter :<a href="https://dev.twitter.com/docs/cards/twitter-cards-for-cms-wordpress-blogger-tumblr#plugin_jm">CMS Integration Guide</a>
-
 Appel aux traducteurs pour d'autres langages : contact@tweetpress.fr
 
 <a href="http://twitter.com/intent/user?screen_name=tweetpressfr">Me suivre sur Twitter</a>
+
 
 == Installation ==
 
@@ -172,6 +168,13 @@ function _jm_tc_relative_paths($content) {
 
 
 == Changelog ==
+
+= 4.4 =
+* 17 Mar 2014
+* replace far-fetched PHP in get_excerpt_by_id() function with a simple WP function called wp_trim_words() 
+* bump the markup up according to this thread https://dev.twitter.com/discussions/17878
+* Actually no big deal if your theme is clean but sometimes a lot of stuffs is added with the hook `wp_head`
+* For details about installation please read the documentation, you can also check this link : https://dev.twitter.com/docs/cards/twitter-cards-for-cms-wordpress-blogger-tumblr#plugin_jm
 
 = 4.3 =
 * 09 Mar 2014
