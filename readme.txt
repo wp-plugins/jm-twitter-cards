@@ -169,6 +169,14 @@ function _jm_tc_relative_paths($content) {
 
 == Changelog ==
 
+= 4.4.1 =
+* 30 Mar 2014
+* re-add the strip_shortcodes() to get_excerpt_by_id() to avoid shortcode to appear in meta desc
+* Add src extra parameter to meta image so that the Twitterbot treats the image as a unique URL and re-fetches the image
+* There's now a 5.0 version on github, I've rebuild code so it's better organized by far and there some cool new features
+* This is an alpha version so I'm not gonna update it on WordPress.org until I'm sure it's safe
+* I'll probably keep 2 versions, one for wordpress.org and one for github, if you want to test it, fork it and whatever you want feel free to join me: https://github.com/TweetPressFr/jm-twitter-cards
+
 = 4.4 =
 * 17 Mar 2014
 * replace far-fetched PHP in get_excerpt_by_id() function with a simple WP function called wp_trim_words() 

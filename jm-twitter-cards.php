@@ -5,7 +5,7 @@ Plugin URI: http://www.tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://www.tweetpress.fr
-Version: 4.4
+Version: 4.4.1
 License: GPL2++
 */
 /*
@@ -702,7 +702,7 @@ if (!function_exists('get_excerpt_by_id'))
 		$opts = jm_tc_get_options();
 		$excerpt_length = $opts['twitterExcerptLength'];
 		
-		
+		$the_excerpt = strip_shortcodes($the_excerpt);
 		$the_excerpt = wp_trim_words( $the_excerpt, $excerpt_length, '');// it's better to use wp functions 
 		
 		return esc_attr($the_excerpt); // to prevent meta from being broken by ""
@@ -722,7 +722,7 @@ if (!function_exists('_jm_tc_markup_home'))
 		$output .= '<meta name="twitter:site" content="@' . $opts['twitterSite'] . '"/>' . "\n";
 		$output .= '<meta name="twitter:title" content="' . $opts['twitterPostPageTitle'] . '"/>' . "\n";
 		$output .= '<meta name="twitter:description" content="' . $opts['twitterPostPageDesc'] . '"/>' . "\n";
-		$output .= '<meta name="twitter:image" content="' . $opts['twitterImage'] . '"/>' . "\n";
+		$output .= '<meta name="twitter:image:src" content="' . $opts['twitterImage'] . '"/>' . "\n";
 		
 			//Deep linking
 			if ($opts['twitterCardDeepLinking'] == 'yes') 
@@ -887,29 +887,29 @@ if (!function_exists('_jm_tc_markup'))
 				{
 					if ($cardImage != '' && $twitterCardCancel != 'yes')
 					{ // cardImage is set
-						$output .= '<meta name="twitter:image" content="' .  apply_filters( 'jm_tc_image_source', $cardImage ). '"/>' . "\n";
+						$output .= '<meta name="twitter:image:src" content="' .  apply_filters( 'jm_tc_image_source', $cardImage ). '"/>' . "\n";
 					}
 					else
 					{
 						$image_attributes = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID) , jm_tc_thumbnail_sizes());
-						$output .= '<meta name="twitter:image" content="' . apply_filters( 'jm_tc_image_source', $image_attributes[0] ) . '"/>' . "\n";
+						$output .= '<meta name="twitter:image:src" content="' . apply_filters( 'jm_tc_image_source', $image_attributes[0] ) . '"/>' . "\n";
 					}
 				}
 				elseif (get_the_post_thumbnail($post->ID) == '' && $cardImage != '' && $twitterCardCancel != 'yes')
 				{
-					$output .=  '<meta name="twitter:image" content="' . apply_filters( 'jm_tc_image_source', $cardImage ) . '"/>' . "\n";
+					$output .=  '<meta name="twitter:image:src" content="' . apply_filters( 'jm_tc_image_source', $cardImage ) . '"/>' . "\n";
 				}
 				
 				elseif ( 'attachment' == get_post_type() ) 
 				{
 				
-					$output .= '<meta name="twitter:image" content="' . apply_filters( 'jm_tc_image_source', wp_get_attachment_url( $post->ID ) ) . '"/>' . "\n";
+					$output .= '<meta name="twitter:image:src" content="' . apply_filters( 'jm_tc_image_source', wp_get_attachment_url( $post->ID ) ) . '"/>' . "\n";
 				
 				}
 				
 				else
 				{ //fallback
-					$output .= '<meta name="twitter:image" content="' . apply_filters( 'jm_tc_image_source', $opts['twitterImage'] ). '"/>' . "\n";
+					$output .= '<meta name="twitter:image:src" content="' . apply_filters( 'jm_tc_image_source', $opts['twitterImage'] ). '"/>' . "\n";
 				}
 			}
 			else
@@ -955,11 +955,11 @@ if (!function_exists('_jm_tc_markup'))
 					if (has_post_thumbnail())
 					{
 						$image_attributes = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID) , jm_tc_thumbnail_sizes());
-						$output .= '<meta name="twitter:image" content="' . apply_filters( 'jm_tc_image_source',$image_attributes[0] ). '"/>' . "\n";
+						$output .= '<meta name="twitter:image:src" content="' . apply_filters( 'jm_tc_image_source',$image_attributes[0] ). '"/>' . "\n";
 					}
 					else
 					{
-						$output .= '<meta name="twitter:image" content="' .apply_filters( 'jm_tc_image_source', $opts['twitterImage'] ). '"/>' . "\n";
+						$output .= '<meta name="twitter:image:src" content="' .apply_filters( 'jm_tc_image_source', $opts['twitterImage'] ). '"/>' . "\n";
 					}
 				}
 			}
