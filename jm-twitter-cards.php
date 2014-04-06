@@ -5,7 +5,7 @@ Plugin URI: http://www.tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://www.tweetpress.fr
-Version: 4.4.1
+Version: 4.4.2
 License: GPL2++
 */
 /*
@@ -702,8 +702,9 @@ if (!function_exists('get_excerpt_by_id'))
 		$opts = jm_tc_get_options();
 		$excerpt_length = $opts['twitterExcerptLength'];
 		
-		$the_excerpt = strip_shortcodes($the_excerpt);
-		$the_excerpt = wp_trim_words( $the_excerpt, $excerpt_length, '');// it's better to use wp functions 
+		$the_excerpt = strip_shortcodes($the_excerpt); //no shortcodes
+		$the_excerpt = strip_tags($the_excerpt); //no tags
+		$the_excerpt = substr( $the_excerpt, $excerpt_length );// string ( string $string , int $start [, int $length ] )
 		
 		return esc_attr($the_excerpt); // to prevent meta from being broken by ""
 	}

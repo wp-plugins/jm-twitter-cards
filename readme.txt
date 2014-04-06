@@ -169,6 +169,11 @@ function _jm_tc_relative_paths($content) {
 
 == Changelog ==
 
+= 4.4.2 =
+* 06 Apr 2014
+* Fix wrong approach for meta desc because it's not 200 words max but 200 characters !!!  https://dev.twitter.com/docs/cards/markup-reference
+* Seems like we have to use PHP to limit excerpt by char, found no WP function for that and it's quite logical
+
 = 4.4.1 =
 * 30 Mar 2014
 * re-add the strip_shortcodes() to get_excerpt_by_id() to avoid shortcode to appear in meta desc
