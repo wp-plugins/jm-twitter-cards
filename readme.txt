@@ -134,6 +134,7 @@ Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 
 == Other notes ==
 
+
 = 4.3 brings new filter for your convenience if you're a developer =
 * `jm_tc_get_excerpt`
 * `jm_tc_image_source`
@@ -168,6 +169,11 @@ function _jm_tc_relative_paths($content) {
 
 
 == Changelog ==
+
+= 4.4.3 =
+* 08 Apr 2014
+* fix stupid mistake in excerpt function with substr
+* 
 
 = 4.4.2 =
 * 06 Apr 2014
