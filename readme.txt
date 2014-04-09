@@ -2,7 +2,7 @@
 Contributors: jmlapam
 Tags: twitter, cards, semantic markup, metabox, meta, photo, product, gallery
 Requires at least: 3.1.0
-Tested up to: 3.8
+Tested up to: 3.8.2
 License: GPLv2 or later
 Stable tag: trunk
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -170,10 +170,20 @@ function _jm_tc_relative_paths($content) {
 
 == Changelog ==
 
+= 4.4.4 =
+* 09 Apr 2014
+* Improve function jm_tc_get_post_thumbnail_size() by removing unecessary get_posts()
+* The following regards only users that use the default excerpt :
+* REMOVE excerpt lenght setting : this could seem a little bit weird but in fact Twitter allows us to get 200 chars for meta desc. 
+* It occurred to me that it's better not checking anything for excerpt length than cutting the desc like the plugin does in 4.4.2 & 4.4.3
+* Some users reported that it cuts text in a ugly way
+* Just remember it's 200 characters at most
+* REMOVE temporarily preview feature in meta box cause it's full of bugs and you get sometimes false results if you compare edit screen and real life in source code of the webpage
+
 = 4.4.3 =
 * 08 Apr 2014
 * fix stupid mistake in excerpt function with substr
-* 
+
 
 = 4.4.2 =
 * 06 Apr 2014

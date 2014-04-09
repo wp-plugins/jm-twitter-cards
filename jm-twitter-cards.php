@@ -5,7 +5,7 @@ Plugin URI: http://www.tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://www.tweetpress.fr
-Version: 4.4.3
+Version: 4.4.4
 License: GPL2++
 */
 /*
@@ -187,23 +187,11 @@ function jm_tc_thumbnail_sizes()
 function jm_tc_get_post_thumbnail_size()
 {
 	global $post;
-	$args = array(
-		'post_type' => 'attachment',
-		'post_mime_type' => array(
-			'image/png',
-			'image/jpeg',
-			'image/gif'
-		) ,
-		'numberposts' => - 1,
-		'post_status' => null,
-		'post_parent' => $post->ID
-	);
-	$attachments = get_posts($args);
-	foreach($attachments as $attachment)
-	{
-			$math = filesize(get_attached_file($attachment->ID)) / 1000000;
-			return $math; //Am I bold enough to call it a math?
-	}
+	
+	$math = filesize( get_attached_file( get_post_thumbnail_id( $post->ID ) ) ) / 1000000;
+	
+	return $math; //Am I bold enough to call it a math?
+
 }
 
 
@@ -261,20 +249,20 @@ if ($opts['twitterCardMetabox'] == 'yes')
 		_e('Validator', 'jm-tc');
 ?></a>
 
-<!-- Preview -->
+<!-- Preview
 <section class="preview-card feature">
 <h1><?php
-		_e('Preview', 'jm-tc');
+		//_e('Preview', 'jm-tc');
 ?></h1>
 <pre>
 <code class="html">
 <?php 
- echo esc_html( _jm_tc_markup() );
+ //echo esc_html( _jm_tc_markup() );
  ?>
  </code>
 </pre>
 </section>
-<!-- /Preview -->
+/Preview -->
 
 <section class="feature">
 <h1><?php
@@ -704,7 +692,7 @@ if (!function_exists('get_excerpt_by_id'))
 		
 		$the_excerpt = strip_shortcodes($the_excerpt); //no shortcodes
 		$the_excerpt = strip_tags($the_excerpt); //no tags
-		$the_excerpt = substr( $the_excerpt, 0, $excerpt_length );// string ( string $string , int $start [, int $length ] )
+		//$the_excerpt = substr( $the_excerpt, 0, $excerpt_length );// string ( string $string , int $start [, int $length ] )
 		
 		return esc_attr($the_excerpt); // to prevent meta from being broken by ""
 	}
@@ -1371,15 +1359,15 @@ function jm_tc_options_page()
 	echo jm_tc_remove_at($opts['twitterSite']);
 ?>" />
 </p>
-
+<!--
 <p>
 <label class="labeltext" for="twitterExcerptLength"><?php
-	_e('Set description according to excerpt length (words count)', 'jm-tc');
+	//_e('Set description according to excerpt length (words count)', 'jm-tc');
 ?> :</label>
 <input id="twitterExcerptLength" type="number" min="10" max="200" name="jm_tc[twitterExcerptLength]" class="small-number" value="<?php
-	echo $opts['twitterExcerptLength'];
+	//echo $opts['twitterExcerptLength'];
 ?>" />
-</p>
+</p>-->
 
 <p>
 <label class="labeltext" for="twitterProfile"><?php
@@ -1888,7 +1876,7 @@ function jm_tc_get_default_options()
 		'twitterCardType' => 'summary',
 		'twitterCreator' => 'TweetPressFr',
 		'twitterSite' => 'TweetPressFr',
-		'twitterExcerptLength' => 35,
+		//'twitterExcerptLength' => 35,
 		'twitterImage' => 'https://g.twimg.com/Twitter_logo_blue.png',
 		'twitterImageWidth' => '280',
 		'twitterImageHeight' => '150',
