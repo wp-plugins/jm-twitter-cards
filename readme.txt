@@ -22,6 +22,12 @@ If you choose full customization you will see a metabox in your post edit.
 Please help me to translate it in other languages: : contact@tweetpress.fr
 
 
+I've been rebuilding the plugin for better features and user interface. This is available in beta version here : https://github.com/TweetPressFr/jm-twitter-cards
+BE CAREFUL IT'S A BETA VERSION ! Need you to test it and tell me what you think about the new version. Please report all the bugs you might find :
+
+[youtube http://www.youtube.com/watch?v=ydF44Yttqrk]
+
+
 <a href="http://twitter.com/intent/user?screen_name=tweetpressfr">Follow me on Twitter</a>
 
 
