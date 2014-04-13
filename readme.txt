@@ -178,6 +178,14 @@ function _jm_tc_relative_paths($content) {
 
 == Changelog ==
 
+= 5.1.4 =
+* 14 Apr 2014
+* Improve User interface by splitting admin into pages : only important settings, the plugin does a lot of checking on its own
+* Rebuild the entire code for maintenance
+* Use now a robust framework for metaboxes, this allows some new features such as preview for images and less html markup in PHP files
+* 2 metaboxes in post edit now, one for images and one for other markup
+* Thanks a lot to the beta tester who have tested this new version and reported bugs and so helped me a lot with this new version
+
 = 4.4.4 =
 * 09 Apr 2014
 * Improve function jm_tc_get_post_thumbnail_size() by removing unecessary get_posts()
