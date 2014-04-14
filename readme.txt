@@ -175,6 +175,12 @@ function _jm_tc_relative_paths($content) {
 
 == Changelog ==
 
+= 5.1.5 =
+* 14 Apr 2014
+* Fix super weird bug with PHP_INT_MAX and jetpack (jetpack menu was hidden)
+* Some users reported errors on update and it was due to the fact they're using old versions of PHP under 5.3
+* The fix can be done in the next update but I encourage you to migrate from PHP 5.2 to 5.3 in any case
+
 = 5.1.4 =
 * 14 Apr 2014
 * Improve User interface by splitting admin into pages : only important settings, the plugin does a lot of checking on its own
