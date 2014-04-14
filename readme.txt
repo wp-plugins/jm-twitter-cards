@@ -175,6 +175,11 @@ function _jm_tc_relative_paths($content) {
 
 == Changelog ==
 
+= 5.1.6 =
+* 14 Apr 2014
+* Make it compatible with older versions of PHP
+* it's a small fix and it can help users running PHP under 5.3 
+
 = 5.1.5 =
 * 14 Apr 2014
 * Fix super weird bug with PHP_INT_MAX and jetpack (jetpack menu was hidden)
