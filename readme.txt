@@ -175,19 +175,18 @@ function _jm_tc_relative_paths($content) {
 
 == Changelog ==
 
+= 5.1.7 =
+* 16 Apr 2014
+* Fix PHP 5.4++ issue with static method called non statistically
+
 = 5.1.6 =
 * 14 Apr 2014
+* Fix PHP warning when calling static method
 * Make it compatible with older versions of PHP
 * it's a small fix and it can help users running PHP under 5.3 
-
-= 5.1.5 =
-* 14 Apr 2014
 * Fix super weird bug with PHP_INT_MAX and jetpack (jetpack menu was hidden)
 * Some users reported errors on update and it was due to the fact they're using old versions of PHP under 5.3
 * The fix can be done in the next update but I encourage you to migrate from PHP 5.2 to 5.3 in any case
-
-= 5.1.4 =
-* 14 Apr 2014
 * Improve User interface by splitting admin into pages : only important settings, the plugin does a lot of checking on its own
 * Rebuild the entire code for maintenance
 * Use now a robust framework for metaboxes, this allows some new features such as preview for images and less html markup in PHP files
