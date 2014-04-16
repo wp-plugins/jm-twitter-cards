@@ -1,13 +1,13 @@
 === JM Twitter Cards ===
 Contributors: jmlapam
-Tags: twitter, cards, semantic markup, metabox, meta, photo, product, gallery
-Requires at least: 3.1.0
-Tested up to: 3.8.2
+Tags: twitter, cards, semantic markup, metabox, meta, photo, product, gallery, player
+Donate Link: http://www.amazon.fr/registry/wishlist/1J90JNIHBBXL8
+Tested up to: 3.8.3
 License: GPLv2 or later
 Stable tag: trunk
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easy integration of Twitter cards in WordPress. Most useful card types provided.
+Easy integration of Twitter cards in WordPress. All card types provided.
 
 == Description ==
 
@@ -175,8 +175,11 @@ function _jm_tc_relative_paths($content) {
 
 == Changelog ==
 
-= 5.1.7 =
+= 5.1.8 =
 * 16 Apr 2014
+* Fix bug with SEO plugins detection
+* Fix bug with older versions of WorPress where wp_enqueue_media() does not exist (just not use it for those installations)
+* Add src parameter to all meta image, this should make the Twitterbot treat the image as a unique URL and re-fetches the image
 * Fix PHP 5.4++ issue with static method called non statistically
 
 = 5.1.6 =
