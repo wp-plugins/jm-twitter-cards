@@ -2,7 +2,7 @@
 Contributors: jmlapam
 Tags: twitter, cards, semantic markup, metabox, meta, photo, product, gallery, player
 Donate Link: http://www.amazon.fr/registry/wishlist/1J90JNIHBBXL8
-Tested up to: 3.8.3
+Tested up to: 3.9
 License: GPLv2 or later
 Stable tag: trunk
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
