@@ -16,7 +16,9 @@ if ( class_exists('JM_TC_Utilities') ) {
 		{
 			$opts = get_option('jm_tc');
 			
-			$size = ('' != ( $thumbnail_size = get_post_meta($post_id, 'cardImgSize', true) ) ) ? $thumbnail_size : $opts['twitterCardImgSize'];
+			$thumbnail_size = get_post_meta($post_id, 'cardImgSize', true);
+			
+			$size = !empty($thumbnail_size) ? $thumbnail_size : $opts['twitterCardImgSize'];
 
 			switch ($size) :
 				case 'small':

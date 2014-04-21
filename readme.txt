@@ -14,17 +14,17 @@ Easy integration of Twitter cards in WordPress. All card types provided.
 Once activated the plugin adds appropriate meta on your WordPress website allowing you to get Twitter cards for your posts according to your settings. Enjoy !
 
 
-Compatible with : WP SEO by Yoast (do not check cards option in this plugin if activated) and All in One SEO.
+Compatible with : WP SEO by Yoast (uncheck Twitter cards option in this plugin if activated) and All in One SEO.
 
 The plugin allows you to customize your cards per each post. If you use SEO by Yoast plugin do not activate the Twitter card's option. Otherwise markup will be added twice.
 If you choose full customization you will see a metabox in your post edit.
 
-Please help me to translate it in other languages: : contact@tweetpress.fr
+**Please help me to translate it in other languages** : contact@tweetpress.fr
 
 
-I've been rebuilding the plugin for better features and user interface. This is available in beta version here : https://github.com/TweetPressFr/jm-twitter-cards
+I've been rebuilding the plugin for better features and user interface. This is available here : https://github.com/TweetPressFr/jm-twitter-cards
 
-Beta version has been tested by almost 10 users so huge thanks to them ! They had a lot of posts set with the plugin (meta box and stuffs like this) and the update was pretty clean. 
+This URL is the place where I improve the plugin according to support requests and stuffs like this. Github is the place !
 
 
 <a href="http://twitter.com/intent/user?screen_name=tweetpressfr">Follow me on Twitter</a>
@@ -52,6 +52,10 @@ Appel aux traducteurs pour d'autres langages : contact@tweetpress.fr
 2. Activate the plugin through the Plugins menu in WordPress
 3. Then go to settings > JM Twitter Cards to configure the plugin
 4. To display the metabox in edit section (posts, pages, attachments), enable option in section called **Custom Twitter Cards**
+
+
+[youtube http://www.youtube.com/watch?v=8l4k3zrD4Z0]
+
 
 ––––
 En Français 
@@ -95,6 +99,11 @@ You have to use the shortcode [gallery] to enjoy this feature ( that's what the 
 See live example: http://support.tweetpress.fr/demo-twitter-cards-gallery/
 (sometimes you have to wait a minute for images to appear in validator)
 
+= I get a fatal error ! = 
+`Call to undefined function cmb_metabox_form()` >> if you get this it's not due to the plugin it comes from another plugin or a theme using the same framework for meta boxes but in a very old version.
+So do not yell at me ^^
+
+
 ––––
 En Français 
 –––––––––––––––––––––––––––––––––––
@@ -128,6 +137,10 @@ Vous devez utiliser le shortcode [gallery] pour obtenir une card galerie (c'est 
 
 Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
 (parfois vous devez patientez un peu pour que les images apparaissent au validateur.)
+
+= Hey j'ai une fatal error ! = 
+`Call to undefined function cmb_metabox_form()` >> ça vient d'un thème ou d'un plugin qui use du même framework pour ses meta boxes mais dans une version très ancienne, donc ne me criez pas dessus ^^
+
 
 == Screenshots ==
 1. admin
@@ -174,6 +187,18 @@ function _jm_tc_relative_paths($content) {
 
 
 == Changelog ==
+
+= 5.1.9 =
+* 21 Apr 2014
+* Fix fallback All In One SEO title
+* Put the card type selected in admin option page as default setting for meta box because it so a pain to select it on each post when meta box is enabled ^^
+* Note that if you want to change card type for a particular post you'll need to use this select
+* Everything that can be default is now set so even you do not have to set it if you do not want to
+* Will save your time !
+* Fix bug with get_post_meta and custom fields
+* Fix escaping quotes and stuffs like this with WP SEO by Yoast desc and title
+* Rebuild French Translation
+* Add tutorial menu with videos explaining how to use the plugin
 
 = 5.1.8 =
 * 16 Apr 2014
