@@ -5,7 +5,7 @@ Plugin URI: http://www.tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://www.tweetpress.fr
-Version: 5.1.9
+Version: 5.2.0
 License: GPL2++
 
 JM Twitter Cards Plugin
@@ -38,6 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * - https://about.twitter.com/fr/press/brand-assets
 * - http://www.jqeasy.com/jquery-character-counter
 * - https://trepmal.com/2011/04/03/change-the-virtual-robots-txt-file/
+* - http://perishablepress.com/5-easy-ways-to-display-syntax-highlighted-php-code/
 */
 
 
@@ -47,7 +48,7 @@ or die('What we\'re dealing with here is a total lack of respect for the law !')
 
 
 //Constantly constant
-define( 'JM_TC_VERSION', '5.1.9' );
+define( 'JM_TC_VERSION', '5.2.0' );
 define( 'JM_TC_DIR', plugin_dir_path( __FILE__ )  );
 define( 'JM_TC_INC_DIR', trailingslashit(JM_TC_DIR . 'inc') );
 define( 'JM_TC_ADMIN_DIR', trailingslashit(JM_TC_DIR . 'inc/admin') );

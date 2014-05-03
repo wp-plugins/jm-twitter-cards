@@ -188,6 +188,18 @@ function _jm_tc_relative_paths($content) {
 
 == Changelog ==
 
+= 5.2.0 =
+* 03 May 2014
+* Add confirmation message for option page when settings are saved
+* Add translation in Spanish for documentation
+* Fix bug with capability name
+* Add 2nd footage, a video for troubleshooting
+* Re-add preview feature, use only PHP for this
+* Fix bug with preview WP SEO
+* Add 3rd footage : multi-author video tutorial
+* Update framework cmb
+* Fix the issue with strip_shortcodes() not working
+
 = 5.1.9 =
 * 21 Apr 2014
 * Fix fallback All In One SEO title
