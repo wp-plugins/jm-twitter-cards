@@ -65,7 +65,7 @@ if ( ! class_exists( 'JM_TC_Metabox' ) ) {
 		public static function markup_as_preview(){
 		
 			self::code();
-			$markup  = new JM_TC_Markup();
+			$markup  = new JM_TC_Markup;
 			$preview = $markup->add_markup();
 			self::code();
 			
@@ -235,6 +235,7 @@ if ( ! class_exists( 'JM_TC_Metabox' ) ) {
 			'product'				=> __( 'Product', 'jm-tc' ),
 			'player' 				=> __( 'Player', 'jm-tc' ),
 			'gallery' 				=> __( 'Gallery', 'jm-tc' ),
+			'app' 					=> __( 'Application', 'jm-tc' )
 			),
 			
 			'std'	=> $this->opts['twitterCardType'],

@@ -13,14 +13,13 @@ Easy integration of Twitter cards in WordPress. All card types provided.
 
 Once activated the plugin adds appropriate meta on your WordPress website allowing you to get Twitter cards for your posts according to your settings. Enjoy !
 
-
-Compatible with : WP SEO by Yoast (uncheck Twitter cards option in this plugin if activated) and All in One SEO.
+Compatible with : WP SEO by Yoast and All in One SEO.
 
 The plugin allows you to customize your cards per each post. If you use SEO by Yoast plugin do not activate the Twitter card's option. Otherwise markup will be added twice.
 If you choose full customization you will see a metabox in your post edit.
 
 **Please help me to translate it in other languages** : contact@tweetpress.fr
-
+Plugin en el español por Andrew de <a href="http://www.webhostinghub.com/">WebHostingHub</a>  (thanks dude ^^) 
 
 I've been rebuilding the plugin for better features and user interface. This is available here : https://github.com/TweetPressFr/jm-twitter-cards
 
@@ -36,7 +35,7 @@ En Français
 
 Une fois activé le plugin s'occupe d'ajouter les métas nécessaires vous permettant d'obtenir des cards Twitter sur vos posts selon vos réglages. Profitez-en bien !
 
-Compatible avec WP SEO by Yoast(ne pas ajouter l'option cards dans ce plugin si activé) et All in One SEO.
+Compatible avec WP SEO by Yoast et All in One SEO.
 
 Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
 En mode full custom une metabox apparaît dans vos edit de post.
@@ -96,9 +95,6 @@ You have to use the shortcode [gallery] to enjoy this feature ( that's what the 
 
 **Please avoid using images heavier than 1 MB.**
 
-See live example: http://support.tweetpress.fr/demo-twitter-cards-gallery/
-(sometimes you have to wait a minute for images to appear in validator)
-
 = I get a fatal error ! = 
 `Call to undefined function cmb_metabox_form()` >> if you get this it's not due to the plugin it comes from another plugin or a theme using the same framework for meta boxes but in a very old version.
 So do not yell at me ^^
@@ -134,9 +130,6 @@ Utiliser le gestionnaire de médias WordPress pour créer une galerie WordPress 
 Vous devez utiliser le shortcode [gallery] pour obtenir une card galerie (c'est ce que fait le gestionnaire de médias, il insère le shortcode [gallery]).
 
 **SVP évitez d'utliser des images de plus d'1 MB**.
-
-Voir une démo : http://support.tweetpress.fr/demo-twitter-cards-gallery/
-(parfois vous devez patientez un peu pour que les images apparaissent au validateur.)
 
 = Hey j'ai une fatal error ! = 
 `Call to undefined function cmb_metabox_form()` >> ça vient d'un thème ou d'un plugin qui use du même framework pour ses meta boxes mais dans une version très ancienne, donc ne me criez pas dessus ^^
@@ -187,6 +180,13 @@ function _jm_tc_relative_paths($content) {
 
 
 == Changelog ==
+
+= 5.2.1 =
+* 07 May 2014
+* Skip () for classes because we do not need it, actually no argument in constructor
+* Removes notices, just uncheck option cards in WP SEO if enabled on plugins_loaded (soft way)
+* Add app card type to meta box, add country field for meta country application not available on the US app store
+* Add spanish translation for plugin & documentation so now full spanish version, huge thanks to Andrew Kurtis from WebHostingHub (http://www.webhostinghub.com/)
 
 = 5.2.0 =
 * 03 May 2014
