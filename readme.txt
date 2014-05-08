@@ -19,7 +19,8 @@ The plugin allows you to customize your cards per each post. If you use SEO by Y
 If you choose full customization you will see a metabox in your post edit.
 
 **Please help me to translate it in other languages** : contact@tweetpress.fr
-Plugin en el español por Andrew de <a href="http://www.webhostinghub.com/">WebHostingHub</a>  (thanks dude ^^) 
+
+Plugin available in Spanish thanks to Andrew de <a href="http://www.webhostinghub.com/">WebHostingHub</a>  (thanks dude ^^) 
 
 I've been rebuilding the plugin for better features and user interface. This is available here : https://github.com/TweetPressFr/jm-twitter-cards
 
