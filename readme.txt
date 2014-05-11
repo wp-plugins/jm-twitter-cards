@@ -2,7 +2,7 @@
 Contributors: jmlapam
 Tags: twitter, cards, semantic markup, metabox, meta, photo, product, gallery, player
 Donate Link: http://www.amazon.fr/registry/wishlist/1J90JNIHBBXL8
-Tested up to: 3.9
+Tested up to: 3.9.1
 License: GPLv2 or later
 Stable tag: trunk
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -181,6 +181,12 @@ function _jm_tc_relative_paths($content) {
 
 
 == Changelog ==
+
+= 5.2.2 =
+* 11 May 2014
+* Fix wrong post meta key for player stream
+* Fix robots.txt function 
+* Add tabs to admin pages (menu on top for better UX with admin nav)
 
 = 5.2.1 =
 * 07 May 2014

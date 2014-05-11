@@ -6,17 +6,27 @@ if ( ! defined( 'JM_TC_VERSION' ) ) {
 }
 
 if( class_exists('JM_TC_Utilities') ) {
+
  
 	class JM_TC_Markup extends JM_TC_Utilities {	
 	
+		private static $_this;
 		var $opts;
 		var $textdomain = 'jm-tc';
 
 		function __construct() {
+		
+			self::$_this = $this;
 			$this->opts = get_option('jm_tc');
 			add_action('wp_head', array(&$this, 'add_markup'), 2 );
 			
 		}
+		
+		
+		//being nicer with removers !
+		static function this() {
+			return self::$_this;
+		 }
 		
 
 		/*
@@ -419,7 +429,7 @@ if( class_exists('JM_TC_Utilities') ) {
 			if( ($cardType = get_post_meta($post_id, 'twitterCardType', true) ) == 'player') {
 			
 				$playerUrl       	= get_post_meta($post_id, 'cardPlayer', true);
-				$playerStreamUrl 	= get_post_meta($post_id, 'cardPlayer', true);
+				$playerStreamUrl 	= get_post_meta($post_id, 'cardPlayerStream', true);
 				$playerWidth 		= get_post_meta($post_id, 'cardPlayerWidth', true);
 				$playerHeight 		= get_post_meta($post_id, 'cardPlayerHeight', true);
 					
@@ -444,7 +454,7 @@ if( class_exists('JM_TC_Utilities') ) {
 						$this->display_markup( 'player:stream:content_type',  apply_filters('jm_tc_player_stream_codec', $codec) );
 					
 					} else {
-						return;
+						$this->display_markup( '',  '', __('No stream', $this->textdomain) );
 					}
 					
 					//Player width and height

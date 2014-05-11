@@ -5,7 +5,7 @@ Plugin URI: http://www.tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://www.tweetpress.fr
-Version: 5.2.1
+Version: 5.2.2
 License: GPL2++
 
 JM Twitter Cards Plugin
@@ -26,7 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 *    Sources: 
-* 
 * - https://dev.twitter.com/docs/cards
 * - https://dev.twitter.com/docs/cards/getting-started#open-graph
 * - https://dev.twitter.com/docs/cards/markup-reference
@@ -48,7 +47,7 @@ or die('What we\'re dealing with here is a total lack of respect for the law !')
 
 
 //Constantly constant
-define( 'JM_TC_VERSION', '5.2.1' );
+define( 'JM_TC_VERSION', '5.2.2' );
 define( 'JM_TC_DIR', plugin_dir_path( __FILE__ )  );
 define( 'JM_TC_INC_DIR', trailingslashit(JM_TC_DIR . 'inc') );
 define( 'JM_TC_ADMIN_DIR', trailingslashit(JM_TC_DIR . 'inc/admin') );
@@ -123,7 +122,7 @@ require( JM_TC_INC_DIR . 'disable.php' );
 require( JM_TC_INC_DIR . 'markup.php' ); 
 
 if( is_admin() ) {
-
+	require( JM_TC_ADMIN_DIR. 'tabs.php' );
 	require( JM_TC_ADMIN_DIR. 'admin-tc.php' );
 	require( JM_TC_ADMIN_DIR . 'meta-box.php' );	
 
@@ -154,7 +153,7 @@ function jm_tc_robots_mod( $output, $public ) {
 	$opts = get_option('jm_tc');
 	
 	if( $opts['twitterCardRobotsTxt'] == 'yes' ) {
-		$output  = "User-agent: Twitterbot" ."\n";
+		$output .= "User-agent: Twitterbot" ."\n";
 		$output .= "Disallow: ";
 	}
 	
@@ -190,6 +189,7 @@ function jm_tc_init()
 	if( is_admin() ) {
 	
 		 new JM_TC_Utilities;
+		 new JM_TC_Tabs;
 		 new JM_TC_Admin; 
 		 new JM_TC_Metabox;
 		 new JM_TC_Author;
