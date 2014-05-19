@@ -5,7 +5,7 @@ Plugin URI: http://www.tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://www.tweetpress.fr
-Version: 5.2.2
+Version: 5.2.3
 License: GPL2++
 
 JM Twitter Cards Plugin
@@ -37,7 +37,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * - https://about.twitter.com/fr/press/brand-assets
 * - http://www.jqeasy.com/jquery-character-counter
 * - https://trepmal.com/2011/04/03/change-the-virtual-robots-txt-file/
-* - http://perishablepress.com/5-easy-ways-to-display-syntax-highlighted-php-code/
 */
 
 
@@ -47,7 +46,7 @@ or die('What we\'re dealing with here is a total lack of respect for the law !')
 
 
 //Constantly constant
-define( 'JM_TC_VERSION', '5.2.2' );
+define( 'JM_TC_VERSION', '5.2.3' );
 define( 'JM_TC_DIR', plugin_dir_path( __FILE__ )  );
 define( 'JM_TC_INC_DIR', trailingslashit(JM_TC_DIR . 'inc') );
 define( 'JM_TC_ADMIN_DIR', trailingslashit(JM_TC_DIR . 'inc/admin') );
@@ -59,7 +58,25 @@ define( 'JM_TC_METABOX_URL', trailingslashit(JM_TC_URL.'admin/meta-box') );
 define( 'JM_TC_IMG_URL', trailingslashit(JM_TC_URL.'img') );
 define( 'JM_TC_CSS_URL', trailingslashit(JM_TC_URL.'css') );
 define( 'JM_TC_JS_URL', trailingslashit(JM_TC_URL.'js') );				
-	
+			
+
+
+//Call modules 
+require( JM_TC_INC_DIR . 'utilities.php' ); 
+require( JM_TC_ADMIN_DIR . 'author.php' );
+require( JM_TC_INC_DIR . 'thumbs.php' );
+require( JM_TC_INC_DIR . 'disable.php' );
+require( JM_TC_ADMIN_DIR . 'options.php' );
+require( JM_TC_INC_DIR . 'markup.php' ); 
+
+if( is_admin() ) {
+	require( JM_TC_ADMIN_DIR.  'tabs.php' );
+	require( JM_TC_ADMIN_DIR.  'admin-tc.php' );
+	require( JM_TC_ADMIN_DIR . 'preview.php' );	
+	require( JM_TC_ADMIN_DIR . 'meta-box.php' );	
+
+}
+
 	
 //Call admin pages
 function jm_tc_subpages(){
@@ -111,21 +128,6 @@ if ( isset( $_GET['page'] ) ) {
 
 		}
 	}
-}		
-
-
-//Call modules 
-require( JM_TC_INC_DIR . 'utilities.php' ); 
-require( JM_TC_ADMIN_DIR . 'author.php' );
-require( JM_TC_INC_DIR . 'thumbs.php' );
-require( JM_TC_INC_DIR . 'disable.php' );
-require( JM_TC_INC_DIR . 'markup.php' ); 
-
-if( is_admin() ) {
-	require( JM_TC_ADMIN_DIR. 'tabs.php' );
-	require( JM_TC_ADMIN_DIR. 'admin-tc.php' );
-	require( JM_TC_ADMIN_DIR . 'meta-box.php' );	
-
 }
 
 
@@ -190,7 +192,9 @@ function jm_tc_init()
 	
 		 new JM_TC_Utilities;
 		 new JM_TC_Tabs;
+		 new JM_TC_Options;
 		 new JM_TC_Admin; 
+		 new JM_TC_Preview;
 		 new JM_TC_Metabox;
 		 new JM_TC_Author;
 
