@@ -188,11 +188,16 @@ function _jm_tc_relative_paths($content) {
 **BE CAREFUL WITH THIS! DO NOT USE IF YOU DO NOT KNOW WHAT YOU ARE DOING, YOU CAN BREAK YOUR CARDS WITH THIS !!!**
 
 
-= There are a lot of new filters =
+= There are a lot of new filters since 5.2 =
 
 Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
+
+= 5.2.5 =
+* 7 June 2014
+* Fix preview with undefined index (new option open graph)
+* Add debug method in utilities
 
 = 5.2.4 =
 * 6 June 2014
