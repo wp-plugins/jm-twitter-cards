@@ -194,6 +194,15 @@ Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
 
+= 5.2.6 =
+* 14 June 2014
+* add option to import/export options quickly, this will let you quickly export/import settings in JSON format
+* could save a lot of time especially in multisite mod
+* I decided to add this feature instead of adding some network-wide options that could be tricky
+* Fix missing translation for yes/no options
+* Fix some bug in preview
+* Remove loop through network in uninstall because it doesn't scale actually 
+
 = 5.2.5 =
 * 7 June 2014
 * Fix preview with undefined index (new option open graph)
