@@ -194,6 +194,10 @@ Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
 
+= 5.2.7 =
+* 22 June 2014
+* Small fix: HTML meta name og does not exists ! Now the plugin uses meta property
+
 = 5.2.6 =
 * 14 June 2014
 * add option to import/export options quickly, this will let you quickly export/import settings in JSON format
