@@ -194,6 +194,13 @@ Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
 
+= 5.2.8 =
+* 04 July 2014
+* fix bug with NGG (Next Gen Gallery) in post edit
+* better init for markup
+* remove unecessary class extends
+* bugfixes in admin
+
 = 5.2.7 =
 * 22 June 2014
 * Small fix: HTML meta name og does not exists ! Now the plugin uses meta property
