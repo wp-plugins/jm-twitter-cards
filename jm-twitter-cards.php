@@ -5,7 +5,7 @@ Plugin URI: http://www.tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://www.tweetpress.fr
-Version: 5.2.8
+Version: 5.2.9
 License: GPL2++
 
 JM Twitter Cards Plugin
@@ -38,6 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * - http://www.jqeasy.com/jquery-character-counter
 * - https://trepmal.com/2011/04/03/change-the-virtual-robots-txt-file/
 * - https://github.com/pippinsplugins/Settings-Import-and-Export-Example-Pluginc [GREAT]
+* - http://www.wpexplorer.com/wordpress-image-crop-sizes/
 */
 
 
@@ -47,7 +48,7 @@ or die('What we\'re dealing with here is a total lack of respect for the law !')
 
 
 //Constantly constant
-define( 'JM_TC_VERSION', '5.2.8' );
+define( 'JM_TC_VERSION', '5.2.9' );
 define( 'JM_TC_DIR', plugin_dir_path( __FILE__ )  );
 define( 'JM_TC_INC_DIR', trailingslashit(JM_TC_DIR . 'inc') );
 define( 'JM_TC_ADMIN_DIR', trailingslashit(JM_TC_DIR . 'inc/admin') );
@@ -232,14 +233,36 @@ function jm_tc_init()
 	
 	/* Thumbnails */
 	$opts = get_option('jm_tc');
-	$crop = ( $opts['twitterCardCrop'] == 'yes' ) ? true : false;
+	$crop = $opts['twitterCardCrop'];
+	$crop_x =  $opts['twitterCardCropX'];
+	$crop_y =  $opts['twitterCardCropY'];
+
+	switch($crop)
+		{
+			case 'yes' :
+				$is_crop === true;
+			break;
+
+			case 'no' :
+				$is_crop === false;
+			break;
+
+			case 'yo' :
+				global $wp_version;
+				$is_crop = ( version_compare( $wp_version, '3.9', '>=') ) ? array($crop_x, $crop_y) : true;
+			break;
+
+			default:
+				$is_crop === true;
+
+		}
 
 	if (function_exists('add_theme_support')) add_theme_support('post-thumbnails');
 	
-	add_image_size('jmtc-small-thumb', 280, 150, $crop);/* the minimum size possible for Twitter Cards */
-	add_image_size('jmtc-max-web-thumb', 435, 375, $crop);/* maximum web size for photo cards */
-	add_image_size('jmtc-max-mobile-non-retina-thumb', 280, 375, $crop);/* maximum non retina mobile size for photo cards  */
-	add_image_size('jmtc-max-mobile-retina-thumb', 560, 750, $crop);/* maximum retina mobile size for photo cards  */
+	add_image_size('jmtc-small-thumb', 280, 150, $is_crop);/* the minimum size possible for Twitter Cards */
+	add_image_size('jmtc-max-web-thumb', 435, 375, $is_crop);/* maximum web size for photo cards */
+	add_image_size('jmtc-max-mobile-non-retina-thumb', 280, 375, $is_crop);/* maximum non retina mobile size for photo cards  */
+	add_image_size('jmtc-max-mobile-retina-thumb', 560, 750, $is_crop);/* maximum retina mobile size for photo cards  */
 	
 }
 
@@ -312,6 +335,8 @@ function jm_tc_get_default_options()
 		'twitterCardTitle' => '',
 		'twitterCardDesc' => '',
 		'twitterCardCrop' => 'yes',
+		'twitterCardCropX' => '',
+		'twitterCardCropY' => '',
 		'twitterUsernameKey' => 'jm_tc_twitter',
 		'twitteriPhoneName' => '',
 		'twitteriPadName' => '',

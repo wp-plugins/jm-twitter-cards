@@ -194,6 +194,13 @@ Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
 
+
+= 5.2.9 =
+* 13 July 2014
+* Add new crop options for WordPress 3.9++, it allows you to make fine crops. You can define crop x (in width) and crop y ( in height)
+* Indeed only works with latest versions of WordPress, later than 3.9
+
+
 = 5.2.8 =
 * 04 July 2014
 * fix bug with NGG (Next Gen Gallery) in post edit

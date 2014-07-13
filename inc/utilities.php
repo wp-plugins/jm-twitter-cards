@@ -70,7 +70,6 @@ if( ! class_exists('JM_TC_Utilities') ) {
 			echo'</pre>';
 		}	
 
-
 	}
 
 }
