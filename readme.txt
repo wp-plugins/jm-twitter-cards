@@ -1,7 +1,7 @@
 === JM Twitter Cards ===
 Contributors: jmlapam
 Tags: twitter, cards, semantic markup, metabox, meta, photo, product, gallery, player
-Donate Link: http://www.amazon.fr/registry/wishlist/1J90JNIHBBXL8
+Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7BJYYT486HEH6
 Requires at least: 3.6
 Tested up to: 3.9.1
 License: GPLv2 or later
