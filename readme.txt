@@ -137,7 +137,7 @@ Vous devez utiliser le shortcode [gallery] pour obtenir une card galerie (c'est 
 
 *SVP évitez d'utliser des images de plus d'1 MB*.
 
-**Hey j'ai une fatal error ! **
+= Hey j'ai une fatal error ! =
 
 `Call to undefined function cmb_metabox_form()` : ça vient d'un thème ou d'un plugin qui use du même framework pour ses meta boxes mais dans une version très ancienne, donc ne me criez pas dessus ^^
 
