@@ -14,44 +14,31 @@ Easy integration of Twitter cards in WordPress. All card types provided.
 
 Once activated the plugin adds appropriate meta on your WordPress website allowing you to get Twitter cards for your posts according to your settings. Enjoy !
 
-Compatible with : WP SEO by Yoast and All in One SEO.
-Support Open Graph (deactivated by default).
+= Features =
 
-The plugin allows you to customize your cards per each post. If you use SEO by Yoast plugin do not activate the Twitter card's option. Otherwise markup will be added twice.
-If you choose full customization you will see a metabox in your post edit.
+*  meta box : customize Twitter Cards experience (per each post)
+*  preview : preview the rendering on Twitter (on no account this could replace the Twitter's validator but it rocks). 
+*  WP SEO by Yoast and All in One SEO compatible (no conflict with SEO title and desc set with these plugins)
+*  fine crop for images (WordPress 3.9 ++)
 
-**Please help me to translate it in other languages** : contact@tweetpress.fr
+contact@tweetpress.fr
 
-Plugin available in Spanish thanks to Andrew de <a href="http://www.webhostinghub.com/">WebHostingHub</a>  (thanks dude ^^) 
+= Translators =
 
-I've been rebuilding the plugin for better features and user interface. This is available here : https://github.com/TweetPressFr/jm-twitter-cards
+The plugin is available in French, English and Spanish. Feel totally free to send me your translation in other languages.
+You'll be added to the list here with your name and URL.
+Thanks a lot to all translators. Can't wait to add your work to the project.
+
+Spanish version : [WebHostingHub](http://www.webhostinghub.com/) (thanks dude ^^) 
+
+= Github =
+
+*  Latest stable version : https://github.com/TweetPressFr/jm-twitter-cards
+*  Trunk version : https://github.com/TweetPressFr/jm-twitter-cards/tree/trunk
+
 This URL is the place where I improve the plugin according to support requests and stuffs like this. Github is the place !
 
-
-**The plugin now includes a visual preview if you use the meta box option. On no account this could replace the Twitter's validator but it rocks.**
-
-
-<a href="http://twitter.com/intent/user?screen_name=tweetpressfr">Follow me on Twitter</a>
-
-
-––––
-En Français 
-–––––––––––––––––––––––––––––––––––
-
-Une fois activé le plugin s'occupe d'ajouter les métas nécessaires vous permettant d'obtenir des cards Twitter sur vos posts selon vos réglages. Profitez-en bien !
-
-Compatible avec WP SEO by Yoast et All in One SEO.
-Support pour l'Open Graph (désactivé par défaut).
-
-Le plugin vous permet de personnaliser les cards pour chaque post. Attention malgré tout à ne pas activer l'option card de Yoast ou sinon le markup sera ajouté 2 fois.
-En mode full custom une metabox apparaît dans vos edit de post.
-
-Appel aux traducteurs pour d'autres langages : contact@tweetpress.fr
-
-**Le plugin intègre maintenant une prévisualisation de la card. Cela ne remplacera pas le validateur de Twitter mais c'est cool !**
-
-<a href="http://twitter.com/intent/user?screen_name=tweetpressfr">Me suivre sur Twitter</a>
-
+[Follow me on Twitter](http://twitter.com/intent/user?screen_name=tweetpressfr)
 
 == Installation ==
 
@@ -63,83 +50,97 @@ Appel aux traducteurs pour d'autres langages : contact@tweetpress.fr
 
 [youtube http://www.youtube.com/watch?v=8l4k3zrD4Z0]
 
-
-––––
-En Français 
-–––––––––––––––––––––––––––––––––––
-
-1. Chargez les fichiers de l'archive dans le dossier /wp-content/plugins/ 
-2. Activez le plugin dans le menu extensions de WordPress
-3. Allez dans réglages > JM Twitter Cards pour configurer le plugin
-4. Pour afficher la metabox dans vos admin de posts, de pages et de médias, activez l'option correspondante dans **Custom Twitter Cards**
-
 == Frequently asked questions ==
 
-= I got problem with Instagram = 
+/***********
+ In English 
+***********/
+
+**I got problem with Instagram**
+
 It's a known issue due to Instagram. Twitter said it recently : Users are experiencing issues with viewing Instagram photos on Twitter. Issues include cropped images.This is due to Instagram disabling its Twitter cards integration, and as a result, photos are being displayed using a pre-cards experience. 
 So, when users click on Tweets with an Instagram link, photos appear cropped.*
 
-= Plugin is fine but Twitter cards doesn't appear in my tweets =
-1. Make sure you correctly fulfilled fields in option page according to <a href="https://dev.twitter.com/docs/cards" title="Twitter cards documentation">Twitter documentation</a>
-2. Make sure you have correctly <a href="https://dev.twitter.com/docs/cards/validation/validator" title="Twitter cards submit">submitted your website to Twitter</a>
+**Plugin is fine but Twitter cards doesn't appear in my tweets**
+
+1. Make sure you correctly fulfilled fields in option page according to [Twitter documentation](https://dev.twitter.com/docs/cards "Twitter cards documentation")
+2. Make sure you have correctly [submitted your website to Twitter](https://dev.twitter.com/docs/cards/validation/validator "Twitter cards submit")
 3. Wait for Twitter's answer (a mail that tells you your site has been approved)
 4. Be careful with your robots.txt and put some rules to allow Twitter to fetch your website :
-`User-agent: Twitterbot
-    Disallow:`
-If it still doesn't work please open a thread on support or at this URL: <a href="http://tweetpress.fr/en/plugin/new-plugin-jm-twitter-cards/">TweetPress, JM Twitter Cards</a>
 
-= Use of new feature product cards = 
+`	
+	User-agent: Twitterbot
+	Disallow:
+`
+
+If it still doesn't work please open a thread on support.
+
+**Use of new feature product cards**
+
 Just activate meta box, select **card type product** and save draft. 4 new fields will appear and you'll be able to set your product card.
 
-= The plugin generates a lot of images (different sizes) = 
+**The plugin generates a lot of images (different sizes)**
+
 I can be a problem when you work with HD and/or a lot of images.
 
-= How do I use the custom fields option? = 
+**How do I use the custom fields option?**
+
 Basically you provide your custom field keys in plugin option page and then it will grab datas.
 
-= How do I use gallery cards ? = 
-Just use the WordPress media manager to set a WordPress Gallery and the plugin will grab the first 4 images to set the gallery card.
-You have to use the shortcode [gallery] to enjoy this feature ( that's what the WordPress media manager does, it inserts the shortcode [gallery]).
+**How do I use gallery cards ?** 
+
+Just use the WordPress media manager to set a WordPress Gallery and the plugin will grab the first 4 images to set the gallery card. You have to use the shortcode [gallery] to enjoy this feature ( that's what the WordPress media manager does, it inserts the shortcode [gallery]).
 
 **Please avoid using images heavier than 1 MB.**
 
-= I get a fatal error ! = 
+**I get a fatal error !**
+
 `Call to undefined function cmb_metabox_form()` >> if you get this it's not due to the plugin it comes from another plugin or a theme using the same framework for meta boxes but in a very old version.
 So do not yell at me ^^
 
 
-––––
-En Français 
-–––––––––––––––––––––––––––––––––––
+/************
+ En Français 
+************/
 
-= Problème avec Instagram = 
+**Problème avec Instagram
 C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses utilisateurs partagent les photos chez lui plutôt que sur Twitter. Instagram a supprimé ses Twitter Cards.
 
-= Le plugin marche mais je n'obtiens pas de Twitter Cards dans mes tweets =
+**Le plugin marche mais je n'obtiens pas de Twitter Cards dans mes tweets**
+
 1. Assurez-vous bien d'avoir rempli correctement les champs dans la page d'options suivant <a href="https://dev.twitter.com/docs/cards" title="Twitter cards documentation">la documentation Twitter</a>
 2. Assurez-vous bien d'avoir <a href="https://dev.twitter.com/docs/cards/validation/validator" title="Twitter cards formulaire de validation">soumis votre site à Twitter</a>
 3. Attendez la réponse de Twitter (un mail qui vous indique que votre site a été approuvé)
 4. Attention avec le fichier robots.txt, vous devez autoriser le robot de Twitter à crawler votre site:
-`User-agent: Twitterbot
-    Disallow:`
-Si cela ne marche toujours pas SVP ouvrez un topic sur le support du plugin ou à cette adresse : <a href="http://tweetpress.fr/plugin/jm-twitter-cards">TweetPress, JM Twitter Cards</a>
 
-= Utilisez la nouvelle card product = 
+`
+	User-agent: Twitterbot
+	Disallow:
+`
+
+Si cela ne marche toujours pas SVP ouvrez un topic sur le support.
+
+**Utilisez la nouvelle card product** 
+
 Activez la meta box et sélectionnez **le type product** pour la card. Sauvez le brouillon et 4 champs apparaîtront pour mettre en place la card product.
 
-= Le plugin génère beaucoup trop de fichiers images = 
+**Le plugin génère beaucoup trop de fichiers images** 
+
 Cela peut poser problème si vous travaillez avec de la HD et/ou beaucoup d'images. Vous pouvez donc utiliser un plugin qui va effacer les fichiers images non utilisés.
 
-= Comment utiliser l'option custom fields? = 
+**Comment utiliser l'option custom fields?**
+
 Il suffit de renseigner les clés de vos custom fields en page d'option et le plugin s'occupera de récupérer les datas correspondantes.
 
-= Comment mettre en place des cards galerie ? = 
+**Comment mettre en place des cards galerie ?**
+
 Utiliser le gestionnaire de médias WordPress pour créer une galerie WordPress et le plugin prendra les 4 premières pour constituer la card galerie.
 Vous devez utiliser le shortcode [gallery] pour obtenir une card galerie (c'est ce que fait le gestionnaire de médias, il insère le shortcode [gallery]).
 
-**SVP évitez d'utliser des images de plus d'1 MB**.
+*SVP évitez d'utliser des images de plus d'1 MB*.
 
-= Hey j'ai une fatal error ! = 
+**Hey j'ai une fatal error ! **
+
 `Call to undefined function cmb_metabox_form()` >> ça vient d'un thème ou d'un plugin qui use du même framework pour ses meta boxes mais dans une version très ancienne, donc ne me criez pas dessus ^^
 
 
@@ -154,46 +155,45 @@ Vous devez utiliser le shortcode [gallery] pour obtenir une card galerie (c'est 
 
 == Other notes ==
 
-
 = 4.3 brings new filter for your convenience if you're a developer =
 * `jm_tc_get_excerpt`
 * `jm_tc_image_source`
 * `jm_tc_card_type`
 
-= Here is a snippet you can use with new filters =
+== Here is a snippet you can use with new filters ==
 
-** Get native excerpt, some themes use them **
+**Get native excerpt, some themes use them **
 
-`add_filter('jm_tc_get_excerpt','_jm_tc_modify_excerpt');
-function _jm_tc_modify_excerpt() {
-    global $post;
-	return get_excerpt_from_far_far_away($post->ID);
-}
+	`add_filter('jm_tc_get_excerpt','_jm_tc_modify_excerpt');
+	function _jm_tc_modify_excerpt() {
+	    global $post;
+		return get_excerpt_from_far_far_away($post->ID);
+	}
 
-function get_excerpt_from_far_far_away( $post_id )
-{
-	global $wpdb;
-	$query = 'SELECT post_excerpt FROM '. $wpdb->posts .' WHERE ID = '. $post_id .' LIMIT 1';
-	$result = $wpdb->get_results($query, ARRAY_A);
-	$post_excerpt = $result[0]['post_excerpt'];
-	return $post_excerpt;
-}`
+	function get_excerpt_from_far_far_away( $post_id )
+	{
+		global $wpdb;
+		$query = 'SELECT post_excerpt FROM '. $wpdb->posts .' WHERE ID = '. $post_id .' LIMIT 1';
+		$result = $wpdb->get_results($query, ARRAY_A);
+		$post_excerpt = $result[0]['post_excerpt'];
+		return $post_excerpt;
+	}`
 
-** Hack source image e.g if you use relative paths **
-`add_filter('jm_tc_image_source', '_jm_tc_relative_paths');
-function _jm_tc_relative_paths($content) {
-	return trailingslashit( home_url() ).$content;
-}`
+**Hack source image e.g if you use relative paths**
+
+	`add_filter('jm_tc_image_source', '_jm_tc_relative_paths');
+	function _jm_tc_relative_paths($content) {
+		return trailingslashit( home_url() ).$content;
+	}`
 
 **BE CAREFUL WITH THIS! DO NOT USE IF YOU DO NOT KNOW WHAT YOU ARE DOING, YOU CAN BREAK YOUR CARDS WITH THIS !!!**
 
 
-= There are a lot of new filters since 5.2 =
+== There are a lot of new filters since 5.2 ==
 
 Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
-
 
 = 5.2.9 =
 * 13 July 2014
