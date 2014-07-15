@@ -52,16 +52,12 @@ This URL is the place where I improve the plugin according to support requests a
 
 == Frequently asked questions ==
 
-/***********
- In English 
-***********/
-
-**I got problem with Instagram**
+= I got problem with Instagram =
 
 It's a known issue due to Instagram. Twitter said it recently : Users are experiencing issues with viewing Instagram photos on Twitter. Issues include cropped images.This is due to Instagram disabling its Twitter cards integration, and as a result, photos are being displayed using a pre-cards experience. 
-So, when users click on Tweets with an Instagram link, photos appear cropped.*
+So, when users click on Tweets with an Instagram link, photos appear cropped.
 
-**Plugin is fine but Twitter cards doesn't appear in my tweets**
+= Plugin is fine but Twitter cards doesn't appear in my tweets =
 
 1. Make sure you correctly fulfilled fields in option page according to [Twitter documentation](https://dev.twitter.com/docs/cards "Twitter cards documentation")
 2. Make sure you have correctly [submitted your website to Twitter](https://dev.twitter.com/docs/cards/validation/validator "Twitter cards submit")
@@ -75,11 +71,11 @@ So, when users click on Tweets with an Instagram link, photos appear cropped.*
 
 If it still doesn't work please open a thread on support.
 
-**Use of new feature product cards**
+= Use of new feature product cards =
 
 Just activate meta box, select **card type product** and save draft. 4 new fields will appear and you'll be able to set your product card.
 
-**The plugin generates a lot of images (different sizes)**
+= The plugin generates a lot of images (different sizes) =
 
 I can be a problem when you work with HD and/or a lot of images.
 
@@ -87,26 +83,28 @@ I can be a problem when you work with HD and/or a lot of images.
 
 Basically you provide your custom field keys in plugin option page and then it will grab datas.
 
-**How do I use gallery cards ?** 
+= How do I use gallery cards ? =
 
 Just use the WordPress media manager to set a WordPress Gallery and the plugin will grab the first 4 images to set the gallery card. You have to use the shortcode [gallery] to enjoy this feature ( that's what the WordPress media manager does, it inserts the shortcode [gallery]).
 
 **Please avoid using images heavier than 1 MB.**
 
-**I get a fatal error !**
+= I get a fatal error ! =
 
 `Call to undefined function cmb_metabox_form()` >> if you get this it's not due to the plugin it comes from another plugin or a theme using the same framework for meta boxes but in a very old version.
 So do not yell at me ^^
 
 
-/************
- En Français 
+/**************
+*			  *
+* En Français *
+* 			  *
 ************/
 
-**Problème avec Instagram
+= Problème avec Instagram =
 C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses utilisateurs partagent les photos chez lui plutôt que sur Twitter. Instagram a supprimé ses Twitter Cards.
 
-**Le plugin marche mais je n'obtiens pas de Twitter Cards dans mes tweets**
+= Le plugin marche mais je n'obtiens pas de Twitter Cards dans mes tweets =
 
 1. Assurez-vous bien d'avoir rempli correctement les champs dans la page d'options suivant <a href="https://dev.twitter.com/docs/cards" title="Twitter cards documentation">la documentation Twitter</a>
 2. Assurez-vous bien d'avoir <a href="https://dev.twitter.com/docs/cards/validation/validator" title="Twitter cards formulaire de validation">soumis votre site à Twitter</a>
@@ -120,19 +118,19 @@ C'est un problème connu. Cela vient d'Instagram lui-même qui préfère que ses
 
 Si cela ne marche toujours pas SVP ouvrez un topic sur le support.
 
-**Utilisez la nouvelle card product** 
+= Utilisez la nouvelle card product =
 
 Activez la meta box et sélectionnez **le type product** pour la card. Sauvez le brouillon et 4 champs apparaîtront pour mettre en place la card product.
 
-**Le plugin génère beaucoup trop de fichiers images** 
+= Le plugin génère beaucoup trop de fichiers images = 
 
 Cela peut poser problème si vous travaillez avec de la HD et/ou beaucoup d'images. Vous pouvez donc utiliser un plugin qui va effacer les fichiers images non utilisés.
 
-**Comment utiliser l'option custom fields?**
+= Comment utiliser l'option custom fields? =
 
 Il suffit de renseigner les clés de vos custom fields en page d'option et le plugin s'occupera de récupérer les datas correspondantes.
 
-**Comment mettre en place des cards galerie ?**
+= Comment mettre en place des cards galerie ? =
 
 Utiliser le gestionnaire de médias WordPress pour créer une galerie WordPress et le plugin prendra les 4 premières pour constituer la card galerie.
 Vous devez utiliser le shortcode [gallery] pour obtenir une card galerie (c'est ce que fait le gestionnaire de médias, il insère le shortcode [gallery]).
@@ -141,7 +139,7 @@ Vous devez utiliser le shortcode [gallery] pour obtenir une card galerie (c'est 
 
 **Hey j'ai une fatal error ! **
 
-`Call to undefined function cmb_metabox_form()` >> ça vient d'un thème ou d'un plugin qui use du même framework pour ses meta boxes mais dans une version très ancienne, donc ne me criez pas dessus ^^
+`Call to undefined function cmb_metabox_form()` : ça vient d'un thème ou d'un plugin qui use du même framework pour ses meta boxes mais dans une version très ancienne, donc ne me criez pas dessus ^^
 
 
 == Screenshots ==
