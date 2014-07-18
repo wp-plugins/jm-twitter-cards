@@ -5,7 +5,7 @@ Plugin URI: http://www.tweetpress.fr
 Description: Meant to help users to implement and customize Twitter Cards easily
 Author: Julien Maury
 Author URI: http://www.tweetpress.fr
-Version: 5.2.9
+Version: 5.3.0
 License: GPL2++
 
 JM Twitter Cards Plugin
@@ -23,7 +23,6 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 
 *    Sources: 
 * - https://dev.twitter.com/docs/cards
@@ -48,7 +47,7 @@ or die('What we\'re dealing with here is a total lack of respect for the law !')
 
 
 //Constantly constant
-define( 'JM_TC_VERSION', '5.2.9' );
+define( 'JM_TC_VERSION', '5.3.0' );
 define( 'JM_TC_DIR', plugin_dir_path( __FILE__ )  );
 define( 'JM_TC_INC_DIR', trailingslashit(JM_TC_DIR . 'inc') );
 define( 'JM_TC_ADMIN_DIR', trailingslashit(JM_TC_DIR . 'inc/admin') );
@@ -76,8 +75,6 @@ if( is_admin() ) {
 	require( JM_TC_ADMIN_DIR.  'admin-tc.php' );
 	require( JM_TC_ADMIN_DIR . 'preview.php' );	
 	require( JM_TC_ADMIN_DIR . 'meta-box.php' );	
-	
-	//if( is_multisite() ) require( JM_TC_ADMIN_DIR.  'admin-tc-mu.php' );
 	require( JM_TC_ADMIN_DIR . 'import-export.php' );	
 
 }
@@ -98,9 +95,8 @@ if( is_admin() ) {
 
 	$jm_twitter_cards['utilities'] = new JM_TC_Utilities;
 	$jm_twitter_cards['admin-tabs'] = new JM_TC_Tabs;
-	$jm_twitter_cards['admin-options'] =  new JM_TC_Options;
+	$jm_twitter_cards['admin-options'] = new JM_TC_Options;
 	$jm_twitter_cards['admin-base'] = new JM_TC_Admin; 
-	 //if( is_multisite() ) new JM_TC_Network;
 	$jm_twitter_cards['admin-import-export'] = new JM_TC_Import_Export;
 	$jm_twitter_cards['admin-preview'] = new JM_TC_Preview;
 	$jm_twitter_cards['admin-metabox'] = new JM_TC_Metabox;
@@ -181,13 +177,63 @@ function jm_tc_settings_action_links($links, $file)
 
 
 // Init meta box
-function jm_tc_initialize_cmb_meta_boxes() {
+function jm_tc_initialize() {
 
 	if ( ! class_exists( 'cmb_Meta_Box' ) ) {
 		
 		require_once JM_TC_METABOX_DIR . 'init.php';
 	
 	}
+
+		/* Thumbnails */
+	$opts = get_option('jm_tc');
+	$is_crop = true;
+	$crop = $opts['twitterCardCrop'];
+	$crop_x =  $opts['twitterCardCropX'];
+	$crop_y =  $opts['twitterCardCropY'];
+	$size = $opts['twitterCardImgSize'];
+
+	switch($crop)
+		{
+			case 'yes' :
+				$is_crop = true;
+			break;
+
+			case 'no' :
+				$is_crop = false;
+			break;
+
+			case 'yo' :
+				global $wp_version;
+				$is_crop = ( version_compare( $wp_version, '3.9', '>=') ) ? array($crop_x, $crop_y) : true;
+			break;
+		}
+
+	if (function_exists('add_theme_support')) 
+		add_theme_support('post-thumbnails');
+
+	switch ($size) 
+	{
+		case 'small':
+			add_image_size('jmtc-small-thumb', 280, 150, $is_crop);/* the minimum size possible for Twitter Cards */
+		break;
+
+		case 'web':
+			add_image_size('jmtc-max-web-thumb', 435, 375, $is_crop);/* maximum web size for photo cards */
+		break;
+
+		case 'mobile-non-retina':
+			add_image_size('jmtc-max-mobile-non-retina-thumb', 280, 375, $is_crop);/* maximum non retina mobile size for photo cards*/
+		break;
+
+		case 'mobile-retina':
+			add_image_size('jmtc-max-mobile-retina-thumb', 560, 750, $is_crop);/* maximum retina mobile size for photo cards  */
+		break;
+
+		default:
+			add_image_size('jmtc-small-thumb', 280, 150, $is_crop);/* the minimum size possible for Twitter Cards */
+	}
+
 
 }
 
@@ -210,8 +256,8 @@ function jm_tc_robots_mod( $output, $public ) {
 INIT
 
 ******************/
-add_action('plugins_loaded', 'jm_tc_init');
-function jm_tc_init()
+add_action('plugins_loaded', 'jm_tc_plugins_loaded');
+function jm_tc_plugins_loaded()
 {
 	//lang
 	load_plugin_textdomain('jm-tc', false, JM_TC_LANG_DIR);
@@ -220,7 +266,7 @@ function jm_tc_init()
 	add_filter('plugin_action_links_' . plugin_basename(__FILE__) , 'jm_tc_settings_action_links', 10, 2);
 	
 	//meta box
-	add_action( 'init', 'jm_tc_initialize_cmb_meta_boxes');
+	add_action( 'init', 'jm_tc_initialize');
 	
 	//robots.txt
 	add_filter( 'robots_txt', 'jm_tc_robots_mod', 10, 2 );
@@ -230,39 +276,7 @@ function jm_tc_init()
 	$init_markup = $jm_twitter_cards['populate-markup'];
 	
 	add_action('wp_head', array( $init_markup, 'add_markup'), 2 );
-	
-	/* Thumbnails */
-	$opts = get_option('jm_tc');
-	$crop = $opts['twitterCardCrop'];
-	$crop_x =  $opts['twitterCardCropX'];
-	$crop_y =  $opts['twitterCardCropY'];
 
-	switch($crop)
-		{
-			case 'yes' :
-				$is_crop === true;
-			break;
-
-			case 'no' :
-				$is_crop === false;
-			break;
-
-			case 'yo' :
-				global $wp_version;
-				$is_crop = ( version_compare( $wp_version, '3.9', '>=') ) ? array($crop_x, $crop_y) : true;
-			break;
-
-			default:
-				$is_crop === true;
-
-		}
-
-	if (function_exists('add_theme_support')) add_theme_support('post-thumbnails');
-	
-	add_image_size('jmtc-small-thumb', 280, 150, $is_crop);/* the minimum size possible for Twitter Cards */
-	add_image_size('jmtc-max-web-thumb', 435, 375, $is_crop);/* maximum web size for photo cards */
-	add_image_size('jmtc-max-mobile-non-retina-thumb', 280, 375, $is_crop);/* maximum non retina mobile size for photo cards  */
-	add_image_size('jmtc-max-mobile-retina-thumb', 560, 750, $is_crop);/* maximum retina mobile size for photo cards  */
 	
 }
 
@@ -296,11 +310,6 @@ function jm_tc_activate() {
 	
 	} else {
 	
-		/*
-		$multi_opts = get_site_option('jm_tc');	
-		if (!is_array($multi_opts)) update_site_option('jm_tc_network', jm_tc_get_default_network_options());
-		*/
-		
 	    // For regular options.
 		global $wpdb;
 		$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
@@ -325,13 +334,13 @@ function jm_tc_get_default_options()
 		'twitterCreator' => 'TweetPressFr',
 		'twitterSite' => 'TweetPressFr',
 		'twitterImage' => 'https://g.twimg.com/Twitter_logo_blue.png',
+		'twitterCardImgSize' => 'small',
 		'twitterImageWidth' => '280',
 		'twitterImageHeight' => '150',
 		'twitterCardMetabox' => 'yes',
 		'twitterProfile' => 'yes',
 		'twitterPostPageTitle' => get_bloginfo('name') , // filter used by plugin to customize title
 		'twitterPostPageDesc' => __('Welcome to', 'jm-tc') . ' ' . get_bloginfo('name') . ' - ' . __('see blog posts', 'jm-tc') ,
-		'twitterCardImgSize' => 'small',
 		'twitterCardTitle' => '',
 		'twitterCardDesc' => '',
 		'twitterCardCrop' => 'yes',
@@ -352,12 +361,3 @@ function jm_tc_get_default_options()
 		'twitterCardOg' => 'no',
 	);
 }
-
-/*
-function jm_tc_get_default_network_options()
-{
-	return array(
-	'twitterNetworkCardOg' => 'no',
-	);
-}
-*/
