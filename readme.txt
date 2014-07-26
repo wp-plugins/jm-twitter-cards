@@ -193,6 +193,10 @@ Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
 
+= 5.3.2 =
+* 26 July 2014
+* Add support for SSL
+
 = 5.3.0 =
 * 18 July 2014
 * Fix notices with new super crop option
