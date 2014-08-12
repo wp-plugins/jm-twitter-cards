@@ -193,6 +193,15 @@ Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
 
+
+= 5.3.4 =
+* 12 Aug 2014
+* bugfixes
+* reorganize folders
+* globalize options
+* more hide with metabox js. In fact some parts such as img box are not needed for some card types (ex: gallery cards)
+
+
 = 5.3.3 =
 * 04 Aug 2014
 * Change file names for classes
