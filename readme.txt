@@ -193,6 +193,10 @@ Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
 
+= 5.3.5 =
+* 06 Sep 2014
+* Add option for users. You'll be able to grab post excerpt as meta desc for Twitter. Be aware that it will override any desc set with SEO plugin. 
+* Add new icons for plugin
 
 = 5.3.4 =
 * 12 Aug 2014
