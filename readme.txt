@@ -164,6 +164,12 @@ Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
 
+= 5.4.2 =
+* 02 Jan 2015
+* small fixes
+* delete fancy rwd menu in admin (not compatible with no js and not very handy) and replace it with native WP UI
+* improve phpdoc
+
 = 5.4 =
 * 22 Nov 2014
 * Refactoring code
