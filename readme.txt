@@ -14,6 +14,12 @@ Easy integration of Twitter cards in WordPress. All card types provided.
 
 Once activated the plugin adds appropriate meta on your WordPress website allowing you to get Twitter cards for your posts according to your settings. Enjoy !
 
+= 6.0 =
+
+Most recent version requires **PHP 5.3 at least**. Most of the current web hosting provide at least PHP 5.3 or 5.4, just check it before update ig you are not sure. 
+
+If you run a website with PHP 5.2 site won't break but files won't be loaded so no markup. If so encourage you to upgrade or to change your web hosting.
+
 = Features =
 
 *  meta box : customize Twitter Cards experience (per each post)
@@ -163,6 +169,16 @@ Vous devez utiliser le shortcode [gallery] pour obtenir une card galerie (c'est 
 Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
+
+= 6.0 =
+* 25 July 2015
+* Major update
+* autoload resources
+* requires now PHP 5.3++, won't break on PHP 5.2 but files won't be loaded so no markup...
+* don't load files if PHP version is not compatible
+* improve namespace
+* use admin default font not the font I like
+* delete product and gallery cards cause they're no longer supported by Twitter
 
 = 5.4.2 =
 * 02 Jan 2015
