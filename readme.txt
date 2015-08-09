@@ -170,6 +170,12 @@ Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
 
+= 6.0.1 =
+* 09 Aug 2015
+* fix notices due to wrong call of init class
+* add option codec for player cards, if you leave it blank it won't change anything (player MP4)
+* change H2 for H1 with new class for admin page https://make.wordpress.org/core/2015/07/31/headings-in-admin-screens-change-in-wordpress-4-3/
+
 = 6.0 =
 * 25 July 2015
 * Major update

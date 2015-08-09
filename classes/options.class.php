@@ -220,6 +220,7 @@ class Options {
 			$playerStreamUrl = get_post_meta( $post_ID, 'cardPlayerStream', true );
 			$playerWidth     = get_post_meta( $post_ID, 'cardPlayerWidth', true );
 			$playerHeight    = get_post_meta( $post_ID, 'cardPlayerHeight', true );
+			$playerCodec     = get_post_meta( $post_ID, 'cardPlayerCodec', true );
 			$player          = array();
 
 			//Player
@@ -231,9 +232,13 @@ class Options {
 
 			//Player stream
 			if ( ! empty( $playerStreamUrl ) ) {
-				$codec                                = 'video/mp4; codecs=&quot;avc1.42E01E1, mp4a.40.2&quot;';
-				$player['player:stream']              = apply_filters( 'jm_tc_player_stream_url', $playerStreamUrl );
-				$player['player:stream:content_type'] = apply_filters( 'jm_tc_player_codec', $codec );
+				$player['player:stream'] = apply_filters( 'jm_tc_player_stream_url', $playerStreamUrl );
+			}
+
+			$player['player:stream:content_type'] = esc_attr( apply_filters( 'jm_tc_player_codec', 'video/mp4; codecs="avc1.42E01E1, mp4a.40.2"' ) );
+
+			if ( ! empty( $playerCodec ) ) {
+				$player['player:stream:content_type'] = esc_attr( apply_filters( 'jm_tc_player_codec', $playerCodec ) );
 			}
 
 			//Player width and
