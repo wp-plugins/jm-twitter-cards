@@ -170,6 +170,13 @@ Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
 
+= 6.0.2 =
+* 12 Aug 2015
+* delete default option with my credentials
+* actually this is not a good idea
+* by default I'm the author
+* sorry for that.
+
 = 6.0.1 =
 * 09 Aug 2015
 * fix notices due to wrong call of init class
