@@ -31,6 +31,21 @@ class Particular {
 
 		add_action( 'wpmu_new_blog', array( $this, 'new_blog' ) );
 
+		add_filter( 'jm_tc_card_site', array( $this, 'remove_tweetpressfr') );
+		add_filter( 'jm_tc_card_creator', array( $this, 'remove_tweetpressfr') );
+	}
+
+
+	/**
+	 * 6.1
+	 * Use my own filters to fix my mess !
+	 */
+	public function remove_tweetpressfr( $meta ){
+
+			if ( 'tweetpressfr' === strtolower( $meta ) || '@tweetpressfr' === strtolower( $meta ) ){
+				return false;
+			}
+		return $meta;
 	}
 
 

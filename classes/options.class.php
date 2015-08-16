@@ -103,7 +103,9 @@ class Options {
 			$cardCreator = '@' . Utilities::remove_at( $cardCreator );
 		}
 
-		return array( 'creator' => apply_filters( 'jm_tc_card_creator', $cardCreator ) );
+		$creator = apply_filters( 'jm_tc_card_creator', $cardCreator );
+
+		return array( 'creator' => $creator );
 	}
 
 	/**
@@ -112,8 +114,9 @@ class Options {
 	public function site_username() {
 
 		$cardSite = '@' . Utilities::remove_at( $this->opts['twitterSite'] );
+		$site = apply_filters( 'jm_tc_card_site', $cardSite );
 
-		return array( 'site' => apply_filters( 'jm_tc_card_site', $cardSite ) );
+		return array( 'site' => $site );
 	}
 
 

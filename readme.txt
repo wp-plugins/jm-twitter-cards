@@ -170,6 +170,13 @@ Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
 
+= 6.1 =
+* 16 Aug 2015
+* Clean my mess with authorship
+* Cards will break if you use my Twitter Acount as site or creator
+* I've no other choice
+* A notice will appear in admin for those particular cases
+
 = 6.0.2 =
 * 12 Aug 2015
 * delete default option with my credentials

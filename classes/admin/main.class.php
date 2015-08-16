@@ -39,6 +39,26 @@ class Main {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 		add_filter( 'cmb_frontend_form_format', array( $this, 'save_button' ), 10, 3 );
 		add_action( 'cmb_save_options-page_fields', array( $this, 'is_it_saved' ) );
+		add_action( 'admin_notices', array( $this, 'danger_notice' ), 0 );
+	}
+
+	/**
+	 * 6.1
+	 * Clean my mess
+	 */
+	public static function danger_notice() {
+
+		if ( ! current_user_can( 'install_plugins' ) ) {
+			return;
+		}
+
+		$options = \jm_tc_get_options();
+
+		if ( 'tweetpressfr' === strtolower( $options['twitterSite'] ) || 'tweetpressfr' === strtolower( $options['twitterCreator'] ) ) {
+
+			printf( __( '<div class="error"><p>Cards are broken because you use plugin\'s author account as Twitter site and /or Twitter Creator, please <a href="%s">change it here</a></p></div>' ), esc_url( admin_url( 'admin.php?page=jm_tc' ) ) );
+
+		}
 	}
 
 	/**
