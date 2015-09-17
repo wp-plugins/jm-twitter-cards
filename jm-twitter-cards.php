@@ -30,7 +30,7 @@ defined( 'ABSPATH' )
 or die( 'No direct load !' );
 
 // Constantly constant
-define( 'JM_TC_VERSION', '6.1' );
+define( 'JM_TC_VERSION', '6.2' );
 define( 'JM_TC_DIR', plugin_dir_path( __FILE__ ) );
 
 define( 'JM_TC_LANG_DIR', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
