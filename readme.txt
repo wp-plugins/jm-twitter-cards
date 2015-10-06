@@ -35,7 +35,8 @@ The plugin is available in French, English and Spanish. Feel totally free to sen
 You'll be added to the list here with your name and URL.
 Thanks a lot to all translators. Can't wait to add your work to the project.
 
-Spanish version : [WebHostingHub](http://www.webhostinghub.com/) (thanks dude ^^) 
+Spanish version : [WebHostingHub](http://www.webhostinghub.com/) (thanks a lot ^^) 
+Catalan version : [SeoFreelance](www.seofreelance.es) (thanks Dude )
 
 = Github =
 
@@ -169,6 +170,11 @@ Vous devez utiliser le shortcode [gallery] pour obtenir une card galerie (c'est 
 Meant to help developers only. You'll have to code to use them.
 
 == Changelog ==
+
+= 6.2.1 =
+* 06 Oct 2015
+* Catalan i18n
+* huge thanks [https://twitter.com/seofreelance](@seofreelance)
 
 = 6.2 =
 * 17 Sep 2015
