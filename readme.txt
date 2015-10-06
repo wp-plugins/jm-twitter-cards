@@ -35,8 +35,8 @@ The plugin is available in French, English and Spanish. Feel totally free to sen
 You'll be added to the list here with your name and URL.
 Thanks a lot to all translators. Can't wait to add your work to the project.
 
-Spanish version : [WebHostingHub](http://www.webhostinghub.com/) (thanks a lot ^^) 
-Catalan version : [SeoFreelance](www.seofreelance.es) (thanks Dude )
+* Spanish version : [WebHostingHub](http://www.webhostinghub.com/) (thanks a lot ^^) 
+* Catalan version : [SeoFreelance](http://www.seofreelance.es) (thanks Dude )
 
 = Github =
 
